@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description"
+          content="Socialise with people all around the world talking about cars, blogging, gaming, memes">
+
+    <title>Nav Bar</title>
+<!--    links-->
+    <link rel="stylesheet" href="./navBarStyle.css">
+    <link rel="stylesheet" href="./feed.css">
+    <link rel="stylesheet" href="./comments.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    scripts-->
+</head>
+<body>
+<!--    Navigation bar itself-->
+    <div id="NavBar">
+    <ul>
+        <li class="Normal-link"><a href="">Home</a></li>
+        <li class="Normal-link"><a href="">News</a></li>
+        <li class="Dropdown" style="float: right">
+            <a class="dropbtn">Categories</a>
+            <div class="Dropdown-content">
+                <a href="#">Categorie 1</a>
+                <a href="#">Categorie 2</a>
+                <a href="#">Categorie 3</a>
+            </div>
+        </li>
+        <li class="search-container">
+            <div>
+                <form>
+                    <label>
+                        <input type="text" placeholder="Search.." name="search" class="CustomPlaceholder">
+                    </label>
+                    <button type="submit" aria-label="Submit Search"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+        </li>
+    </ul>
+    </div>
+<!--    Feed Data-->
+    <div class="Feed">
+        <ul>
+            <li class="FeedPost">
+                <img class="FeedImage" src="./images/Image_created_with_a_mobile_phone.webp" alt="post">
+
+
+                <div class="comment-thread">
+                    <!-- Comment 1 start -->
+                    <details open class="comment" id="comment-1">
+                        <summary>Comments</summary>
+                            <ul>
+                                <li>
+                                    <div class="comment-heading">
+                                        <div class="comment-voting">
+                                            <button type="button">
+                                                <span aria-hidden="true">&#9650;</span>
+                                                <span class="sr-only">Vote up</span>
+                                            </button>
+                                            <button type="button">
+                                                <span aria-hidden="true">&#9660;</span>
+                                                <span class="sr-only">Vote down</span>
+                                            </button>
+                                        </div>
+                                        <div class="comment-info">
+                                            <a href="#" class="comment-author">someguy14</a>
+                                            <p class="m-0">
+                                                22 points &bull; 4 days ago
+                                            </p>
+                                        </div>
+                                        <div class="comment-flag">
+                                            <button type="button">Flag</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-body">
+                                        <p>
+                                            This is really great! I fully agree with what you wrote, and this is sure to help me out in the future. Thank you for posting this.
+                                        </p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="comment-heading">
+                                        <div class="comment-voting">
+                                            <button type="button">
+                                                <span aria-hidden="true">&#9650;</span>
+                                                <span class="sr-only">Vote up</span>
+                                            </button>
+                                            <button type="button">
+                                                <span aria-hidden="true">&#9660;</span>
+                                                <span class="sr-only">Vote down</span>
+                                            </button>
+                                        </div>
+                                        <div class="comment-info">
+                                            <a href="#" class="comment-author">someguy14</a>
+                                            <p class="m-0">
+                                                22 points &bull; 4 days ago
+                                            </p>
+                                        </div>
+                                        <div class="comment-flag">
+                                            <button type="button">Flag</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="comment-body">
+                                        <p>
+                                            This is really great! I fully agree with what you wrote, and this is sure to help me out in the future. Thank you for posting this.
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                    </details>
+                    <!-- Comment 1 end -->
+                </div>
+
+
+            </li>
+            <li class="FeedPost">
+                <img class="FeedImage" src="./images/Image_created_with_a_mobile_phone.webp" alt="post">
+            </li>
+            <li class="FeedPost">
+                <img class="FeedImage" src="./images/Image_created_with_a_mobile_phone.webp" alt="post">
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+
+.Feed{
+    width: 50%;
+    margin-left: 25%;
+}
+
+.Feed ul {
+    list-style-type: none;
+    text-align: center;
+
+    margin: 0;
+    padding: 0;
+}
+
+.FeedPost {
+    width: 100%;
+    margin-bottom: 10%;
+}
+
+.FeedImage {
+    width: 100%;
+    border-radius: 5px;
+}
