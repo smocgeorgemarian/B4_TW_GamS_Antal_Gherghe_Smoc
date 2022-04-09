@@ -35,10 +35,9 @@ button:active {
     background-color: #ecf0f1;
 }
 .comment-thread {
-    width: 700px;
+    width: 80%;
     max-width: 100%;
     margin: auto;
-    padding: 0 30px;
     background-color: #fff;
     border: 1px solid transparent; /* Removes margin collapse */
 }
@@ -84,7 +83,7 @@ button:active {
     color: black;
     margin-left: 10px;
 }
-.comment-flag {
+.login-div {
     margin-left: auto;
 }
 .comment-author {

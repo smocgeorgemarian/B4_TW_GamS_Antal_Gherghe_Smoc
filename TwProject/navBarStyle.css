@@ -28,13 +28,14 @@ body {
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 22px 16px;
     text-decoration: none;
 }
 
 #NavBar li a:hover, .Dropdown:hover .dropbtn {
     background-color: lightgray;
     color: black;
+
 }
 
 #NavBar li.Dropdown {
@@ -68,18 +69,23 @@ body {
 
 #NavBar .search-container {
     float: right;
+    border-radius: 3px;
 }
 
 #NavBar input[type=text] {
     padding: 6px;
     margin-top: 8px;
+    margin-bottom: 8px;
     font-size: 17px;
+    width: 330px;
     border: none;
 }
 
 #NavBar .search-container button {
     float: right;
     padding: 6px 10px;
+    border-radius: 0;
+
     margin-top: 8px;
     margin-right: 16px;
     background: #ddd;
@@ -91,3 +97,19 @@ body {
 #NavBar .search-container button:hover {
     background: #ccc;
 }
+
+.CustomPlaceholder {
+    height: 48px;
+}
+
+#NavBar .btn {
+    margin-top: 8px;
+    border-radius: 0;
+    background: black;
+    color: white;
+    font-size: 24px;
+}
+#NavBar .btn:hover{
+    color: rgb(37, 150, 190);
+}
+
