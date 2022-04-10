@@ -23,17 +23,26 @@ function setAddCommentPrintable() {
     let foundChild;
     [].forEach.call(parent.childNodes, function(child) {
         console.log(child.tagName);
-        if (child.tagName === "TEXTAREA") {
+        if (child.className === "comment-input") {
             exists = true;
             foundChild = child;
         }
     });
     if (!exists) {
+        let commentInputDiv = document.createElement("div");
+        commentInputDiv.classList.add("comment-input");
+
+        let profilePhoto = document.createElement("img");
+        profilePhoto.src = "./images/profilePhoto.webp"
+        profilePhoto.alt = "profile photo";
+        profilePhoto.classList.add("comment-photo");
+
         let newChild = document.createElement("textarea");
-        newChild.style.width = "80%";
-        newChild.style.height = "20%";
-        newChild.style.resize = "none";
-        parent.appendChild(newChild);
+        newChild.classList.add("comment-textarea");
+        commentInputDiv.appendChild(profilePhoto);
+        commentInputDiv.appendChild(newChild);
+        newChild.placeholder = "Add a comment...";
+        parent.appendChild(commentInputDiv);
     }
     else {
         parent.removeChild(foundChild);

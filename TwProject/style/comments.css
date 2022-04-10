@@ -154,6 +154,26 @@ details[open] > summary {
     margin-left: 28px;
 }
 
+.comment-input {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.comment-photo {
+    width: 48px;
+    border-radius: 20px;
+    margin-bottom: 10%;
+}
+
+.comment-textarea {
+    width: 60%;
+    height: 48px;
+    resize: none;
+    border-radius: 3px;
+    margin-bottom: 10%;
+    font-family: "Comic Sans MS", Serif;
+}
+
 /* Adjustments for toggleable comments */
 
 /*details.comment summary {*/
