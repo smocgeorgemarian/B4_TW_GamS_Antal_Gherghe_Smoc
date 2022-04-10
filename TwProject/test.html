@@ -1,0 +1,44 @@
+
+<button onclick="showPopup()">
+    Open Popup
+</button>
+<div class="popup">
+    <div class="blocker" onclick="hidePopup()"></div>
+    <div class="contents">
+        This is popup
+    </div>
+</div>
+
+<style>
+    body {
+        background: yellow;
+    }
+    .popup { display: none; }
+    .popup.open { display: block; }
+
+    .blocker {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        content: ' ';
+        background: transparent;
+    }
+    .popup .contents {
+        width: 200px;
+        height: 100px;
+        display: flex;
+        background: #FFF;
+
+        position: fixed;
+        /*margin-left: 50%;*/
+        /*margin-top: 50%;*/
+        /*transform: translate(-50%, -50%);*/
+    }
+
+</style>
+
+<script>
+
+</script>

@@ -4,10 +4,10 @@ function setSpinnable(object) {
 }
 
 //Form Manager
-function openForm() {
-    document.getElementById("reportForm").style.display = "block";
-}
-
-function closeForm() {
-    document.getElementById("reportForm").style.display = "none";
-}
+// function openForm() {
+//     document.getElementById("reportForm").style.display = "block";
+// }
+//
+// function closeForm() {
+//     document.getElementById("reportForm").style.display = "none";
+// }

@@ -28,9 +28,9 @@ body {
     border: 1px solid black;
     border-radius: 4px;
 }
-.comment button:hover,
-.comment button:focus,
-.comment button:active {
+.vote-comment:hover,
+.vote-comment:focus,
+.vote-comment:active {
     cursor: pointer;
     background-color: #ecf0f1;
 }
@@ -169,48 +169,19 @@ details[open] > summary {
     width: 60%;
     height: 48px;
     resize: none;
+    border: 1px solid;
     border-radius: 3px;
     margin-bottom: 10%;
-    font-family: "Comic Sans MS", Serif;
+    font-family: "Comic Sans MS", serif;
 }
 
-/* Adjustments for toggleable comments */
+.blocker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    content: '';
+    background: transparent;
+}
 
-/*details.comment summary {*/
-/*    position: relative;*/
-/*    list-style: none;*/
-/*    cursor: pointer;*/
-/*}*/
-/*details summary::-webkit-details-marker {*/
-/*    display: none;*/
-/*}*/
-/*details.comment:not([open]) .comment-heading {*/
-/*    border-bottom: 1px solid black;*/
-/*}*/
-/*.comment-heading::after {*/
-/*    display: inline-block;*/
-/*    position: absolute;*/
-/*    right: 30px;*/
-/*    align-self: center;*/
-/*    font-size: 12px;*/
-/*    color: black;*/
-/*}*/
-/*details.comment[open] .comment-heading::after {*/
-/*    content: "Click to hide";*/
-/*}*/
-/*details.comment:not([open]) .comment-heading::after {*/
-/*    content: "Click to show";*/
-/*}*/
-
-/* Adjustment for Internet Explorer */
-
-/*@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {*/
-/*    !* Resets cursor, and removes prompt text on Internet Explorer *!*/
-/*    .comment-heading {*/
-/*        cursor: default;*/
-/*    }*/
-/*    details.comment[open] .comment-heading::after,*/
-/*    details.comment:not([open]) .comment-heading::after {*/
-/*        content: " ";*/
-/*    }*/
-/*}*/

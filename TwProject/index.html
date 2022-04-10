@@ -28,7 +28,7 @@
     <ul>
         <li class="Normal-link"><button class="btn"><em id="spinnableHomeButton" class="fa fa-home"
                                                         onmouseover="setSpinnable(this)"></em></button></li>
-        <li class="Normal-link"><a href="">Home</a></li>
+        <li class="Normal-link"><button class="btn co"><em class="fa fa-cog"> </em></button></li>
         <li class="Normal-link"><a href="">News</a></li>
         <li class="Dropdown">
             <a class="dropbtn">Categories</a>
@@ -43,7 +43,7 @@
                 <form>
                     <label>
                         <input type="text" placeholder="Search.." name="search" class="CustomPlaceholder">
-                        <button type="submit" aria-label="Submit Search"><em class="fa fa-search"></em></button>
+                        <button class="submit-image" type="submit" aria-label="Submit Search"><em class="fa fa-search"></em></button>
                     </label>
                 </form>
             </div>
@@ -73,8 +73,8 @@
                                 <div class="comment-heading">
 <!--                                Vote the comment-->
                                     <div class="comment-voting">
-                                        <button type="button"><span aria-hidden="true">&#9650;</span></button>
-                                        <button type="button"><span aria-hidden="true">&#9660;</span></button>
+                                        <button class="vote-comment" type="button"><span aria-hidden="true">&#9650;</span></button>
+                                        <button class="vote-comment" type="button"><span aria-hidden="true">&#9660;</span></button>
                                     </div>
 <!--                                Info about comment-->
                                     <div class="comment-info">
@@ -83,8 +83,9 @@
                                     </div>
 <!--                                Report the comment-->
                                     <div class="report-div">
-                                        <button class="open-button" onclick="openForm()"><img src="https://icons.iconarchive.com/icons/icons8/windows-8/48/Business-Answers-icon.png" alt="open report form"/></button>
+                                        <button class="open-button vote-comment" onclick="showPopup(this)"><img src="https://icons.iconarchive.com/icons/icons8/windows-8/48/Business-Answers-icon.png" alt="open report form"/></button>
                                         <div class="form-popup" id="reportForm">
+                                            <div class="blocker" onclick="hidePopup(this)"></div>
                                             <form class="form-container">
                                                 <h3>Report this comment for:</h3>
                                                 <ul>
@@ -94,7 +95,8 @@
                                                 </ul>
                                                 <div class="report-buttons">
                                                     <button type="submit" class="btn">Send Report</button>
-                                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                                    <button type="button" class="btn cancel"
+                                                            onclick="hidePopup(this.parentElement.parentElement)">Close</button>
                                                 </div>
                                             </form>
                                         </div>
@@ -112,11 +114,11 @@
                             <li>
                                 <div class="comment-heading">
                                     <div class="comment-voting">
-                                        <button type="button">
+                                        <button class="vote-comment" type="button">
                                             <span aria-hidden="true">&#9650;</span>
                                             <span class="sr-only">Vote up</span>
                                         </button>
-                                        <button type="button">
+                                        <button class="vote-comment" type="button">
                                             <span aria-hidden="true">&#9660;</span>
                                             <span class="sr-only">Vote down</span>
                                         </button>

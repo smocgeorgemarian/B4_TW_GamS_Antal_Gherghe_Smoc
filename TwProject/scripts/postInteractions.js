@@ -47,5 +47,15 @@ function setAddCommentPrintable() {
     else {
         parent.removeChild(foundChild);
     }
+}
 
+function showPopup(element) {
+    let formPopup = element.parentElement.childNodes[3];
+    formPopup.style.display = "block";
+
+}
+
+function hidePopup(element) {
+    let parent = element.parentElement;
+    parent.style.display = "none";
 }

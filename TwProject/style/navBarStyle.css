@@ -8,6 +8,10 @@ body {
     font-family: "Comic Sans MS", serif;
 }
 
+#NavBar .submit-image {
+    height: 48px;
+}
+
 #NavBar::-webkit-input-placeholder {
     font-family: "Comic Sans MS", serif;
 }
@@ -22,6 +26,11 @@ body {
 
 #NavBar li.Normal-link {
     float: left;
+    margin-left: 5%;
+}
+
+#NavBar li:first-child {
+    margin-left: 3%;
 }
 
 #NavBar li a, .dropbtn {
