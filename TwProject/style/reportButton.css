@@ -1,32 +1,47 @@
 /*!* Button used to open the contact form - fixed at the bottom of the page *!*/
-.open-button {
+.comment .open-button {
     background-color: white;
     color: black;
-    padding: 4px 4px;
-    width: 48px;
     border: 1px solid black;
+    height: 5%;
+}
+
+.ReportRadioButton{
+    cursor: pointer;
 }
 
 /*!* The popup form - hidden by default *!*/
 .form-popup {
-    background-color: white;
     width: 30%;
     display: none;
     position: fixed;
-    left: 40%;
+    left: 35%;
     right: 40%;
     top: 50%;
     bottom: 50%;
-    border: 3px solid black;
-    border-radius: 3px;
-    z-index: 9;
+    padding: 0;
+    margin: 0;
+    /*border: 3px solid black;*/
+    /*border-radius: 3px;*/
+    /*z-index: 9;*/
 }
 
 /* Add styles to the form container */
 .form-container {
+    border: 1px solid black;
+    border-radius: 3px;
     background-color: white;
+
 }
 
+.form-container ul {
+    text-align: left;
+}
+
+.form-container .report-buttons {
+    display: flex;
+    justify-content: center;
+}
 
 /* Set a style for the submit/close button */
 .form-container .btn {
@@ -34,6 +49,9 @@
     color: white;
     border: none;
     opacity: 0.8;
+    margin-right: 2%;
+    margin-top: 2%;
+    margin-bottom: 2%;
 }
 
 /* Add a red background color to the cancel button */

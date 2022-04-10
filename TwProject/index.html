@@ -9,16 +9,18 @@
 
     <title>Nav Bar</title>
 <!--    local stylesheets-->
-    <link rel="stylesheet" href="./navBarStyle.css">
-    <link rel="stylesheet" href="./feed.css">
-    <link rel="stylesheet" href="./comments.css">
-    <link rel="stylesheet" href="./reportButton.css">
+    <link rel="stylesheet" href="style/navBarStyle.css">
+    <link rel="stylesheet" href="style/feed.css">
+    <link rel="stylesheet" href="style/reportButton.css">
+    <link rel="stylesheet" href="style/comments.css">
 
     <link rel="shortcut icon" href="#">
 <!--    external stylesheets-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--    scripts-->
-    <script type="text/javascript" src="./navBarScript.js"></script>
+    <script type="text/javascript" src="scripts/navBarScript.js"></script>
+    <script type="text/javascript" src="scripts/postInteractions.js"></script>
+
 </head>
 <body>
 <!--    Navigation bar itself-->
@@ -53,7 +55,15 @@
     <div class="Feed">
         <ul>
             <li class="FeedPost">
-                <img class="FeedImage" src="./images/Image_created_with_a_mobile_phone.webp" alt="post">
+                <div class="FeedContent">
+
+                    <img class="FeedImage" src="./images/Image_created_with_a_mobile_phone.webp" alt="post">
+                    <div class="ReactionsBar">
+                        <button id="like" class="btn like" onclick="liked()"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/like-2-icon.png" alt="like"/><a id="like_points">50</a></button>
+                        <button id="comm" class="btn comm" onclick="setAddCommentPrintable()"> <img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/chat-icon.png" alt="comment"/>2</button>
+                        <button class="btn share"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/share-2-icon.png" alt="share"/>333</button>
+                    </div>
+                </div>
                 <div class="comment-thread">
                     <!-- Comment 1 start -->
                     <details open class="comment" id="comment-1">
@@ -61,52 +71,44 @@
                         <ul>
                             <li>
                                 <div class="comment-heading">
+<!--                                Vote the comment-->
                                     <div class="comment-voting">
-                                        <button type="button">
-                                            <span aria-hidden="true">&#9650;</span>
-                                            <span class="sr-only">Vote up</span>
-                                        </button>
-                                        <button type="button">
-                                            <span aria-hidden="true">&#9660;</span>
-                                            <span class="sr-only">Vote down</span>
-                                        </button>
+                                        <button type="button"><span aria-hidden="true">&#9650;</span></button>
+                                        <button type="button"><span aria-hidden="true">&#9660;</span></button>
                                     </div>
+<!--                                Info about comment-->
                                     <div class="comment-info">
                                         <a href="#" class="comment-author">someguy14</a>
-                                        <p class="m-0">22 points &bull; 4 days ago</p>
+                                        <p class="extra-comment-info">22 points &bull; 4 days ago</p>
                                     </div>
-
-                                    <div class="login-div">
-                                        <button class="open-button" onclick="openForm()">Report</button>
-                                        <div class="form-popup" id="myForm">
+<!--                                Report the comment-->
+                                    <div class="report-div">
+                                        <button class="open-button" onclick="openForm()"><img src="https://icons.iconarchive.com/icons/icons8/windows-8/48/Business-Answers-icon.png" alt="open report form"/></button>
+                                        <div class="form-popup" id="reportForm">
                                             <form class="form-container">
                                                 <h3>Report this comment for:</h3>
                                                 <ul>
-                                                    <li>
-                                                        <label class="ReportRadioButton"><input type="checkbox">Nudity</label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="ReportRadioButton"> <input type="checkbox">Bad Words</label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="ReportRadioButton"><input type="checkbox">Religious propaganda</label>
-                                                    </li>
+                                                    <li><label class="ReportRadioButton"><input type="checkbox">Nudity</label></li>
+                                                    <li><label class="ReportRadioButton"> <input type="checkbox">Bad Words</label></li>
+                                                    <li><label class="ReportRadioButton"><input type="checkbox">Religious propaganda</label></li>
                                                 </ul>
-
-                                                <button type="submit" class="btn">Send Report</button>
-                                                <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                                <div class="report-buttons">
+                                                    <button type="submit" class="btn">Send Report</button>
+                                                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                                                </div>
                                             </form>
                                         </div>
-                                        <!--                                        report button end-->
                                     </div>
-
                                 </div>
+<!--                            Body of the comment-->
                                 <div class="comment-body">
                                     <p>
                                         This is really great! I fully agree with what you wrote, and this is sure to help me out in the future. Thank you for posting this.
                                     </p>
                                 </div>
                             </li>
+
+<!--                        Comment no 2-->
                             <li>
                                 <div class="comment-heading">
                                     <div class="comment-voting">
@@ -121,26 +123,18 @@
                                     </div>
                                     <div class="comment-info">
                                         <a href="#" class="comment-author">someguy14</a>
-                                        <p class="m-0">
-                                            22 points &bull; 4 days ago
-                                        </p>
+                                        <p class="extra-comment-info">22 points &bull; 4 days ago</p>
                                     </div>
-
                                 </div>
 
-                                <div class="comment-body">
-                                    <p>
-                                        This is really great! I fully agree with what you wrote, and this is sure to help me out in the future. Thank you for posting this.
-                                    </p>
-                                </div>
+                                <div class="comment-body"><p>This is really great! I fully agree with what you wrote, and this is sure to help me out in the future. Thank you for posting this.</p></div>
                             </li>
                         </ul>
+
                     </details>
-                    <!-- Comment 1 end -->
                 </div>
-
-
             </li>
+
             <li class="FeedPost">
                 <img class="FeedImage" src="./images/Image_created_with_a_mobile_phone.webp" alt="post">
             </li>

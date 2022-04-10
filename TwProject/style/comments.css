@@ -15,7 +15,7 @@ body {
     color: black;
     background-color: #f9f9f9;
 }
-button {
+.comment button {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -28,9 +28,9 @@ button {
     border: 1px solid black;
     border-radius: 4px;
 }
-button:hover,
-button:focus,
-button:active {
+.comment button:hover,
+.comment button:focus,
+.comment button:active {
     cursor: pointer;
     background-color: #ecf0f1;
 }
@@ -41,7 +41,7 @@ button:active {
     background-color: #fff;
     border: 1px solid transparent; /* Removes margin collapse */
 }
-.m-0 {
+.extra-comment-info {
     margin: 0;
 }
 .sr-only {
@@ -83,7 +83,7 @@ button:active {
     color: black;
     margin-left: 10px;
 }
-.login-div {
+.report-div {
     margin-left: auto;
 }
 .comment-author {
@@ -102,6 +102,7 @@ button:active {
 
 details > summary {
     list-style-type: none;
+    cursor: pointer;
 }
 
 details > summary::-webkit-details-marker {

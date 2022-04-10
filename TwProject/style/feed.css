@@ -1,0 +1,71 @@
+
+.Feed{
+    width: 50%;
+    margin-left: 25%;
+}
+
+.Feed ul {
+    list-style-type: none;
+    text-align: center;
+
+    margin: 0;
+    padding: 0;
+}
+
+.FeedPost {
+    width: 100%;
+}
+
+.FeedImage {
+    width: 80%;
+    border-radius: 5px;
+}
+
+/*Like - Comment - Share BAR*/
+#FeedContent {
+    margin-bottom: 0px;
+}
+
+.FeedContent .ReactionsBar{
+    border-radius: 5px;
+    transform: translate(12.6%, -111%);
+    width: 80%;
+    opacity: 0;
+}
+
+.FeedContent:hover .ReactionsBar{
+    opacity: 1;
+    background-color: rgba(100, 105, 107, 0.4);
+}
+
+.FeedContent .btn{
+    font-size: large;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: rgba(100, 105, 107, 0.4);
+
+}
+
+.FeedContent .like {
+    margin-left: 1%;
+    float: left;
+}
+
+.FeedContent .like.liked {
+    background-color: rgba(100, 105, 214, 0.5);
+}
+
+.FeedContent .like.liked:hover {
+    background-color: rgba(200, 205, 314, 0.5);
+}
+
+.FeedContent .share {
+    margin-right: 1%;
+    float: right;
+}
+
+.FeedContent .btn:hover{
+    background-color: rgba(209, 205, 207, 0.7);
+}

@@ -40,6 +40,7 @@ body {
 
 #NavBar li.Dropdown {
     float: right;
+    cursor: pointer;
 }
 
 #NavBar .Dropdown-content {
@@ -89,7 +90,7 @@ body {
     margin-top: 8px;
     margin-right: 16px;
     background: #ddd;
-    font-size: 17px;
+    font-size: 194%;
     border: none;
     cursor: pointer;
 }
@@ -103,13 +104,15 @@ body {
 }
 
 #NavBar .btn {
-    margin-top: 8px;
+    border: none;
+    margin-top: 25%;
     border-radius: 0;
     background: black;
     color: white;
-    font-size: 24px;
+    font-size: 194%;
 }
 #NavBar .btn:hover{
     color: rgb(37, 150, 190);
+    cursor: pointer;
 }
 

@@ -5,9 +5,9 @@ function setSpinnable(object) {
 
 //Form Manager
 function openForm() {
-    document.getElementById("myForm").style.display = "block";
+    document.getElementById("reportForm").style.display = "block";
 }
 
 function closeForm() {
-    document.getElementById("myForm").style.display = "none";
+    document.getElementById("reportForm").style.display = "none";
 }
