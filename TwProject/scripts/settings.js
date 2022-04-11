@@ -10,31 +10,69 @@ function setAddSettingsPrintable() {
             foundChild = child;
         }
     });
+    let button = document.getElementById("settings-button");
     if(!exists){
+        button.classList.add("blue-hue");
+
         let settingsDiv = document.createElement("div");
         settingsDiv.classList.add("settings");
+        let blocker = document.createElement("div");
+        blocker.classList.add("blocker");
+        blocker.setAttribute('onclick', 'hideSettings(this)');
 
         let ul = document.createElement("ul");
-        let li = document.createElement("li");
+        for (let settingsIndex = 1; settingsIndex <= 4; settingsIndex++) {
+            let li = document.createElement("li");
+            li.style.verticalAlign = "0px";
 
-        let lable = document.createElement("lable");
-        let checkbox = document.createElement("input");
-            checkbox.type = "checkbox";
+            let divButton = document.createElement("div");
+            divButton.classList.add("mid");
 
-        let text = document.createTextNode("setting_1");
-        li.appendChild(checkbox);
-        li.appendChild(text);
-        ul.appendChild(li);
+            let label = document.createElement("label");
+            label.classList.add("rocker");
+            label.classList.add("rocker-small");
+
+            let inputCheckbox = document.createElement("input");
+            inputCheckbox.type = "checkbox";
+            inputCheckbox.checked = true;
+            inputCheckbox.style.opacity = 0;
+
+            let spanSwitchLeft = document.createElement("span");
+            spanSwitchLeft.classList.add("switch-left");
+            spanSwitchLeft.textContent = "On";
+
+            let spanSwitchRight = document.createElement("span");
+            spanSwitchRight.classList.add("switch-right");
+            spanSwitchRight.textContent = "Off";
+
+            let text = document.createElement("p");
+            text.textContent = "Setting 1";
+            text.style.padding = "10px";
+
+            label.appendChild(inputCheckbox);
+            label.appendChild(spanSwitchLeft);
+            label.appendChild(spanSwitchRight);
+
+            divButton.appendChild(label);
+            divButton.appendChild(text);
+            li.appendChild(divButton);
+            ul.appendChild(li);
+        }
+        settingsDiv.appendChild(blocker);
         settingsDiv.appendChild(ul);
         parent.appendChild(settingsDiv);
-
     }else{
+        button.classList.remove("blue-hue");
         parent.removeChild(foundChild);
     }
 }
 
-// <ul>
-//     <li><label className="ReportRadioButton"><input type="checkbox">Nudity</label></li>
-//     <li><label className="ReportRadioButton"> <input type="checkbox">Bad Words</label></li>
-//     <li><label className="ReportRadioButton"><input type="checkbox">Religious propaganda</label></li>
-// </ul>
+function showSettings(element) {
+    let formPopup = element.parentElement.childNodes[3];
+    formPopup.style.display = "block";
+}
+
+function hideSettings(element) {
+    let parent = element.parentElement;
+    parent.remove();
+}

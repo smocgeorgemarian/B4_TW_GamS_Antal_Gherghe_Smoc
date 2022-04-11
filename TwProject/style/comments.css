@@ -1,11 +1,3 @@
-/*
-    Body, button, comment-thread, and utilities
-
-    Notes:
-        - This section sets some basic styles. You can ignore this part and
-        go directly to the comment styles.
-*/
-
 * {
     box-sizing: border-box;
 }
@@ -176,12 +168,17 @@ details[open] > summary {
 }
 
 .blocker {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
+    /*display: flex;*/
+    height: 1000vh;
+    width: 1000vw;
+
+    top: -400vh;
+    left: -400vh;
     bottom: 0;
     right: 0;
     content: '';
     background: transparent;
+    z-index: -1;
 }
 
