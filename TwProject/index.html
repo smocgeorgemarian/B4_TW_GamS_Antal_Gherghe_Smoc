@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
 <!--    metadata-->
     <meta charset="UTF-8">
@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="style/feed.css">
     <link rel="stylesheet" href="style/reportButton.css">
     <link rel="stylesheet" href="style/comments.css">
+    <link rel="stylesheet" href="style/settings.css">
 
     <link rel="shortcut icon" href="#">
 <!--    external stylesheets-->
@@ -20,15 +21,17 @@
     <!--    scripts-->
     <script type="text/javascript" src="scripts/navBarScript.js"></script>
     <script type="text/javascript" src="scripts/postInteractions.js"></script>
+    <script type="text/javascript" src="scripts/settings.js"></script>
 
 </head>
 <body>
 <!--    Navigation bar itself-->
+    <div id="settings"></div>
     <div id="NavBar">
     <ul>
         <li class="Normal-link"><button class="btn"><em id="spinnableHomeButton" class="fa fa-home"
                                                         onmouseover="setSpinnable(this)"></em></button></li>
-        <li class="Normal-link"><button class="btn co"><em class="fa fa-cog"> </em></button></li>
+        <li class="Normal-link"><button class="btn co" onclick="setAddSettingsPrintable()"><em class="fa fa-cog"> </em></button></li>
         <li class="Normal-link"><a href="">News</a></li>
         <li class="Dropdown">
             <a class="dropbtn">Categories</a>
@@ -89,7 +92,7 @@
                                             <form class="form-container">
                                                 <h3>Report this comment for:</h3>
                                                 <ul>
-                                                    <li><label class="ReportRadioButton"><input type="checkbox">Nudity</label></li>
+                                                    <li><label class="ReportRadioButton"><input type="checkbox">Nudity</input></label></li>
                                                     <li><label class="ReportRadioButton"> <input type="checkbox">Bad Words</label></li>
                                                     <li><label class="ReportRadioButton"><input type="checkbox">Religious propaganda</label></li>
                                                 </ul>

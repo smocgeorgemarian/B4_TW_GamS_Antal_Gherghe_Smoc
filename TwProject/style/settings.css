@@ -1,0 +1,20 @@
+
+.settings {
+    position: fixed;
+    width: 30%;
+    transform: translate(0%, 160%);
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 1px;
+}
+
+.settings ul {
+    list-style: none;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    padding: 0;
+}
+
+.settings input{
+    color: black;
+}
