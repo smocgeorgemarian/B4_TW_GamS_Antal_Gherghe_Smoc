@@ -59,6 +59,10 @@
     background-color: red;
 }
 
+.ReportButton {
+    height: 96px;
+    width: 96px;
+}
 
 /* Add some hover effects to buttons */
 /*.form-container .btn:hover, .open-button:hover {*/

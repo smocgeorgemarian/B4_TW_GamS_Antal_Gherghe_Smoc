@@ -4,8 +4,7 @@ let clicks = 50;
 let liked_post = false;
 
 
-function liked() {
-    const element = document.getElementById("like");
+function liked(element) {
     element.classList.toggle("liked");
     if(!liked_post){
         clicks += 1;
@@ -13,11 +12,15 @@ function liked() {
         clicks -=1;
     }
     liked_post = !liked_post;
-    document.getElementById("like_points").innerHTML = clicks;
+
+    [].forEach.call(element.childNodes, function(child) {
+        console.log(child.tagName);
+        child.innerText = clicks;
+    });
 }
 
-function setAddCommentPrintable() {
-    let element = document.getElementById("comm");
+
+function setAddCommentPrintable(element) {
     let parent = element.parentElement.parentElement.parentElement;
     let exists = false;
     let foundChild;

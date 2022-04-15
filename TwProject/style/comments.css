@@ -51,6 +51,7 @@ body {
     position: relative;
     margin: 20px auto;
 }
+
 .comment-heading {
     display: flex;
     align-items: center;
@@ -91,6 +92,10 @@ body {
 /*}*/
 
 /*Changing summary*/
+.comment {
+    /*text-align: center;*/
+}
+
 
 details > summary {
     list-style-type: none;

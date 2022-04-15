@@ -23,18 +23,22 @@
 
 /*Like - Comment - Share BAR*/
 #FeedContent {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 .FeedContent .ReactionsBar{
     border-radius: 5px;
-    transform: translate(12.6%, -111%);
+    transform: translate(12.6%, -22%);
     width: 80%;
-    opacity: 0;
+    /*opacity: 0;*/
+    margin-top: 1%;
+    position: relative;
+
+    background-color: rgba(100, 105, 107, 0.2)  ;
 }
 
 .FeedContent:hover .ReactionsBar{
-    opacity: 1;
+    /*opacity: 1;*/
     background-color: rgba(100, 105, 107, 0.4);
 }
 
@@ -68,4 +72,14 @@
 
 .FeedContent .btn:hover{
     background-color: rgba(209, 205, 207, 0.7);
+}
+
+.iframe-model {
+    width: 80%;
+    height: 400px;
+}
+
+.no-line {
+    text-decoration: none;
+    display: inline;
 }

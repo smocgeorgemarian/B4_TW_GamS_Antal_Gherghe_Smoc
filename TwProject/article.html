@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation</title>
+</head>
+<body style="font-family: 'Times New Roman', serif; text-align: justify;">
+    <h1>GamS</h1>
+    <section typeof="sa:AuthorsList">
+        <h2>Authors</h2>
+        <ul><li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person" resource="https://www.facebook.com/antal.cristianiulian">
+                <meta property="schema:givenName" content="Iulian">
+                <meta property="schema:familyName" content="Antal">
+                <span property="schema:name">Iulian Antal</span>
+            </span>
+            <ul>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="mailto:iulianantal@gmail.com"
+                       property="schema:email">antal1445@gmail.com</a>
+                </li>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="fax:+40762608685" property="schema:faxNumber">+40762608685</a>
+                </li>
+            </ul>
+            </li>
+
+            <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person" resource="https://www.facebook.com/tudor.alexandru.374">
+                <meta property="schema:givenName" content="Tudor">
+                <meta property="schema:familyName" content="Gherghe">
+                <span property="schema:name">Tudor Gherghe</span>
+            </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="mailto:tudor.gherghe@yahoo.com"
+                           property="schema:email">tudor.gherghe@yahoo.com</a>
+                    </li>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="fax:+40799779025" property="schema:faxNumber">+40799779025</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person" resource="https://www.facebook.com/smoc.george">
+                <meta property="schema:givenName" content="George">
+                <meta property="schema:familyName" content="Smoc">
+                <span property="schema:name">George Smoc</span>
+            </span>
+                <ul>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="mailto:george.smoc13@gmail.com"
+                           property="schema:email">george.smoc13@gmail.com</a>
+                    </li>
+                    <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                        <a href="fax:+40770426913" property="schema:faxNumber">+40770426913</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>1.Introduction</h2>
+        <section>
+            <h3 role="doc-subtitle">1.1 Purpose</h3>
+            <p>The following SRS describes an HTML/CSS/JavaScript architecture used for creating the FrontEnd side of the project "GamS (Gamification as a Service)". The current iteration has release number 1.3.1.</p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">1.2 Document Conventions</h3>
+            <p>The report is written using the font "Times New Roman". The statements and requirements that will be described have their own priority given by the "&#60;h[number]>" node given by the "Scholarly HTML" format.</p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">1.3 Intended Audience and Reading Suggestions</h3>
+            <p>The document is intended for developers and project managers. The rest of the SRS report contains details about the given project and is organized in the "Scholarly HTML" format. The suggested sequence for reading the document is beginning with the "1. Introduction" section and proceeding through the sections that are most pertinent for each reader.</p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">1.4 Product Scope</h3>
+            <p>The software specified is a gamification service used by web developers and site owners to add rewards granted to users for doing specified tasks or actions and add a leveling system. The benefits of this service are on a marketing level to motivate and engage users. The main objective is to provide means for enhancing systems, services, and activities to create similar experiences to those experienced when playing games. Our goals are to create a reliable and easy way to achieve the objective described above.
+                The FrontEnd side of the software is a replacement for other competitors like "Reddit", "Twitter", etc. which takes the best of each and creates a place where everybody can experience a new and exciting approach. This combined with the gamification service will let users 'choose' their own way of using our product.
+            </p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">1.5 References</h3>
+            <ol>
+                <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-projects.html" property="schema:citation" id="ref-1">
+                    <cite property="schema:name"><a href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-projects.html">Project requirements</a></cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://w3c.github.io/scholarly-html/#abstract" property="schema:citation" id="ref-2">
+                    <cite property="schema:name"><a href="https://w3c.github.io/scholarly-html/#abstract" >Scholarly HTML format</a></cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" property="schema:citation" id="ref-3">
+                    <cite property="schema:name"><a href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">Style Library</a></cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.w3schools.com/" property="schema:citation" id="ref-4">
+                    <cite property="schema:name"><a href="https://www.w3schools.com/">W3Schools</a></cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://codepen.io/" property="schema:citation" id="ref-5">
+                    <cite property="schema:name"><a href="https://codepen.io/">CodePen</a></cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.flaticon.com" property="schema:citation" id="ref-6">
+                    <cite property="schema:name"><a href="https://www.flaticon.com">Vector Icons & Stickers</a></cite>
+                </li>
+                <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://frontend.ro/resurse" property="schema:citation" id="ref-7">
+                    <cite property="schema:name"><a href="https://frontend.ro/resurse">FrontEnd Resources</a></cite>
+                </li>
+            </ol>
+        </section>
+    </section>
+    <section>
+        <h2>2.Overall Description</h2>
+        <section>
+            <h3 role="doc-subtitle">2.1 Product Perspective</h3>
+            <p>The product is a follow-on member of the social apps family. The main scope is to replace already existing apps by creating a new experience using the best things its competitors offer.</p>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">2.2 Product Functions</h3>
+            <ol>
+                <li>Gamification System
+                    <ol>
+                        <li>Leveling System</li>
+                        <li>Rewards System</li>
+                    </ol>
+                </li>
+
+                <li>User Interface:
+                    <ol>
+                        <li>Creating Posts</li>
+                        <li>Like, Comment, Share Posts</li>
+                        <li>Report System</li>
+                        <li>Category Subscription</li>
+                        <li>Settings</li>
+                        <li>Account Personalization</li>
+                    </ol>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">2.3 User Classes and Characteristics</h3>
+            <p>The main user classes that are anticipated to use this product are young people, gamers, and people interested only in some specific categories we supply. Both the young people and gamer user classes are anticipated to use the service on a high frequency. The latter class is more prone to use the full extent of the gamification side than the first one, given the familiarity with the function. For the class containing people interested only in specific categories, we predict a low use frequency and a low possibility of entering communities other than the ones they are already part of. All classes are offered the same security and privilege levels because in our eyes all users are equal.</p>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">2.3 User Classes and Characteristics</h3>
+            <p>The main user classes that are anticipated to use this product are young people, gamers, and people interested only in some specific categories we supply. Both the young people and gamer user classes are anticipated to use the service on a high frequency. The latter class is more prone to use the full extent of the gamification side than the first one, given the familiarity with the function. For the class containing people interested only in specific categories, we predict a low use frequency and a low possibility of entering communities other than the ones they are already part of. All classes are offered the same security and privilege levels because in our eyes all users are equal.</p>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">2.4 Operating Environment</h3>
+            <p>The operating environment in which the software will operate is any given web browser app that supports HTML 5. The hardware platform, operating system, and other requirements are given by the specific browser used.</p>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">2.5 Design and Implementation Constraints</h3>
+            <p>The main limitations are given by the early stages of the project because of the lack of user data we are able to collect. The impedes the correctness and speed of our AI.</p>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">2.6 Design and Implementation Constraints</h3>
+            <p>For the average user, there is no need for documentation given the easy-to-use interface and the familiarity given by other social apps.  For developers and site owners looking to use our gamification API, there will be a thorough documentation released with the final product.</p>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">2.7 Assumptions and Dependencies</h3>
+            <p>The main third-party services used by us come with some risk factors that we assume. One of them is relying on a server hosting service and any problems with it are out of our control. Another one is the storage space of the database which right now is not a problem, but risks rise with the number of users.</p>
+        </section>
+    </section>
+
+    <section>
+        <h2>External Interface Requirements</h2>
+        <section>
+            <h3 role="doc-subtitle">3.1 User Interfaces</h3>
+            <p>
+                The login interface welcomes the user and lets him log in. Register interface redirects the user to the selection menu so that data about the user's preferences may be collected.  After the user's preferences are specified, the main page loads and the feed is given to the user. Interactions and engagement are used so that several badges are unlocked.
+                Several settings are available to the user directly from the navigation bar available on the main page. A settings menu is available for advanced settings that personalise the user's experience.
+                User interaction is made available via hovering over specific posts and consists of 3 types of reactions: like, comment and share.
+                Comments that do not respect the community rules should be reported using the report button available for every post.
+                Login and register systems interact with the user's database and have specific interfaces. So do the feed menu and the settings menu.
+            </p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">3.2 Hardware Interfaces</h3>
+            <p>The supported device types consist of all devices that support a browser, including those that view the website in mobile mode. The used communication protocol is HTTPS and the data is transferred via JSON format.</p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">3.3 Software Interfaces</h3>
+            <p>The website will have an integrated commercial component so that the activity of the users will be monetised. SQLite will be used as an SQL database engine and the interactions with the database will be possible via a REST API. API will receive specific requests in JSON format, including register, login, get the time the user has spent on the website etc.</p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">3.4 Communications Interfaces</h3>
+            <p>HTTPS will be used as a communication standard. Register function also requires e-mail confirmation. Shareable data can be transmitted via a link on other social media apps. As mentioned above, messages between server and client are manipulated in JSON format. Transfer rate depends on the hosting server and internet speed of the user and it is optimised by using webp format for images and imposing a maximum resolution allowed for image posting actions.</p>
+        </section>
+    </section>
+
+    <section>
+        <h2>System Features</h2>
+        <section>
+            <h3 role="doc-subtitle">4.1 Personalised Feeds</h3>
+            <section>
+                <h4 role="doc-subtitle">4.1.1 Description and Priority</h4>
+                <p>Every user will get a personalized feed based on the categories they are subscribed to and the posts the AI thinks they will like. This feature is a high priority one, being the main concept of a social app.</p>
+            </section>
+
+            <section>
+                <h4 role="doc-subtitle">4.1.2 Stimulus/Response Sequences</h4>
+                <p>For every user, we have a list of the categories he is currently subscribed to. Using it, we request posts from the database to show on the feed. The AI collects info like the posts liked and commented by the user to calculate what posts or categories to recommend.</p>
+            </section>
+
+            <section>
+                <h4 role="doc-subtitle">4.1.3 Functional Requirements</h4>
+                <p>For every user, we have a list of the categories he is currently subscribed to. Using it, we request posts from the database to show on the feed. The AI collects info like the posts liked and commented by the user to calculate what posts or categories to recommend.</p>
+            </section>
+        </section>
+
+        <section>
+            <h3 role="doc-subtitle">4.2 Accessibility Features</h3>
+            <section>
+                <h4 role="doc-subtitle">4.2.1 Description and Priority</h4>
+                <p>This encapsulates all the small adjustments that help users in need, having a high priority because we want to create a place for everyone to feel welcomed. Some of them are:</p>
+                <ol>
+                    <li>Exiting pop-ups or menus by clicking the button or elsewhere on the page.</li>
+                    <li>Audio description for blind users</li>
+                    <li>High contrast level</li>
+                    <li>Big and clear buttons</li>
+                </ol>
+            </section>
+            <section>
+                <h4 role="doc-subtitle">4.2.2 Stimulus/Response Sequences</h4>
+                <p>There are no specific sequences because this feature is comprised of adjustments to the already existing code.</p>
+            </section>
+
+            <section>
+                <h4 role="doc-subtitle">4.2.3 Functional Requirements</h4>
+                <p>Same as 4.1.3.</p>
+            </section>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">4.3 Gamelike Experience</h3>
+            <section>
+                <h4 role="doc-subtitle">4.3.1 Description and Priority</h4>
+                <p>This experience is composed of the leveling system and the reward system. They have a high priority, being the main selling point of our service. Both work with the intent to engage the user and give him a fun and unique experience.</p>
+            </section>
+
+            <section>
+                <h4 role="doc-subtitle">4.3.2 Stimulus/Response Sequences</h4>
+                <p>Interactions made by the user are sent to the API, which will store the needed information. When certain requirements are achieved the API will send a notification to the user to redeem its reward. The leveling side works by updating the experience bar when achievements are made by the user, showing their dedication and skill.</p>
+            </section>
+
+            <section>
+                <h4 role="doc-subtitle">4.3.3 Functional Requirements</h4>
+                <p>Same as 4.1.3</p>
+            </section>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">4.4 Login/Register</h3>
+
+            <section>
+                <h4 role="doc-subtitle">4.4.1 Description and Priority</h4>
+                <p>They are basic requirements for any social app.</p>
+            </section>
+
+            <section>
+                <h4 role="doc-subtitle">4.4.2 Stimulus/Response Sequences</h4>
+                <p>
+                    Login is made by taking the info written in by the user and verifying it in the database to know if a connection should be made.
+                    The register consists in taking the info and verifying if the username and email are available sending a confirmation email and if they are then it inserts the info in the database.
+                </p>
+            </section>
+
+            <section>
+                <h4 role="doc-subtitle">4.4.3 Functional Requirements</h4>
+                <p>Same as 4.1.3.</p>
+            </section>
+        </section>
+    </section>
+</body>
+</html>

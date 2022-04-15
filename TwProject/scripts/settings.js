@@ -73,6 +73,8 @@ function showSettings(element) {
 }
 
 function hideSettings(element) {
+    let button = document.getElementById("settings-button");
+    button.classList.remove("blue-hue");
     let parent = element.parentElement;
     parent.remove();
 }
