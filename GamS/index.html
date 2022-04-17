@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="CSSdocs/reportButton.css">
     <link rel="stylesheet" href="CSSdocs/comments.css">
     <link rel="stylesheet" href="CSSdocs/settings.css">
+    <link rel="stylesheet" href="CSSdocs/badges.css">
 
     <link rel="shortcut icon" href="#">
 <!--    external stylesheets-->
@@ -22,16 +23,21 @@
     <script type="text/javascript" src="JavaScript/navBarScript.js"></script>
     <script type="text/javascript" src="JavaScript/postInteractions.js"></script>
     <script type="text/javascript" src="JavaScript/settings.js"></script>
+    <script type="text/javascript" src="JavaScript/badges.js"></script>
+
 
 </head>
 <body>
 <!--    Navigation bar itself-->
-    <div id="settings" ></div>
+    <div id="settings"></div>
+    <div id="badges"></div>
     <div id="NavBar">
     <ul>
         <li class="Normal-link"><button class="btn"><em id="spinnableHomeButton" class="fa fa-home"
                                                         onmouseover="setSpinnable(this)"></em></button></li>
         <li class="Normal-link"><button id="settings-button" class="btn co" onclick="setAddSettingsPrintable()"><em class="fa fa-cog"></em></button></li>
+        <li class="Normal-link"><button id="badges-button" class="btn co" onclick="setBadgesPrintable()"><em class="fa fa-id-badge"></em></button></li>
+
         <li class="Normal-link"><a href="./HTMLdocs/article.html">News</a></li>
         <li class="Dropdown">
             <a  href="#" class="dropbtn">Categories</a>
