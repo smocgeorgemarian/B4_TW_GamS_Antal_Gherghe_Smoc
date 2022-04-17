@@ -1,6 +1,7 @@
 function fnChangeBorder(element) {
-    if (element.style.border !== "" && element.style.border !== 'none')
+    alert(element.style.border);
+    if (element.style.border !== "" && !element.style.border.includes("none"))
         element.style.border = "none";
     else
-        element.style.border = "solid #000000";
+        element.style.border = "solid black";
 }
