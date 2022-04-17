@@ -171,3 +171,9 @@ input:focus + .switch-left + .switch-right {
 input:checked:focus + .switch-left + .switch-right {
     color: #333;
 }
+
+.position-button {
+    float: right;
+    margin-bottom: 2%;
+    margin-right: 2%;
+}

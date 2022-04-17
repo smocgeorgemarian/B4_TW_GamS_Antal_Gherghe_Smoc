@@ -21,6 +21,21 @@ function setAddSettingsPrintable() {
         blocker.setAttribute('onclick', 'hideSettings(this)');
 
         let ul = document.createElement("ul");
+        // <li className="Normal-link">
+        //     <button id="badges-button" className="btn co" onClick="setBadgesPrintable()"><em
+        //         className="fa fa-sign-out"></em></button>
+        // </li>
+        let logoutButton = document.createElement("button");
+        logoutButton.classList.add("btn");
+        logoutButton.classList.add("co");
+        logoutButton.classList.add("position-button");
+        logoutButton.setAttribute('onclick', "window.location.href='./HTMLdocs/loginPage.html'")
+        let em = document.createElement("em");
+        em.classList.add("fa");
+        em.classList.add("fa-sign-out");
+        em.style.fontSize = "48px";
+
+
         for (let settingsIndex = 1; settingsIndex <= 4; settingsIndex++) {
             let li = document.createElement("li");
             li.style.verticalAlign = "0px";
@@ -58,10 +73,19 @@ function setAddSettingsPrintable() {
             li.appendChild(divButton);
             ul.appendChild(li);
         }
+        logoutButton.appendChild(em);
         settingsDiv.appendChild(blocker);
         settingsDiv.appendChild(ul);
+        settingsDiv.appendChild(logoutButton);
+
         parent.appendChild(settingsDiv);
-    }else{
+        let settingsButton = document.getElementById("badges");
+        let size = settingsButton.children.length;
+        if (size !== 0) {
+            let settingsDiv = settingsButton.firstChild.firstChild;
+            settingsDiv.click();
+        }
+    }else {
         button.classList.remove("blue-hue");
         parent.removeChild(foundChild);
     }

@@ -31,7 +31,9 @@ body {
     cursor: pointer;
 }
 .Image{
-    padding-top: 4px;
+    /*padding-top: 4px;*/
+    /*width: 100px;*/
+    border: solid white;
     width: 97%;
     height: 100%;
     size: auto;

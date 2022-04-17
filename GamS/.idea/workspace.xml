@@ -6,7 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="78cfae73-449a-41d5-a160-8418d87b2a17" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSSdocs/badges.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/badges.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSSdocs/feed.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/feed.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSSdocs/selectCategories.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/selectCategories.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CSSdocs/settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/settings.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/HTMLdocs/article.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLdocs/article.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaScript/badges.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/badges.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaScript/selectCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/selectCategories.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaScript/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/settings.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project TW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project TW/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project TW/HTMLdocs/badgeInventoryTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../project TW/HTMLdocs/badgeInventoryTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../project TW/Resources/spaceship.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/spaceship.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +38,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,25 +70,27 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Anul 2\Ingineria Programarii(6)\B4_TW_GamS_Antal_Gherghe_Smoc\GamS\Resources" />
       <recent name="E:\Anul 2\Tehnologii Web(6)\project_TW\project TW\HTMLdocs" />
       <recent name="E:\Anul 2\Tehnologii Web(6)\project_TW\project TW\CSSdocs" />
       <recent name="E:\Anul 2\Tehnologii Web(6)\project_TW\project TW\Resources" />
       <recent name="E:\Anul 2\Tehnologii Web(6)\project_TW\project TW\JavaScript" />
-      <recent name="E:\Anul 2\Tehnologii Web(6)\project_TW\project TW" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eada20de-28a8-4f1f-9b8a-1b188215ad39" name="Changes" comment="" />
+      <changelist id="78cfae73-449a-41d5-a160-8418d87b2a17" name="Changes" comment="" />
       <created>1650020066121</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1650020066121</updated>
       <workItem from="1650020070243" duration="3476000" />
+      <workItem from="1650200316240" duration="5889000" />
     </task>
     <servers />
   </component>

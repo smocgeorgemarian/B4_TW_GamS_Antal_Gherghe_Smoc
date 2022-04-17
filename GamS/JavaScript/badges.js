@@ -1,9 +1,11 @@
+let badgesList = ["./Resources/alien.png", "./Resources/alien1.png",
+    "./Resources/alien2.png", "./Resources/alien3.png", "./Resources/spaceship.png"];
+
 function setBadgesPrintable() {
     let parent = document.getElementById("badges");
     let exists = false;
     let foundChild;
     [].forEach.call(parent.childNodes, function(child) {
-        console.log(child.tagName);
         if (child.className === "badges") {
             exists = true;
             foundChild = child;
@@ -14,53 +16,53 @@ function setBadgesPrintable() {
         button.classList.add("blue-hue");
         let badgesDiv = document.createElement("div");
         badgesDiv.classList.add("badges");
-        let blocker = document.createElement("blocker");
+
+        let blocker = document.createElement("div");
+        blocker.classList.add("blocker");
         blocker.setAttribute('onclick', "hideBadges(this)");
-        // create list
+
         let ul = document.createElement("ul");
-        for (let settingsIndex = 1; settingsIndex <= 4; settingsIndex++) {
+        ul.classList.add("inline-list");
+        for (let badgeIndex in badgesList) {
             let li = document.createElement("li");
-            li.style.verticalAlign = "0px";
-
-            let divButton = document.createElement("div");
-            divButton.classList.add("mid");
-
-            let label = document.createElement("label");
-            label.classList.add("rocker");
-            label.classList.add("rocker-small");
-
-            let inputCheckbox = document.createElement("input");
-            inputCheckbox.type = "checkbox";
-            inputCheckbox.checked = true;
-            inputCheckbox.style.opacity = 0;
-
-            let spanSwitchLeft = document.createElement("span");
-            spanSwitchLeft.classList.add("switch-left");
-            spanSwitchLeft.textContent = "On";
-
-            let spanSwitchRight = document.createElement("span");
-            spanSwitchRight.classList.add("switch-right");
-            spanSwitchRight.textContent = "Off";
-
-            let text = document.createElement("p");
-            text.textContent = "Setting 1";
-            text.style.padding = "10px";
-
-            label.appendChild(inputCheckbox);
-            label.appendChild(spanSwitchLeft);
-            label.appendChild(spanSwitchRight);
-
-            divButton.appendChild(label);
-            divButton.appendChild(text);
-            li.appendChild(divButton);
+            let div = document.createElement("div");
+            div.classList.add("badge");
+            div.setAttribute('onclick', 'setBorderPrintable(this)');
+            let img = document.createElement("img");
+            img.src = badgesList[badgeIndex];
+            div.appendChild(img);
+            li.appendChild(div);
             ul.appendChild(li);
         }
 
         badgesDiv.appendChild(blocker);
         badgesDiv.appendChild(ul);
         parent.appendChild(badgesDiv);
+
+        let settingsButton = document.getElementById("settings");
+        let size = settingsButton.children.length;
+        if (size !== 0) {
+            let settingsDiv = settingsButton.firstChild.firstChild;
+            settingsDiv.click();
+        }
     } else {
         button.classList.remove("blue-hue");
         parent.removeChild(foundChild);
     }
+}
+
+function hideBadges(element) {
+    let settingsDiv = document.getElementById("settings").firstChild.firstChild;
+    console.log(settingsDiv);
+    let button = document.getElementById("badges-button");
+    button.classList.remove("blue-hue");
+    let parent = element.parentElement;
+    parent.remove();
+}
+
+function setBorderPrintable(element) {
+    if (element.style.border !== "" && !element.style.border.includes("white"))
+        element.style.border = "solid white";
+    else
+        element.style.border = "solid black";
 }
