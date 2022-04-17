@@ -1,0 +1,49 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../CSSdocs/badgeInventoryTest.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button class="open-button" onclick="openInventory()">Badge Inventory</button>
+
+<div class="inventory-popup" id="inventory">
+    <div id="badge-inventory">
+        <div class="badge" onclick="fnChangeBorder(this)">
+            <img src="../Resources/spaceship.png" alt="icon">
+        </div>
+        <div class="badge" onclick="fnChangeBorder(this)">
+            <img src="../Resources/alien.png" alt="icon">
+        </div>
+        <div class="badge" onclick="fnChangeBorder(this)">
+            <img src="../Resources/alien1.png" alt="icon">
+        </div>
+        <div class="badge" onclick="fnChangeBorder(this)">
+            <img src="../Resources/alien2.png" alt="icon">
+        </div>
+        <div class="badge" onclick="fnChangeBorder(this)">
+            <img src="../Resources/alien3.png" alt="icon">
+        </div>
+    </div>
+    <button type="button" class="btn cancel" onclick="closeInventory()">Close</button>
+</div>
+
+<script>
+    function openInventory() {
+        document.getElementById("inventory").style.display = "block";
+    }
+
+    function closeInventory() {
+        document.getElementById("inventory").style.display = "none";
+    }
+    function fnChangeBorder(element) {
+        if (element.style.border !== "" && !element.style.border.includes("none"))
+            element.style.border = "none";
+        else
+            element.style.border = "solid black";
+    }
+</script>
+</body>
+</html>
