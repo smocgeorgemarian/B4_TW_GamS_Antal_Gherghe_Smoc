@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description"
+          content="Socialise with people all around the world talking about cars, blogging, gaming, memes">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../CSSdocs/registerPage.css">
+    <title>Register Page</title>
+    <script src="../JavaScript/Register.js"></script>
+</head>
+<body>
+<div id="MainContainer">
+    <form id="Register-form" action="">
+        <label for="nickname">Nickname:</label>
+        <input id="nickname" type="text" placeholder="Cool Bunny" required>
+        <label for="email">Email:</label>
+        <input id="email" type="email" placeholder="example@gmail.com" required>
+        <label for="cemail">Confirm email:</label>
+        <input id="cemail" type="email" placeholder="example@gmail.com" required>
+        <label for="password">Password:</label>
+        <input id="password" type="password" required>
+        <label for="cpassword">Confirm password:</label>
+        <input id="cpassword" type="password" required>
+        <input style="width: 30%; margin-left: 12%; margin-top: 5%;" type="submit" value="Register" onclick="getInputValue()">
+    </form>
+</div>
+<div>
+    <a style="display: none" id="refresh" href="./selectCategories.html"></a>
+</div>
+</body>
+</html>
