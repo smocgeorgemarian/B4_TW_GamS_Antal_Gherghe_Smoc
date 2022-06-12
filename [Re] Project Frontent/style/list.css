@@ -23,8 +23,8 @@
 }
 
 .listExample {
+    z-index: -1;
     list-style: none;
-    user-drag: none;
 }
 
 .listExample > li {

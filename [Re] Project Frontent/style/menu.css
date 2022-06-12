@@ -1,0 +1,12 @@
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    display: inline;
+    padding-left: 50px;
+}
+
+#pressedDelete {
+    color: red;
+}

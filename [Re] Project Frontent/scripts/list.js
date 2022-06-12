@@ -1,3 +1,4 @@
+let isToBeDeleted = false;
 function setListArrangable(target) {
     target.classList.add("list");
     let items = target.querySelectorAll(":scope > *"), current = null;
@@ -45,10 +46,11 @@ function setListArrangable(target) {
                         droppedpos = it;
                     }
                 }
+
                 if (currentpos < droppedpos) {
                     i.parentNode.insertBefore(current, i.nextSibling);
                 } else {
-                    i.parentNode.insertBefore(current, i);
+                    i.parentNode.insertBefore(i, current.nextSibling);
                 }
             }
         };
@@ -73,6 +75,7 @@ function setListExample(target, type) {
     listExample.appendChild(getNextLi(type));
     listExample.appendChild(getNextLi(type));
     listExample.appendChild(getNextLi(type));
+    liExample.setAttribute("onclick", "deleteItselfIfNeeded(this)");
     liExample.appendChild(listExample);
     target.appendChild(liExample);
 }
@@ -88,4 +91,38 @@ function initList() {
     // setListExample(target);
 }
 
+let menuOptions = ["fa fa-plus", "fa fa-minus", "fa fa-link"];
+let functionsList = ["addList()", "deleteList(this)", "linkLists()"];
+
+function addList() {
+    let target = document.getElementById("list");
+    setListExample(target, "test");
+}
+
+function deleteItselfIfNeeded(target) {
+    if (isToBeDeleted)
+        target.remove();
+    isToBeDeleted = false;
+    document.getElementById("pressedDelete").removeAttribute("id");
+}
+
+function deleteList(target) {
+    isToBeDeleted = true;
+    target.id = "pressedDelete";
+}
+
+function initMenu() {
+    let menu = document.getElementById("menu");
+    menu.classList.add("menu");
+    for (let menuIndex = 0; menuIndex < menuOptions.length; menuIndex++) {
+        let liMenu = document.createElement("li");
+        let iMenu = document.createElement("i");
+        iMenu.setAttribute("class", menuOptions[menuIndex]);
+        iMenu.setAttribute("onclick", functionsList[menuIndex]);
+        liMenu.appendChild(iMenu);
+        menu.appendChild(liMenu);
+    }
+}
+
 initList();
+initMenu();
