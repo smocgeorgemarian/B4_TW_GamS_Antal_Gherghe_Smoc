@@ -1,0 +1,33 @@
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list > li {
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid green;
+    background: white;
+    z-index: 100;
+}
+
+.list > li.hint {
+    border: 1px solid #ffc49a;
+    background: #feffb4;
+}
+
+.list > li.active {
+    border: 1px solid green;
+    background: #ffe7e7;
+}
+
+.listExample {
+    list-style: none;
+    user-drag: none;
+}
+
+.listExample > li {
+    display: inline;
+    padding-left: 30px;
+}
