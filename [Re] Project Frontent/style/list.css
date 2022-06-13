@@ -26,8 +26,7 @@
     z-index: -1;
     list-style: none;
 }
-
-.listExample > li {
-    display: inline;
-    padding-left: 30px;
+.listExample input {
+    display: inline-block;
+    margin-left: 15px;
 }

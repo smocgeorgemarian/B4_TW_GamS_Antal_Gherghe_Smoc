@@ -1,4 +1,5 @@
 let isToBeDeleted = false;
+
 function setListArrangable(target) {
     target.classList.add("list");
     let items = target.querySelectorAll(":scope > *"), current = null;
@@ -57,7 +58,7 @@ function setListArrangable(target) {
     }
 }
 
-function getNextLi(type) {
+/*function getNextLi(type) {
     let liEventName = document.createElement("li");
     let labelEventName = document.createElement("label");
     let inputEventName = document.createElement("input");
@@ -65,16 +66,45 @@ function getNextLi(type) {
     labelEventName.appendChild(inputEventName);
     liEventName.appendChild(labelEventName);
     return liEventName;
-}
+}*/
 
 function setListExample(target, type) {
     let liExample = document.createElement("li");
-    let listExample = document.createElement("ul");
+    let listExample = document.createElement("form");
     listExample.draggable = true;
     listExample.classList.add("listExample");
-    listExample.appendChild(getNextLi(type));
-    listExample.appendChild(getNextLi(type));
-    listExample.appendChild(getNextLi(type));
+
+    let datalistExample = document.createElement("datalist");
+    datalistExample.setAttribute("id", "options");
+    let inputExample = document.createElement("input");
+    inputExample.setAttribute("list", "options");
+    let options = ["option1", "option2", "option3"];
+    for (let index = 0; index < options.length; index++) {
+        let option = document.createElement("option");
+        option.setAttribute("value", options[index]);
+        datalistExample.appendChild(option);
+    }
+    listExample.appendChild(inputExample);
+    listExample.appendChild(datalistExample);
+
+    let datalistExample1 = document.createElement("datalist");
+    datalistExample1.setAttribute("id", "options1");
+    let inputExample1 = document.createElement("input");
+    inputExample1.setAttribute("list", "options1");
+    let options1 = ["option1", "option2", "option3","option4"];
+    for (let index = 0; index < options1.length; index++) {
+        let option = document.createElement("option");
+        option.setAttribute("value", options1[index]);
+        datalistExample1.appendChild(option);
+    }
+    listExample.appendChild(inputExample1);
+    listExample.appendChild(datalistExample1);
+
+    let saveButton = document.createElement("input");
+    saveButton.setAttribute("type","submit");
+    saveButton.setAttribute("value","Save");
+    listExample.appendChild(saveButton);
+
     liExample.setAttribute("onclick", "deleteItselfIfNeeded(this)");
     liExample.appendChild(listExample);
     target.appendChild(liExample);
