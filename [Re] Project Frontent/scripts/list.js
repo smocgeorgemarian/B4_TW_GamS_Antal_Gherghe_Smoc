@@ -74,11 +74,17 @@ function setListExample(target, type) {
     listExample.draggable = true;
     listExample.classList.add("listExample");
 
+    let input1=document.createElement("input");
+    input1.setAttribute("type","text");
+    input1.setAttribute("placeholder","Service Name")
+    input1.setAttribute("maxlength","20");
+    listExample.appendChild(input1);
+
     let datalistExample = document.createElement("datalist");
     datalistExample.setAttribute("id", "options");
     let inputExample = document.createElement("input");
     inputExample.setAttribute("list", "options");
-    let options = ["option1", "option2", "option3"];
+    let options = ["Time", "Sum", "Count"];
     for (let index = 0; index < options.length; index++) {
         let option = document.createElement("option");
         option.setAttribute("value", options[index]);
@@ -87,18 +93,12 @@ function setListExample(target, type) {
     listExample.appendChild(inputExample);
     listExample.appendChild(datalistExample);
 
-    let datalistExample1 = document.createElement("datalist");
-    datalistExample1.setAttribute("id", "options1");
-    let inputExample1 = document.createElement("input");
-    inputExample1.setAttribute("list", "options1");
-    let options1 = ["option1", "option2", "option3","option4"];
-    for (let index = 0; index < options1.length; index++) {
-        let option = document.createElement("option");
-        option.setAttribute("value", options1[index]);
-        datalistExample1.appendChild(option);
-    }
-    listExample.appendChild(inputExample1);
-    listExample.appendChild(datalistExample1);
+    let input2 = document.createElement("input");
+    input2.setAttribute("type","number");
+    input2.setAttribute("placeholder","Add new milestone");
+    input2.setAttribute("min","0");
+    input2.setAttribute("max","999999999")
+    listExample.appendChild(input2);
 
     let saveButton = document.createElement("input");
     saveButton.setAttribute("type","submit");
