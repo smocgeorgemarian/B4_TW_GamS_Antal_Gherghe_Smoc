@@ -58,16 +58,6 @@ function setListArrangable(target) {
     }
 }
 
-/*function getNextLi(type) {
-    let liEventName = document.createElement("li");
-    let labelEventName = document.createElement("label");
-    let inputEventName = document.createElement("input");
-    inputEventName.placeholder = type;
-    labelEventName.appendChild(inputEventName);
-    liEventName.appendChild(labelEventName);
-    return liEventName;
-}*/
-
 function setListExample(target, type) {
     let liExample = document.createElement("li");
     let listExample = document.createElement("form");
@@ -80,18 +70,14 @@ function setListExample(target, type) {
     input1.setAttribute("maxlength","20");
     listExample.appendChild(input1);
 
-    let datalistExample = document.createElement("datalist");
-    datalistExample.setAttribute("id", "options");
-    let inputExample = document.createElement("input");
-    inputExample.setAttribute("list", "options");
+    let inputExample = document.createElement("select");
     let options = ["Time", "Sum", "Count"];
     for (let index = 0; index < options.length; index++) {
         let option = document.createElement("option");
-        option.setAttribute("value", options[index]);
-        datalistExample.appendChild(option);
+        option.textContent = options[index];
+        inputExample.appendChild(option);
     }
     listExample.appendChild(inputExample);
-    listExample.appendChild(datalistExample);
 
     let input2 = document.createElement("input");
     input2.setAttribute("type","number");
@@ -121,25 +107,33 @@ function initList() {
     // setListExample(target);
 }
 
-let menuOptions = ["fa fa-plus", "fa fa-minus", "fa fa-link"];
-let functionsList = ["addList()", "deleteList(this)", "linkLists()"];
+let menuOptions = ["fa fa-plus", "fa fa-minus", "fa fa-link", "fa fa-plus"];
+let functionsList = ["addList()", "deleteList(this)", "linkLi()", "createExpr()"];
 
 function addList() {
+    showInfoBox("Badge created successfully!");
     let target = document.getElementById("list");
     setListExample(target, "test");
 }
 
 function deleteItselfIfNeeded(target) {
-    if (isToBeDeleted)
+    if (isToBeDeleted) {
         target.remove();
+        showInfoBox("Badge deleted successfully!");
+        document.getElementById("pressedDelete").removeAttribute("id");
+    }
     isToBeDeleted = false;
-    document.getElementById("pressedDelete").removeAttribute("id");
 }
 
 function deleteList(target) {
+    showInfoBox("Select the badge to be deleted.");
     isToBeDeleted = true;
     target.id = "pressedDelete";
 }
+
+
+let optionsList = ["and", "or", "not"];
+
 
 function initMenu() {
     let menu = document.getElementById("menu");
@@ -152,6 +146,24 @@ function initMenu() {
         liMenu.appendChild(iMenu);
         menu.appendChild(liMenu);
     }
+}
+
+function showInfoBox(message) {
+    let previousBoxes = document.getElementsByClassName("box");
+    if (previousBoxes.length !== 0) {
+        for (let boxIndex = 0; boxIndex < previousBoxes.length; boxIndex++)
+            previousBoxes[boxIndex].remove();
+    }
+
+    let box = document.createElement("div");
+    let p = document.createElement("p");
+    p.textContent = message;
+    box.classList.add("box");
+    box.appendChild(p);
+    document.body.appendChild(box);
+    setTimeout(() => {
+        box.remove();
+    }, 3000);
 }
 
 initList();

@@ -2,6 +2,7 @@
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 500px;
 }
 
 .list > li {
@@ -23,10 +24,17 @@
 }
 
 .listExample {
-    z-index: -1;
     list-style: none;
 }
-.listExample input {
-    display: inline-block;
-    margin-left: 15px;
+
+.listExample > li {
+    display: inline;
+}
+
+.listExample > li:not(:first-child) {
+    padding-left: 20px;
+}
+
+.listExample > li input {
+    width: 100px;
 }
