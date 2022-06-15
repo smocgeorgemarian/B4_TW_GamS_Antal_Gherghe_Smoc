@@ -58,16 +58,6 @@ function setListArrangable(target) {
     }
 }
 
-/*function getNextLi(type) {
-    let liEventName = document.createElement("li");
-    let labelEventName = document.createElement("label");
-    let inputEventName = document.createElement("input");
-    inputEventName.placeholder = type;
-    labelEventName.appendChild(inputEventName);
-    liEventName.appendChild(labelEventName);
-    return liEventName;
-}*/
-
 function setListExample(target, type) {
     let liExample = document.createElement("li");
     let listExample = document.createElement("form");
