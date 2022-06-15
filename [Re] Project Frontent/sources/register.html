@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="description"
+        content="Gamification Service website">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../style/register.css">
+  <title>Register Page</title>
+  <script src="../scripts/register.js"></script>
+</head>
+<body>
+<div id="MainContainer">
+  <form id="Register-form" action="login.html">
+    <label for="link">Link of your website:</label>
+    <input id="link" type="text" placeholder="https://www.coolWebsite.com/" required>
+    <label for="email">Email:</label>
+    <input id="email" type="email" placeholder="example@gmail.com" required>
+    <label for="cemail">Confirm email:</label>
+    <input id="cemail" type="email" placeholder="example@gmail.com" required>
+    <label for="password">Password:</label>
+    <input id="password" type="password" required>
+    <label for="cpassword">Confirm password:</label>
+    <input id="cpassword" type="password" required>
+    <input style="width: 30%; margin-left: 12%; margin-top: 5%;" type="submit" value="Register" onclick="getInputValue()">
+  </form>
+</div>
+</body>
+</html>
