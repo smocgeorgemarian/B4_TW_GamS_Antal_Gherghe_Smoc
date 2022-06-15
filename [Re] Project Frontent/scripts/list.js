@@ -90,6 +90,15 @@ function setListExample(target, type) {
     input2.setAttribute("max","999999999")
     listExample.appendChild(input2);
 
+    let inputExample2 = document.createElement("select");
+    let options2 = ["Badge", "Title"];
+    for (let index = 0; index < options2.length; index++) {
+        let option = document.createElement("option");
+        option.textContent = options2[index];
+        inputExample2.appendChild(option);
+    }
+    listExample.appendChild(inputExample2);
+
     let saveButton = document.createElement("input");
     saveButton.setAttribute("type","submit");
     saveButton.setAttribute("value","Save");
