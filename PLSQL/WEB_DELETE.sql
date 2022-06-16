@@ -1,5 +1,6 @@
 CREATE OR REPLACE PACKAGE table_deletion AS
 
+    PROCEDURE drop_table(table_name VARCHAR2);
     PROCEDURE delete_owner_info(hashcode VARCHAR2);
 
 END table_deletion;
