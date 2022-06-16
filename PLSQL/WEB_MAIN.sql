@@ -49,7 +49,19 @@ BEGIN
     --dbms_output.put_line(api_services.update_reward('first_reward', hash_code, 'new_reward'));
 END;
 
-SELECT * FROM OWNERS;
+--DEMO API_SERVICES_USERNAME
+set serveroutput on;
+DECLARE
+    hash_code VARCHAR2(200) := 'PjoTmfkpHw';
+BEGIN
+    --dbms_output.put_line(api_services_username.get_rewards(hash_code, 'user1'));
+    --dbms_output.put_line(api_services_username.update_event('first_event', hash_code, 'user1'));
+    --dbms_output.put_line(api_services_username.add_user_to_event('first_event', hash_code, 'empty_user'));
+    --dbms_output.put_line(api_services_username.remove_user(hash_code, 'user1'));
+END;
+
+SELECT * FROM first_event_PjoTmfkpHw;
+SELECT * FROM reward_first_reward_PjoTmfkpHw;
 
 set serveroutput on;
 BEGIN

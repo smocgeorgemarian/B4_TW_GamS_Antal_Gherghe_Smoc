@@ -46,7 +46,7 @@ CREATE OR REPLACE PACKAGE BODY table_insertor AS
         v_table_name VARCHAR2(200);
     BEGIN
         v_table_name :='REWARD_' || ename || '_' || hash_code;
-        IF test_existence.test_table(ename, hash_code) = 1 AND test_existence.test_reward_user(ename, hash_code, euser) = 0
+        IF test_existence.test_table_reward(ename, hash_code) = 1 AND test_existence.test_reward_user(ename, hash_code, euser) = 0
         THEN
             v_command := 'INSERT INTO ' || v_table_name || ' VALUES (:1)';
             SELECT SYSDATE INTO v_date FROM DUAL;
@@ -62,6 +62,9 @@ CREATE OR REPLACE PACKAGE BODY table_insertor AS
     BEGIN
         insert_event_user(event_name, hash_code, user_name);
         v_table_name := event_name || '_' || hash_code;
+        IF test_existence.test_table(event_name, hash_code) = 0 THEN
+            RETURN;
+        END IF;
         v_command := 'UPDATE ' || v_table_name || ' SET current_value = current_value + ' || value_update || ' WHERE user_name = ''' || user_name || '''';
         v_cursor_id := DBMS_SQL.OPEN_CURSOR;
         DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
