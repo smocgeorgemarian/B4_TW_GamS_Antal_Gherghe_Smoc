@@ -9,19 +9,22 @@ body {
 }
 
 #Side-text {
+    width: 30%;
     margin-top: 5%;
 }
 
 #Heading1 {
+    font-size: medium;
     text-align: center;
-    margin-top: 7.5%;
+    margin-top: 17.5%;
     font-family: "Franklin Gothic Heavy", serif;
     color: white;
 }
 
 #Heading2 {
+    font-size: medium;
     text-align: center;
-    margin-top: 7.5%;
+    margin-top: 17.5%;
     font-family: "Franklin Gothic Heavy", serif;
     color: white;
 }
@@ -38,7 +41,7 @@ body {
 }
 
 #LoginForm {
-    width: 50%;
+    width: 60%;
     height: 100%;
     margin-top: 4%;
     margin-bottom: 4%;
@@ -47,14 +50,14 @@ body {
 }
 
 #LoginForm label {
-    width: 40%;
+    width: 50%;
     height: 10%;
     margin: 1% 30% 0% 30%;
     color: white;
 }
 
 #LoginForm input {
-    width: 40%;
+    width: 50%;
     height: 24px;
     margin: 0% 30% 5% 30%;
 }

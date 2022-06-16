@@ -62,12 +62,12 @@ CREATE OR REPLACE PACKAGE BODY api_users AS
         status INTEGER;
     BEGIN
         
-        SELECT COUNT(*) INTO status FROM OWNERS WHERE oname = owner_name AND opassword = Owner_password;
+        SELECT COUNT(*) INTO status FROM OWNERS WHERE oname = owner_name AND opassword = owner_password;
         IF status = 0 THEN
             returner := '0';
         ELSE
             returner := '1';
-            SELECT hash_code INTO hashcode FROM OWNERS WHERE oname = owner_name AND opassword = Owner_password;
+            SELECT hash_code INTO hashcode FROM OWNERS WHERE oname = owner_name AND opassword = owner_password;
             table_deletion.delete_owner_info(hashcode);
         END IF;
         RETURN returner;
