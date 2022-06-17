@@ -14,7 +14,7 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
     FUNCTION get_rewards(hash_code VARCHAR2, user_name VARCHAR2)
     RETURN VARCHAR2 AS
         PRAGMA AUTONOMOUS_TRANSACTION;
-        returner VARCHAR2(500);
+        returner VARCHAR2(2000);
     BEGIN
         returner := rewards.get_rewards(hash_code, user_name);
         commit;

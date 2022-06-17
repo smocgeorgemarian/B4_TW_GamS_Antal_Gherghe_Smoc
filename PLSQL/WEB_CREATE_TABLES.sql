@@ -19,7 +19,7 @@ CREATE OR REPLACE PACKAGE BODY table_creator AS
     PROCEDURE create_reward(hash_code IN VARCHAR2) AS
         v_command VARCHAR2(500);
     BEGIN
-        v_command := 'CREATE TABLE REWARD_' || hash_code || ' (rname VARCHAR(20) PRIMARY KEY, condition VARCHAR2(500), reward VARCHAR2(200), is_repeatable NUMBER(1, 0) DEFAULT 0)';
+        v_command := 'CREATE TABLE REWARD_' || hash_code || ' (rname VARCHAR(20) PRIMARY KEY, condition VARCHAR2(500), reward VARCHAR2(2000), is_repeatable NUMBER(1, 0) DEFAULT 0)';
         EXECUTE IMMEDIATE v_command;
     END create_reward;
     

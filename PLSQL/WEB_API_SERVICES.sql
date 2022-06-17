@@ -16,12 +16,18 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
     RETURN VARCHAR2 AS
         PRAGMA AUTONOMOUS_TRANSACTION;
         returner VARCHAR2(200);
+        v_event_type VARCHAR2(200);
     BEGIN
-        IF test_existence.test_table(event_name, hash_code) = 1 THEN
-            returner := '0';
+        v_event_type := LOWER(event_type);
+        IF v_event_type != 'count' AND v_event_type != 'time' AND v_event_type != 'sum' THEN
+            returner := '404';
         ELSE
-            returner := '1';
-            table_insertor.insert_event(hash_code, event_name, event_type, event_value);
+            IF test_existence.test_table(event_name, hash_code) = 1 THEN
+                returner := '0';
+            ELSE
+                returner := '1';
+                table_insertor.insert_event(hash_code, event_name, v_event_type, event_value);
+            END IF;
         END IF;
         commit;
         RETURN returner;
@@ -33,7 +39,13 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         returner VARCHAR2(200);
         ander VARCHAR2(500);
         all_good INTEGER := 1;
+        v_repeat NUMBER(1, 0);
     BEGIN
+        IF is_repeatable > 1 THEN
+            v_repeat := 1;
+        ELSE
+            v_repeat := 0;
+        END IF;
         IF test_existence.test_table_reward(reward_name, hash_code) = 1 THEN
             returner := '0';
         ELSE
@@ -52,7 +64,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
                 END LOOP;
             END LOOP;
             IF all_good = 1 THEN
-                table_insertor.insert_reward(hash_code, reward_name, condition, reward, is_repeatable);
+                table_insertor.insert_reward(hash_code, reward_name, condition, reward, v_repeat);
             END IF;
         END IF;
         commit;
@@ -146,7 +158,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
     BEGIN
     
         IF test_existence.test_table_reward(reward_name, hash_code) = 0 THEN
-            returner := '0';
+            returner := '404';
         ELSE
             returner := '1';
             v_table_name := 'REWARD_' || hash_code;
