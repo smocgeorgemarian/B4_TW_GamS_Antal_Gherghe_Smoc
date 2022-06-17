@@ -14,6 +14,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
 
     FUNCTION add_event(hash_code VARCHAR2, event_name VARCHAR2, event_type VARCHAR2, event_value FLOAT)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         returner VARCHAR2(200);
     BEGIN
         IF test_existence.test_table(event_name, hash_code) = 1 THEN
@@ -22,11 +23,13 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
             returner := '1';
             table_insertor.insert_event(hash_code, event_name, event_type, event_value);
         END IF;
+        commit;
         RETURN returner;
     END add_event;
     
     FUNCTION add_reward(hash_code IN VARCHAR2, reward_name IN VARCHAR2, condition IN VARCHAR2, reward IN VARCHAR2, is_repeatable IN NUMBER)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         returner VARCHAR2(200);
         ander VARCHAR2(500);
         all_good INTEGER := 1;
@@ -52,11 +55,13 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
                 table_insertor.insert_reward(hash_code, reward_name, condition, reward, is_repeatable);
             END IF;
         END IF;
+        commit;
         RETURN returner;
     END add_reward;
 
     FUNCTION delete_event(event_name VARCHAR2, owner_name VARCHAR2, owner_password VARCHAR2)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         v_cursor_id INTEGER;
         v_ok INTEGER;
         v_command VARCHAR2(500);
@@ -88,11 +93,13 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
                 table_deletion.drop_table(v_table_name);
             END IF;
         END IF;
+        commit;
         RETURN returner;
     END delete_event;
 
     FUNCTION delete_reward(reward_name VARCHAR2, owner_name VARCHAR2, owner_password VARCHAR2)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         v_cursor_id INTEGER;
         v_ok INTEGER;
         v_command VARCHAR2(500);
@@ -124,11 +131,13 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
                 table_deletion.drop_table(v_table_name);
             END IF;
         END IF;
+        commit;
         RETURN returner;
     END delete_reward;
 
     FUNCTION update_reward(reward_name VARCHAR2, hash_code VARCHAR2, new_reward VARCHAR2)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         v_cursor_id INTEGER;
         v_ok INTEGER;
         v_command VARCHAR2(500);
@@ -149,6 +158,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
             v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
             DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
         END IF;
+        commit;
         RETURN returner;
     END;
 

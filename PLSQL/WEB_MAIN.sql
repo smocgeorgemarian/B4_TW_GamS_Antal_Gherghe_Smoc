@@ -21,9 +21,9 @@ BEGIN
     table_creator.create_reward(code);
 END;
 
-DELETE FROM OWNERS;
-INSERT INTO OWNERS(oname, opassword) VALUES ('GiGi', 'OiOi');
 SELECT * FROM OWNERS;
+
+SELECT api_users.owner_register('select_user', 'select_pass', 'select_site') FROM DUAL;
 
 --DEMO API_USERS
 set serveroutput on;
