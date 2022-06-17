@@ -13,12 +13,17 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
 
     FUNCTION get_rewards(hash_code VARCHAR2, user_name VARCHAR2)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
+        returner VARCHAR2(500);
     BEGIN
-        RETURN rewards.get_rewards(hash_code, user_name);
+        returner := rewards.get_rewards(hash_code, user_name);
+        commit;
+        RETURN returner;
     END get_rewards;
     
     FUNCTION update_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2, value_update IN FLOAT DEFAULT 1)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         v_cursor_id INTEGER;
         v_ok INTEGER;
         v_command VARCHAR2(500);
@@ -47,11 +52,13 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
                 END IF; 
             END LOOP;
         END IF;
+        commit;
         RETURN returner;
     END;
     
     FUNCTION add_user_to_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         returner VARCHAR2(200);
     BEGIN
         IF test_existence.test_table(event_name, hash_code) = 0 THEN
@@ -64,14 +71,17 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
                 table_insertor.insert_event_user(event_name, hash_code, user_name);
             END IF;
         END IF;
+        commit;
         RETURN returner;
     END;
     
     FUNCTION remove_user(hash_code IN VARCHAR2, user_name IN VARCHAR2)
     RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
         returner VARCHAR2(200) := '1';
     BEGIN
         table_deletion.delete_user(hash_code, user_name);
+        commit;
         RETURN returner;
     END;
 
