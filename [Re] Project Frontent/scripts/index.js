@@ -6,26 +6,41 @@ function initList(isLogged){
     aboutBtn.setAttribute("onclick","displayText()");
     ulElement.appendChild(liElement);
     if (isLogged===false){
+        let elementDiv=document.createElement("div");
+        elementDiv.setAttribute("class","element");
+        let elementDiv2=document.createElement("div");
+        elementDiv2.setAttribute("class","element");
         let loginBtn = document.createElement("button");
         loginBtn.innerText="Login";
         loginBtn.setAttribute("onclick","window.location.href = 'login.html';")
         let registerBtn = document.createElement("button");
         registerBtn.innerText="Register";
         registerBtn.setAttribute("onclick","window.location.href = 'register.html';")
-        liElement.appendChild(loginBtn);
-        liElement.appendChild(registerBtn);
+        elementDiv.appendChild(loginBtn);
+        elementDiv2.appendChild(registerBtn)
+        liElement.appendChild(elementDiv);
+        liElement.appendChild(elementDiv2);
     }
     else{
+        let elementDiv = document.createElement("div");
+        elementDiv.setAttribute("class","element");
+        let elementDiv2 = document.createElement("div");
+        elementDiv2.setAttribute("class","element");
         let logoutBtn = document.createElement("button");
         logoutBtn.innerText="Logout";
         logoutBtn.setAttribute("onclick","window.location.href = 'login.html';");
         let controlPanelBtn = document.createElement("button");
         controlPanelBtn.innerText="Control Panel";
         controlPanelBtn.setAttribute("onclick","window.location.href = 'controlPanel.html';");
-        liElement.appendChild(controlPanelBtn);
-        liElement.appendChild(logoutBtn);
+        elementDiv.appendChild(logoutBtn);
+        elementDiv2.appendChild(controlPanelBtn);
+        liElement.appendChild(elementDiv);
+        liElement.appendChild(elementDiv2);
     }
-    liElement.appendChild(aboutBtn);
+    let elementDiv=document.createElement("div");
+    elementDiv.setAttribute("class","element");
+    elementDiv.appendChild(aboutBtn);
+    liElement.appendChild(elementDiv);
 }
 function displayText(){
     let paragraph=document.getElementById("ParagraphContrainer");

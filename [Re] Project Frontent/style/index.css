@@ -1,4 +1,7 @@
 body {
+    background-image: url("https://www.bcm-institute.org/wp-content/uploads/2021/09/pngtree-white-background-cartoon-hora-blue-watercolor-background-image_653820.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: auto;
 }
 #MainContainer{
@@ -9,28 +12,39 @@ body {
     padding: 0;
 }
 #OptionList li{
-    width: 50%;
-    margin:1% 25%;
+    width: 100%;
+    margin-top: 15%;
+    margin-bottom: 10%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
-#OptionList li button {
-    margin-top: 3%;
-    padding: 3%;
-    width: 40%;
-    color: darkgreen;
-    background-color: grey;
-    font-size: 2vw;
+.element button {
+    width: 100%;
+    height: 8vw;
+    color: black;
+    font-size: 14px;
+    background: none;
     font-size-adjust: inherit;
     font-weight: bold;
-    border-radius: 50%;
+    border:  none;
 }
 #HiddenParagraph{
-    font-size: 2vw;
+    font-size: 14px;
     font-size-adjust: inherit;
-    font-weight: bold;
+    font-weight: bolder;
+    font-family: "Cooper Black", Serif;
     width: 75%;
     margin: auto;
     text-align: center;
+}
+.element {
+    width: 150px;
+    max-width: 100%;
+    background-image: url("https://media.istockphoto.com/photos/bright-blue-defocused-blurred-motion-abstract-background-picture-id1047234038?b=1&k=20&m=1047234038&s=170667a&w=0&h=LgmC445-NeWTNDMVV6q3kv2-djWejaG-yaNLczDEoAM=");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 30%;
+    opacity: 85%;
 }
