@@ -111,7 +111,7 @@ CREATE OR REPLACE PACKAGE BODY rewards AS
         reward VARCHAR2(500);
         is_repeatable NUMBER(1, 0);
         
-        reward_string VARCHAR2(500);
+        reward_string VARCHAR2(2000);
     BEGIN
         v_table_name := 'REWARD_' || hash_code;
         v_command := 'SELECT * FROM ' || v_table_name;
@@ -133,9 +133,9 @@ CREATE OR REPLACE PACKAGE BODY rewards AS
                 
                 IF verify_condition(condition, hash_code, user_name) = 1 AND (is_repeatable = 1 OR test_existence.test_reward_user(reward_name, hash_code,user_name) = 0) THEN
                     IF reward_string IS NULL THEN
-                        reward_string := reward;
+                        reward_string := '[{ "reward" : "' || reward || '"}';
                     ELSE
-                        reward_string := reward_string || '_' || reward;
+                        reward_string := reward_string || ',{ "reward" : "' || reward || '"}';
                     END IF;
                     table_insertor.insert_reward_user(reward_name, hash_code,user_name);
                 END IF;
@@ -148,6 +148,7 @@ CREATE OR REPLACE PACKAGE BODY rewards AS
         IF reward_string IS NULL THEN
             RETURN 'NULL';
         ELSE
+            reward_string := reward_string || ']';
             RETURN reward_string;
         END IF;
     END get_rewards;

@@ -28,7 +28,7 @@ SELECT api_users.owner_register('select_user', 'select_pass', 'select_site') FRO
 --DEMO API_USERS
 set serveroutput on;
 BEGIN
-    --dbms_output.put_line(api_users.owner_register('Tudor','pass','www.pornhub.com'));
+    --dbms_output.put_line(api_users.owner_register('Tudor','pass','www.sainthub.com'));
     --dbms_output.put_line(api_users.owner_login('Tudor','pass'));
     --dbms_output.put_line(api_users.owner_logout('Tudor'));
     --dbms_output.put_line(api_users.owner_delete('Tudor','pass'));
@@ -60,8 +60,10 @@ BEGIN
     --dbms_output.put_line(api_services_username.remove_user(hash_code, 'user1'));
 END;
 
-SELECT * FROM first_event_PjoTmfkpHw;
-SELECT * FROM reward_first_reward_PjoTmfkpHw;
+SELECT * FROM event_oBUtmTWkQL;
+SELECT * FROM reward_oBUtmTWkQL;
+
+SELECT * FROM POST_EVENT_2_OBUTMTWKQL
 
 set serveroutput on;
 BEGIN
