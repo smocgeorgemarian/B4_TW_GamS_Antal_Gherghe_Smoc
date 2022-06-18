@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../style/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
     <script src="../scripts/login.js"></script>
     <title>Login Page</title>
 </head>
@@ -16,12 +17,12 @@
         <h1 id="Heading1">Login to get best badges and titles for your customers!</h1>
         <h2 id="Heading2">GamS - A Gamification Service</h2>
     </div>
-    <form id="LoginForm" action="controlPanel.html">
+    <form id="LoginForm" onsubmit="login();return false">
         <label for="email">Email:</label>
         <input id="email" type="email" placeholder="example@gmail.com" required>
         <label for="password">Password:</label>
         <input id="password" type="password" required>
-        <input id="Login-btn" type="submit" value="Login" onclick="login()">
+        <input id="Login-btn" type="submit" value="Login">
         <label id="Register-text">Don't have an account? <a href="register.html">Register</a></label>
     </form>
 </div>

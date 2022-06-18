@@ -28,7 +28,7 @@ function initList(isLogged){
         elementDiv2.setAttribute("class","element");
         let logoutBtn = document.createElement("button");
         logoutBtn.innerText="Logout";
-        logoutBtn.setAttribute("onclick","window.location.href = 'login.html';");
+        logoutBtn.setAttribute("onclick","logout()");
         let controlPanelBtn = document.createElement("button");
         controlPanelBtn.innerText="Control Panel";
         controlPanelBtn.setAttribute("onclick","window.location.href = 'controlPanel.html';");
@@ -49,5 +49,29 @@ function displayText(){
     else
         paragraph.style.display = 'none';
 }
+
+let hashcode = sessionStorage.getItem("hash_code")
+
+function logout(){
+
+    let content = {
+        "username" : hashcode,
+    }
+
+    console.log(hashcode);
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            sessionStorage.removeItem("hash_code");
+            window.location.href = './../sources/login.html';
+        }
+    };
+    xhttp.open("POST", "http://localhost:5000/users/logout")
+    xhttp.setRequestHeader("Content-Type", "application/json")
+    xhttp.send(JSON.stringify(content))
+
+}
+
 //true-user logat
-initList(true);
+initList(hashcode !== null);
