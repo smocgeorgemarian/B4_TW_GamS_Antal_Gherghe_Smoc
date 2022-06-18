@@ -23,10 +23,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -45,10 +55,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -67,10 +87,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -89,10 +119,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -111,10 +151,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -133,10 +183,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -157,10 +217,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -179,10 +249,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -201,10 +281,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -223,10 +313,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -245,10 +345,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -269,10 +379,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -297,10 +417,22 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else if(value === 'error'){
+                    res.statusCode = 500
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -319,10 +451,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
@@ -341,10 +483,20 @@ const server = http.createServer((req, res) => {
                 }
             })
             .then(value => {
-                res.end(JSON.stringify({ message: value }))
+                if(value === '0'){
+                    res.statusCode = 403
+                }else if(value === '404'){
+                    res.statusCode = 404
+                }else{
+                    res.statusCode = 200
+                }
+                res.write(JSON.stringify({ message: value }))
+                res.end()
             })
             .catch(err =>{
-                res.end(JSON.stringify({ message: err }))
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: err }))
+                res.end()
             })
         });
 
