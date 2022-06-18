@@ -15,11 +15,10 @@ const server = http.createServer((req, res) => {
         res.end()
         return
     }
-    console.log("O ce tiganca")
 
     //==============================USERS==============================
 
-    if (req.url === '/users/register' && req.method === 'GET') {
+    if (req.url === '/users/register' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -52,7 +51,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/users/login' && req.method === 'GET') {
+    } else if (req.url === '/users/login' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -60,6 +59,7 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const promise = new Promise((resolve, reject) => {
+                console.log(body)
                 if (!JSON.parse(body).username || !JSON.parse(body).password) {
                     reject('Wrong parameters!')
                 } else {
@@ -84,7 +84,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/users/logout' && req.method === 'GET') {
+    } else if (req.url === '/users/logout' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;

@@ -1,27 +1,31 @@
-let email = document.getElementById("email").value;
-let password = document.getElementById("password").value;
-function login() {
-    fetch('http://localhost:???/users/login', {
-        method: 'POST',
-        headers: {
-            "Content-type": "application/json"
-        },
-        body: JSON.stringify({
-            "email": email,
-            "password": password
-        })
-    })
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log('Request succeeded with JSON response', data);
-        })
-        .catch(function (error) {
-            console.log('Request failed', error);
-        });
-}
 
-module.exports = {
-    hashcode
+let hashcode
+
+function login() {
+
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+
+    let content = {
+        "username" : email,
+        "password" : password
+    }
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            let obj = JSON.parse(xhttp.response);
+            hashcode = obj.message;
+            console.log(hashcode);
+            sessionStorage.setItem("hash_code", hashcode);
+            window.location.href = './../sources/index.html';
+        }else if(this.readyState === 4){
+            alert("Someting went wrong!");
+            window.location.href = './../sources/login.html';
+        }
+    };
+    xhttp.open("POST", "http://localhost:5000/users/login")
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(content))
+
 }
