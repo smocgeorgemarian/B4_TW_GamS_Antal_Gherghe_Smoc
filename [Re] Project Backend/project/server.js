@@ -116,7 +116,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/users/events' && req.method === 'GET') {
+    } else if (req.url === '/users/events' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -148,7 +148,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/users/rewards' && req.method === 'GET') {
+    } else if (req.url === '/users/rewards' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;

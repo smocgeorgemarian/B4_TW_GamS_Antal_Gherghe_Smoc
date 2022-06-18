@@ -2,3 +2,7 @@
     margin: auto;
     width: 70%;
 }
+
+#indentTable h3 {
+    text-align: center;
+}

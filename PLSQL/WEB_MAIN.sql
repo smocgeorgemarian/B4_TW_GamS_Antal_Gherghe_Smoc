@@ -78,6 +78,9 @@ BEGIN
 END;
 
 DELETE event_FTWvyYAaAI;
+commit;
 select * from event_FTWvyYAaAI;
+
+select * from  rewards_FTWvyYAaAI;
 
 

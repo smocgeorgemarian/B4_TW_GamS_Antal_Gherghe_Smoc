@@ -1,9 +1,13 @@
-
+STATUS_MSG = {
+    200: "Action performed successfully",
+    403: "Access forbidden, maybe duplicated action",
+    404: "Resource could not be found"
+}
 function validateService(element, index) {
     let form = element.firstChild;
     let firstInput = form.childNodes[0];
     let secondInput = form.childNodes[2];
-    if (firstInput.value.length === 0) return "Service Name with index " + index + " not provided!";
+    if (firstInput.value.length === 0) return "Service with index " + index + " not provided!";
     if (secondInput.value.length === 0) return "MileStone with index " + index + " not provided!";
     return "OK";
 }
@@ -19,7 +23,6 @@ function getOptionsList(children) {
 
 function isAnOption(word, wordsList) {
     for (let i = 0; i < wordsList.length;  i++) {
-        console.log("Word: " + wordsList[i]);
         if (word === wordsList[i]) return true;
     }
     return false;
@@ -27,31 +30,73 @@ function isAnOption(word, wordsList) {
 
 function validateExpression(expression, optionsList, index) {
     expression = expression.firstChild.firstChild
-    console.log(expression)
     let content = expression.firstChild.value;
-    let regex = /^((\((\w+(\s&\s\w+)*)\))(\s\|\s(\((\w+(\s&\s\w+)*)\))+)*)$/;
+    let regex = /^((\(([A-Za-z]\w*(\s\$\s[A-Za-z]\w*)*)\))(\s\|\s(\(([A-Za-z]\w*(\s\$\s[A-Za-z]\w*)*)\))+)*)$/;
     let letterRegex = /\w/;
     if (!regex.test(content)) return "Invalid expression with index " + index;
     let newWord = "";
-    console.log("test");
     let isLetter = false;
-    for (let letter in content) {
-        console.log(content[letter]);
-        if (letterRegex.test(content[letter])) {
-            newWord += content[letter];
-            isLetter = true;
-        } else {
-            console.log("word : " + newWord);
-            if (isLetter && !isAnOption(newWord, optionsList))
-                return "Invalid badge: " + newWord + " found at index " + index;
-            newWord = "";
-            isLetter = false;
-        }
-    }
     return "OK";
 }
 
-function addNewService(serviceData) {
+function sendContent(content, method, url, doSomething = null, doSomethingParameter = null) {
+    let xhttp = new XMLHttpRequest();
+    let mustBeGreen = false;
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                mustBeGreen = true;
+                if (doSomething && doSomethingParameter.hasOwnProperty("table"))
+                    doSomething(JSON.parse(xhttp.responseText), doSomethingParameter["table"])
+            } else showInfoBox(STATUS_MSG[this.status]);
+            if (doSomething && doSomethingParameter.hasOwnProperty("index")) {
+                doSomething(doSomethingParameter["index"], mustBeGreen);
+            }
+        }
+    };
+    xhttp.open(method, url)
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(content))
+}
+
+
+const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
+function setIsValidatedPrintable(index, mustBeGreen) {
+    let services = document.getElementById("list").childNodes[index].firstChild;
+    let lastChild = services.childNodes[services.childNodes.length - 1];
+
+    if (lastChild.nodeName === "I")
+        lastChild.remove();
+
+    let check = document.createElement("i");
+    let btnType = mustBeGreen === true ? "fa fa-check greenBtn" : "fa fa-times redBtn";
+    check.setAttribute("class", btnType);
+
+    check.ariaHidden = true;
+    services.appendChild(check);
+}
+
+function setIsValidatedExprPrintable(index, mustBeGreen) {
+    let services = document.getElementById("expressions").childNodes[index].firstChild;
+    let lastChild = services.childNodes[services.childNodes.length - 1];
+
+    if (lastChild.firstChild.nodeName === "I")
+        lastChild.remove();
+
+    let li = document.createElement("li");
+    let check = document.createElement("i");
+    let btnType = mustBeGreen === true ? "fa fa-check greenBtn" : "fa fa-times redBtn";
+    check.setAttribute("class", btnType);
+
+    check.ariaHidden = true;
+    li.appendChild(check);
+    services.appendChild(li);
+}
+
+function addNewService(serviceData, index) {
     let inputForm = serviceData.firstChild.childNodes;
     let hashcode = "FTWvyYAaAI"
 
@@ -61,31 +106,22 @@ function addNewService(serviceData) {
         'event_type': inputForm[1].value,
         'event_value': inputForm[2].value
     }
+    sendContent(content, "PUT","http://localhost:5000/services/add/event", setIsValidatedPrintable, index);
+}
 
-    // fetch("http://localhost:5000/services/add/event", {
-    //     method: 'PUT',
-    //     headers: {
-    //         "Content-type": "application/json"
-    //     },
-    //     body: JSON.stringify(content)
-    // })
-    //     .then(function(response) {
-    //         console.log("O ce tiganca frumoasa")
-    //     })
-    //     .catch(function(error) {
-    //         console.log("Filme de groaza")
-    //     })
-
-    let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            console.log("ready")
-        }
-    };
-    console.log(content)
-    xhttp.open("PUT", "http://localhost:5000/services/add/event")
-    xhttp.setRequestHeader("Content-Type", "application/json");
-    xhttp.send(JSON.stringify(content))
+function addNewBadge(expressionList, index) {
+    let hashcode = "FTWvyYAaAI"
+    expressionList = expressionList.firstChild.childNodes
+    let content = {
+        'hash_code': hashcode,
+        'reward_name': expressionList[1].firstChild.value,
+        'condition': expressionList[0].firstChild.value,
+        'reward': expressionList[2].firstChild.value,
+        'is_repeatable': 1
+    }
+    sleep(4500).then(() => {
+        sendContent(content, "PUT", "http://localhost:5000/services/add/reward", setIsValidatedExprPrintable, index)
+    });
 }
 
 function validateAll() {
@@ -94,7 +130,7 @@ function validateAll() {
         let verdict = validateService(childrenServices[childIndex], childIndex + 1);
         if (verdict !== "OK") {
             showInfoBox(verdict);
-            break;
+            return;
         }
     }
 
@@ -104,12 +140,15 @@ function validateAll() {
         let verdict = validateExpression(childrenExpressions[childIndex], optionsList, childIndex + 1);
         if (verdict !== "OK") {
             showInfoBox(verdict);
-            break;
+            return;
         }
     }
 
     for (let childIndex = 0; childIndex < childrenServices.length; childIndex++) {
-        addNewService(childrenServices[childIndex]);
+        addNewService(childrenServices[childIndex], {"index": childIndex});
     }
 
+    for (let childIndex = 0; childIndex < childrenExpressions.length; childIndex++) {
+        addNewBadge(childrenExpressions[childIndex], {"index": childIndex});
+    }
 }

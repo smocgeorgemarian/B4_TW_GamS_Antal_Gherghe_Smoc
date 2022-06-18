@@ -29,7 +29,14 @@ function createExpr() {
     input = document.createElement("input");
     tmpLi.appendChild(input);
     input.classList.add("badgeName");
-    input.placeholder = "Badge Name"
+    input.placeholder = "Badge Name";
+    ulInsideLi.appendChild(tmpLi);
+
+    tmpLi = document.createElement("li")
+    input = document.createElement("input");
+    tmpLi.appendChild(input);
+    input.classList.add("badgeName");
+    input.placeholder = "Reward";
     ulInsideLi.appendChild(tmpLi);
 
 
