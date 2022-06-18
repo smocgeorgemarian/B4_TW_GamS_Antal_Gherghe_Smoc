@@ -1,6 +1,6 @@
 CREATE OR REPLACE PACKAGE api_users AS
     FUNCTION owner_login(owner_name VARCHAR2, owner_password VARCHAR2) RETURN VARCHAR2;
-    FUNCTION owner_logout(owner_name VARCHAR2) RETURN VARCHAR2;
+    FUNCTION owner_logout(owner_hash VARCHAR2) RETURN VARCHAR2;
     FUNCTION owner_register(owner_name VARCHAR2, owner_password VARCHAR2, owner_site_link VARCHAR2) RETURN VARCHAR2;
     FUNCTION owner_delete(owner_name VARCHAR2, owner_password VARCHAR2) RETURN VARCHAR2;
 END api_users;
@@ -29,16 +29,16 @@ CREATE OR REPLACE PACKAGE BODY api_users AS
         RETURN returner;       
     END owner_login;
     
-    FUNCTION owner_logout(owner_name VARCHAR2)
+    FUNCTION owner_logout(owner_hash VARCHAR2)
     RETURN VARCHAR2 AS
         PRAGMA AUTONOMOUS_TRANSACTION;
         returner VARCHAR2(200);
     BEGIN
-        IF test_existence.test_owner(owner_name) = 0 THEN
+        IF test_existence.test_hash(owner_hash) = 0 THEN
             returner := '404';
         ELSE
             returner := '1';
-            UPDATE OWNERS SET is_logged = 0 WHERE oname = owner_name;
+            UPDATE OWNERS SET is_logged = 0 WHERE hash_code = owner_hash;
         END IF;
         commit;
         RETURN returner;
@@ -53,7 +53,7 @@ CREATE OR REPLACE PACKAGE BODY api_users AS
         IF test_existence.test_owner(owner_name) = 1 THEN
             returner := '0';
         ELSE
-            INSERT INTO OWNERS(oname, opassword, site_link, is_logged) VALUES(owner_name, owner_password, owner_site_link, 0);
+            INSERT INTO OWNERS(oname, opassword, site_link, is_logged) VALUES(owner_name, owner_password, owner_site_link, 1);
             SELECT hash_code INTO hash_owner FROM OWNERS WHERE oname = owner_name;
             returner :=  hash_owner;
         END IF;

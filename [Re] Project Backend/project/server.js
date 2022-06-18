@@ -1,7 +1,7 @@
 const http = require('http')
 const { users_register, users_login, users_logout, users_events, users_rewards, users_delete,
     services_add_event, services_add_reward, services_delete_event, services_delete_reward, services_update_reward,
-    services_username_rewards, services_username_update, services_username_add, services_username_delete
+    services_username_rewards, services_username_all_rewards, services_username_update, services_username_add, services_username_delete
 } = require('./database/databaseConnection')
 
 const server = http.createServer((req, res) => {
@@ -15,11 +15,10 @@ const server = http.createServer((req, res) => {
         res.end()
         return
     }
-    console.log("O ce tiganca")
 
     //==============================USERS==============================
 
-    if (req.url === '/users/register' && req.method === 'GET') {
+    if (req.url === '/users/register' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -52,7 +51,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/users/login' && req.method === 'GET') {
+    } else if (req.url === '/users/login' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -60,6 +59,7 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const promise = new Promise((resolve, reject) => {
+                console.log(body)
                 if (!JSON.parse(body).username || !JSON.parse(body).password) {
                     reject('Wrong parameters!')
                 } else {
@@ -84,7 +84,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/users/logout' && req.method === 'GET') {
+    } else if (req.url === '/users/logout' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -92,10 +92,10 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const promise = new Promise((resolve, reject) => {
-                if (!JSON.parse(body).username) {
+                if (!JSON.parse(body).hash_code) {
                     reject('Wrong parameters!')
                 } else {
-                    resolve(users_logout(JSON.parse(body).username));
+                    resolve(users_logout(JSON.parse(body).hash_code));
                 }
             })
                 .then(value => {
@@ -124,10 +124,10 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const promise = new Promise((resolve, reject) => {
-                if (!JSON.parse(body).username || !JSON.parse(body).password) {
+                if (!JSON.parse(body).hash_code) {
                     reject('Wrong parameters!')
                 } else {
-                    resolve(users_events(JSON.parse(body).username, JSON.parse(body).password));
+                    resolve(users_events(JSON.parse(body).hash_code));
                 }
             })
                 .then(value => {
@@ -156,10 +156,10 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const promise = new Promise((resolve, reject) => {
-                if (!JSON.parse(body).username || !JSON.parse(body).password) {
+                if (!JSON.parse(body).hash_code) {
                     reject('Wrong parameters!')
                 } else {
-                    resolve(users_rewards(JSON.parse(body).username, JSON.parse(body).password));
+                    resolve(users_rewards(JSON.parse(body).hash_code));
                 }
             })
                 .then(value => {
@@ -376,7 +376,7 @@ const server = http.createServer((req, res) => {
 
         //==============================SERVICES_USERNAME==============================
 
-    } else if (req.url === '/services/username/rewards' && req.method === 'GET') {
+    } else if (req.url === '/services/username/rewards' && req.method === 'POST') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -388,6 +388,38 @@ const server = http.createServer((req, res) => {
                     reject('Wrong parameters!')
                 } else {
                     resolve(services_username_rewards(JSON.parse(body).hash_code, JSON.parse(body).username));
+                }
+            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
+        });
+
+    } else if (req.url === '/services/username/rewards/all' && req.method === 'POST') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            const promise = new Promise((resolve, reject) => {
+                if (!JSON.parse(body).hash_code || !JSON.parse(body).username) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(services_username_all_rewards(JSON.parse(body).hash_code, JSON.parse(body).username));
                 }
             })
                 .then(value => {

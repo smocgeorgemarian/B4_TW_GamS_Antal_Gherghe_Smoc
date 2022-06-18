@@ -1,6 +1,7 @@
 CREATE OR REPLACE PACKAGE api_services_username AS
 
     FUNCTION get_rewards(hash_code VARCHAR2, user_name VARCHAR2) RETURN VARCHAR2;
+    FUNCTION get_all_rewards(hash_code VARCHAR2, user_name VARCHAR2) RETURN VARCHAR2;
     FUNCTION update_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2, value_update IN FLOAT DEFAULT 1) RETURN VARCHAR2;
     FUNCTION add_user_to_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2) RETURN VARCHAR2;
     FUNCTION remove_user(hash_code IN VARCHAR2, user_name IN VARCHAR2) RETURN VARCHAR2;
@@ -16,10 +17,28 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
         PRAGMA AUTONOMOUS_TRANSACTION;
         returner VARCHAR2(2000);
     BEGIN
-        returner := rewards.get_rewards(hash_code, user_name);
+        IF test_existence.test_hash(hash_code) = 0 THEN
+            returner := '404';
+        ELSE
+            returner := rewards.get_rewards(hash_code, user_name);
+        END IF;
         commit;
         RETURN returner;
     END get_rewards;
+    
+    FUNCTION get_all_rewards(hash_code VARCHAR2, user_name VARCHAR2)
+    RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
+        returner VARCHAR2(2000);
+    BEGIN
+        IF test_existence.test_hash(hash_code) = 0 THEN
+            returner := '404';
+        ELSE
+            returner := rewards.get_all_rewards(hash_code, user_name);
+        END IF;
+        commit;
+        RETURN returner;
+    END get_all_rewards;
     
     FUNCTION update_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2, value_update IN FLOAT DEFAULT 1)
     RETURN VARCHAR2 AS
@@ -54,7 +73,7 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
         END IF;
         commit;
         RETURN returner;
-    END;
+    END update_event;
     
     FUNCTION add_user_to_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2)
     RETURN VARCHAR2 AS
@@ -73,7 +92,7 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
         END IF;
         commit;
         RETURN returner;
-    END;
+    END add_user_to_event;
     
     FUNCTION remove_user(hash_code IN VARCHAR2, user_name IN VARCHAR2)
     RETURN VARCHAR2 AS
@@ -83,6 +102,6 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
         table_deletion.delete_user(hash_code, user_name);
         commit;
         RETURN returner;
-    END;
+    END remove_user;
 
 END api_services_username;

@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="MainContainer">
-  <form id="Register-form" action="login.html">
+  <form id="Register-form" onsubmit="getInputValue();return false">
     <label for="link">Link of your website:</label>
     <input id="link" type="text" placeholder="https://www.coolWebsite.com/" required>
     <label for="email">Email:</label>
@@ -22,7 +22,7 @@
     <input id="password" type="password" required>
     <label for="cpassword">Confirm password:</label>
     <input id="cpassword" type="password" required>
-    <input style="width: 30%; margin-left: 12%; margin-top: 5%;" type="submit" value="Register" onclick="getInputValue()">
+    <input style="width: 30%; margin-left: 12%; margin-top: 5%;" type="submit" value="Register">
   </form>
 </div>
 </body>
