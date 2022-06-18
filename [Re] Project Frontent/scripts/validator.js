@@ -1,5 +1,5 @@
+let hashcodeImport = require("./login")
 let OK_CHECK = "OK";
-
 function validateService(element, index) {
     let form = element.firstChild;
     let firstInput = form.childNodes[0];
@@ -28,7 +28,7 @@ function isAnOption(word, wordsList) {
 
 function validateExpression(expression, optionsList, index) {
     let content = expression.firstChild.value;
-    let regex = /^((\((\w+(\s\&\s\w+)*)\))(\s\|\s(\((\w+(\s\&\s\w+)*)\))+)*)$/;
+    let regex = /^((\((\w+(\s&\s\w+)*)\))(\s\|\s(\((\w+(\s&\s\w+)*)\))+)*)$/;
     let letterRegex = /\w/;
     if (!regex.test(content)) return "Invalid expression with index " + index;
     let newWord = "";
@@ -50,24 +50,46 @@ function validateExpression(expression, optionsList, index) {
     return OK_CHECK;
 }
 
+function addNewService(serviceData) {
+    let inputForm = serviceData.firstChild.childNodes;
+    let content = {
+        hash_code: hashcodeImport.hash_code,
+        event_name: inputForm[0].value,
+        event_type: inputForm[1].value,
+        event_value: inputForm[2].value
+    }
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log("ready")
+        }
+    };
+    xhttp.open("PUT", "http://localhost:5000/services/add/event")
+    xhttp.send(content)
+}
+
 function validateAll() {
-    let children = document.getElementById("list").childNodes;
-    for (let childIndex = 0; childIndex < children.length; childIndex++) {
-        let verdict = validateService(children[childIndex], childIndex + 1);
+    let childrenServices = document.getElementById("list").childNodes;
+    for (let childIndex = 0; childIndex < childrenServices.length; childIndex++) {
+        let verdict = validateService(childrenServices[childIndex], childIndex + 1);
         if (verdict !== OK_CHECK) {
             showInfoBox(verdict);
             break;
         }
     }
 
-
-    optionsList = getOptionsList(children);
-    children = document.getElementById("expressions").childNodes;
-    for (let childIndex = 0; childIndex < children.length; childIndex++) {
-        let verdict = validateExpression(children[childIndex], optionsList, childIndex + 1);
+    optionsList = getOptionsList(childrenServices);
+    let childrenExpressions = document.getElementById("expressions").childNodes;
+    for (let childIndex = 0; childIndex < childrenExpressions.length; childIndex++) {
+        let verdict = validateExpression(childrenExpressions[childIndex], optionsList, childIndex + 1);
         if (verdict !== OK_CHECK) {
             showInfoBox(verdict);
             break;
         }
     }
+
+    for (let childIndex = 0; childIndex < childrenServices.length; childIndex++) {
+        addNewService(childrenServices[childIndex]);
+    }
+
 }
