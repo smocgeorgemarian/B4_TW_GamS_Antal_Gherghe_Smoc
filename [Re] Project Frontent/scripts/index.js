@@ -55,7 +55,7 @@ let hashcode = sessionStorage.getItem("hash_code")
 function logout(){
 
     let content = {
-        "username" : hashcode,
+        "hash_code" : hashcode,
     }
 
     console.log(hashcode);
