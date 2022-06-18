@@ -1,4 +1,5 @@
 CREATE OR REPLACE PACKAGE test_existence AS
+    FUNCTION test_hash(hashcode IN VARCHAR2) RETURN INTEGER;
     FUNCTION test_owner(owner_name IN VARCHAR2) RETURN INTEGER;
     FUNCTION test_table(event_name IN VARCHAR2, hash_code IN VARCHAR2) RETURN INTEGER;
     FUNCTION test_table_reward(reward_name IN VARCHAR2, hash_code IN VARCHAR2) RETURN INTEGER;
@@ -9,6 +10,18 @@ END test_existence;
 /
 
 CREATE OR REPLACE PACKAGE BODY test_existence AS
+
+    FUNCTION test_hash(hashcode IN VARCHAR2)
+    RETURN INTEGER AS
+        found INTEGER;
+    BEGIN
+        SELECT COUNT(*) INTO found FROM OWNERS WHERE hash_code = hashcode;
+        IF found > 0 THEN
+            RETURN 1;
+        ELSE
+            RETURN 0;
+        END IF;
+    END test_hash;
 
     --TEST OWNER EXISTENCE
     FUNCTION test_owner(owner_name IN VARCHAR2)
@@ -43,6 +56,9 @@ CREATE OR REPLACE PACKAGE BODY test_existence AS
         v_command VARCHAR2(200);
         v_ok INTEGER;
     BEGIN
+        IF test_hash(hash_code) = 0 THEN
+            RETURN 0;
+        END IF;
         v_command := 'SELECT COUNT(*) FROM EVENT_' || hash_code || ' WHERE ename = ''' || event_name || ''''; 
         v_cursor_id := DBMS_SQL.OPEN_CURSOR;
         DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
@@ -68,6 +84,9 @@ CREATE OR REPLACE PACKAGE BODY test_existence AS
         v_command VARCHAR2(200);
         v_ok INTEGER;
     BEGIN
+        IF test_hash(hash_code) = 0 THEN
+            RETURN 0;
+        END IF;
         v_command := 'SELECT COUNT(*) FROM REWARD_' || hash_code || ' WHERE rname = ''' || reward_name || ''''; 
         v_cursor_id := DBMS_SQL.OPEN_CURSOR;
         DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
@@ -98,7 +117,7 @@ CREATE OR REPLACE PACKAGE BODY test_existence AS
         IF ( test_table(event_name, hash_code) = 0 ) THEN
             return 0;
         END IF;
-    
+        
         v_table_name := event_name || '_' || hash_code;
         v_command := 'SELECT COUNT(*) FROM ' || v_table_name || ' WHERE user_name = ''' || user_name || ''''; 
         v_cursor_id := DBMS_SQL.OPEN_CURSOR;
