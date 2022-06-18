@@ -3,25 +3,28 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 #particles-js {
     margin-top: -25%;
     width: 100%;
     height: 100%;
-    background-image:
-            linear-gradient(rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)),
-            url("./../resources/cool-background.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.7)),
+    url("./../resources/cool-background.png");
     background-size: cover;
     background-repeat: no-repeat;
 }
-#MainContainer{
+
+#MainContainer {
     width: 75%;
     margin: 3% 12.5%;
 }
+
 #OptionList {
     padding: 0;
 }
-#OptionList li{
+
+#OptionList li {
     width: 100%;
     padding-top: 35%;
     margin-bottom: 10%;
@@ -30,6 +33,7 @@
     justify-content: space-between;
     align-items: center;
 }
+
 .element button {
     width: 100%;
     height: 8vw;
@@ -38,9 +42,10 @@
     background: none;
     font-size-adjust: inherit;
     font-weight: bold;
-    border:  none;
+    border: none;
 }
-#HiddenParagraph{
+
+#HiddenParagraph {
     font-size: 14px;
     font-size-adjust: inherit;
     font-weight: bolder;
@@ -49,6 +54,7 @@
     margin: auto;
     text-align: center;
 }
+
 .element {
     width: 150px;
     max-width: 100%;
@@ -57,4 +63,29 @@
     background-size: cover;
     border-radius: 30%;
     opacity: 85%;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    #HiddenParagraph {
+        font-size: 12px;
+        margin-top: -20%;
+    }
+
+    #OptionList li {
+        flex-direction: column;
+        padding-top: 36%;
+        height:280px;
+        margin: 0;
+    }
+    #OptionList {
+        padding-bottom: 30%;
+    }
+
+    .element button {
+        height: 48px;
+    }
+
+    #HiddenParagraph {
+        width: 100%;
+    }
 }
