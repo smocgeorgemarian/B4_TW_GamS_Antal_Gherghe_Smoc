@@ -23,8 +23,8 @@ END;
 
 SELECT * FROM OWNERS;
 
-DELETE EVENT_XAWhNRVLnl
-SELECT * FROM EVENT_XAWhNRVLnl
+SELECT * FROM EVENT_uTBgRMduBB
+SELECT * FROM REWARD_uTBgRMduBB
 
 SELECT api_users.owner_register('select_user', 'select_pass', 'select_site') FROM DUAL;
 
@@ -36,7 +36,7 @@ BEGIN
     --dbms_output.put_line(api_users.owner_logout('Tudor'));
     --dbms_output.put_line(api_users.owner_delete('Tudor','pass'));
 END;
-
+SELECT COUNT(*) FROM REWARD_uTBgRMduBB WHERE rname = 'r1'
 --DEMO API_SERVICES
 set serveroutput on;
 DECLARE
@@ -47,8 +47,8 @@ BEGIN
     --dbms_output.put_line(api_services.add_event(hash_code, 'third_event', 'sum', 10));
     --dbms_output.put_line(api_services.add_reward(hash_code, 'first_reward', '(first_event)', 'reward1', 0));
     --dbms_output.put_line(api_services.add_reward(hash_code, 'all_reward', '(first_event $ secound_event) | (third_event $ secound_event)', 'reward22', 1));
-    --dbms_output.put_line(api_services.delete_event('first_event', 'Tudor', 'pass'));
-    --dbms_output.put_line(api_services.delete_reward('first_reward', 'Tudor', 'pass'));
+    --dbms_output.put_line(api_services.delete_event('e3', 'uTBgRMduBB'));
+    --dbms_output.put_line(api_services.delete_reward('r1', 'uTBgRMduBB'));
     --dbms_output.put_line(api_services.update_reward('first_reward', hash_code, 'new_reward'));
 END;
 
@@ -80,10 +80,9 @@ BEGIN
     --dbms_output.put_line(api_users.owner_register('test','pass'));
 END;
 
-DELETE event_FTWvyYAaAI;
-commit;
-select * from event_FTWvyYAaAI;
-
-select * from  rewards_FTWvyYAaAI;
+set serveroutput on;
+BEGIN
+    dbms_output.put_line(api_services.add_event('BbUsrtcQCD', 'a13', 'Time', 1));
+END;
 
 

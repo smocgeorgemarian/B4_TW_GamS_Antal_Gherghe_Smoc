@@ -1,3 +1,4 @@
+
 STATUS_MSG = {
     200: "Action performed successfully",
     403: "Access forbidden, maybe duplicated action",
@@ -98,7 +99,6 @@ function setIsValidatedExprPrintable(index, mustBeGreen) {
 
 function addNewService(serviceData, index) {
     let inputForm = serviceData.firstChild.childNodes;
-    let hashcode = "FTWvyYAaAI"
 
     let content = {
         'hash_code': hashcode,
@@ -110,7 +110,6 @@ function addNewService(serviceData, index) {
 }
 
 function addNewBadge(expressionList, index) {
-    let hashcode = "FTWvyYAaAI"
     expressionList = expressionList.firstChild.childNodes
     let content = {
         'hash_code': hashcode,
