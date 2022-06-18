@@ -19,7 +19,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         v_event_type VARCHAR2(200);
     BEGIN
         v_event_type := LOWER(event_type);
-        IF v_event_type != 'count' AND v_event_type != 'time' AND v_event_type != 'sum' THEN
+        IF v_event_type != 'count' AND v_event_type != 'time' AND v_event_type != 'sum' OR test_existence.test_hash(hash_code) = 0 THEN
             returner := '404';
         ELSE
             IF test_existence.test_table(event_name, hash_code) = 1 THEN
@@ -46,7 +46,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         ELSE
             v_repeat := 0;
         END IF;
-        IF test_existence.test_table_reward(reward_name, hash_code) = 1 THEN
+        IF test_existence.test_table_reward(reward_name, hash_code) = 1 OR test_existence.test_hash(hash_code) = 0 THEN
             returner := '0';
         ELSE
             returner := '1';

@@ -23,12 +23,15 @@ END;
 
 SELECT * FROM OWNERS;
 
+DELETE EVENT_XAWhNRVLnl
+SELECT * FROM EVENT_XAWhNRVLnl
+
 SELECT api_users.owner_register('select_user', 'select_pass', 'select_site') FROM DUAL;
 
 --DEMO API_USERS
 set serveroutput on;
 BEGIN
-    dbms_output.put_line(api_users.owner_register('Tudor','pass','www.sainthub.com'));
+    --dbms_output.put_line(api_users.owner_register('Tudor','pass','www.sainthub.com'));
     --dbms_output.put_line(api_users.owner_login('Tudor','pass'));
     --dbms_output.put_line(api_users.owner_logout('Tudor'));
     --dbms_output.put_line(api_users.owner_delete('Tudor','pass'));
@@ -77,7 +80,9 @@ BEGIN
     --dbms_output.put_line(api_users.owner_register('test','pass'));
 END;
 
-DELETE event_FTWvyYAaAI;
-select * from event_FTWvyYAaAI;
+set serveroutput on;
+BEGIN
+    dbms_output.put_line(api_services.add_event('BbUsrtcQCD', 'a13', 'Time', 1));
+END;
 
 
