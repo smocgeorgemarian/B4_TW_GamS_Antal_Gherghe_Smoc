@@ -1,5 +1,6 @@
 let email = document.getElementById("email").value;
 let password = document.getElementById("password").value;
+let hashcode = "ewqeqwe"
 function login() {
     fetch('http://localhost:???/users/login', {
         method: 'POST',
@@ -20,4 +21,8 @@ function login() {
         .catch(function (error) {
             console.log('Request failed', error);
         });
+}
+
+module.exports = {
+    hashcode
 }

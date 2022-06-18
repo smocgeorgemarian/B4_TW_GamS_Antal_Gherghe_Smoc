@@ -6,7 +6,7 @@ async function users_register(username, password, site) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_users.owner_register('${username}', '${password}', '${site}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -28,7 +28,7 @@ async function users_login(username, password) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_users.owner_login('${username}', '${password}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -50,7 +50,7 @@ async function users_logout(username) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_users.owner_logout('${username}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -75,16 +75,16 @@ async function users_events(username, password) {
         let hash_code = (await result).rows[0][0];
         result = connection.execute(`SELECT * FROM EVENT_${hash_code}`)
         let response = null;
-        for(i = 0; i < (await result).rows.length; i++){
-            if(response === null){
+        for (i = 0; i < (await result).rows.length; i++) {
+            if (response === null) {
                 response = '[{ "event_name" : "' + (await result).rows[i][0] + '", "event_type" : "' + (await result).rows[i][1] + '", "event_value" : "' + (await result).rows[i][2] + '"}';
-            }else{
+            } else {
                 response = response + ', { "event_name" : "' + (await result).rows[i][0] + '", "event_type" : "' + (await result).rows[i][1] + '", "event_value" : "' + (await result).rows[i][2] + '"}';
             }
         }
-        if(response === null){
+        if (response === null) {
             response = 'NULL'
-        }else{
+        } else {
             respons = response + ']'
         }
         return response
@@ -110,16 +110,16 @@ async function users_rewards(username, password) {
         let hash_code = (await result).rows[0][0];
         result = connection.execute(`SELECT * FROM REWARD_${hash_code}`)
         let response = null;
-        for(i = 0; i < (await result).rows.length; i++){
-            if(response === null){
+        for (i = 0; i < (await result).rows.length; i++) {
+            if (response === null) {
                 response = '[{ "reward_name" : "' + (await result).rows[i][0] + '", "condition" : "' + (await result).rows[i][1] + '", "reward" : "' + (await result).rows[i][2] + '", "is_repeatable" : ' + (await result).rows[i][3] + '}';
-            }else{
+            } else {
                 response = response + ', { "reward_name" : "' + (await result).rows[i][0] + '", "condition" : "' + (await result).rows[i][1] + '", "reward" : "' + (await result).rows[i][2] + '", "is_repeatable" : ' + (await result).rows[i][3] + '}';
             }
         }
-        if(response === null){
+        if (response === null) {
             response = 'NULL'
-        }else{
+        } else {
             respons = response + ']'
         }
         return response
@@ -142,7 +142,7 @@ async function users_delete(username, password) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_users.owner_delete('${username}', '${password}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -164,7 +164,7 @@ async function services_add_event(hash_code, event_name, event_type, event_value
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services.add_event('${hash_code}', '${event_name}', '${event_type}', ${event_value}) FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -186,7 +186,7 @@ async function services_add_reward(hash_code, reward_name, condition, reward, is
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services.add_reward('${hash_code}', '${reward_name}', '${condition}', '${reward}', ${is_repeatable}) FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -208,7 +208,7 @@ async function services_delete_event(event_name, user_name, password) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services.delete_event('${event_name}', '${user_name}', '${password}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -230,7 +230,7 @@ async function services_delete_reward(reward_name, user_name, password) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services.delete_reward('${reward_name}', '${user_name}', '${password}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -252,7 +252,7 @@ async function services_update_reward(reward_name, hash_code, new_reward) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services.update_reward('${reward_name}', '${hash_code}', '${new_reward}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -274,7 +274,7 @@ async function services_username_rewards(hash_code, user_name) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services_username.get_rewards('${hash_code}', '${user_name}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -296,7 +296,7 @@ async function services_username_update(event_name, hash_code, user_name, value_
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services_username.update_event('${event_name}', '${hash_code}', '${user_name}', ${value_update}) FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -318,7 +318,7 @@ async function services_username_add(event_name, hash_code, user_name) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services_username.add_user_to_event('${event_name}', '${hash_code}', '${user_name}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
@@ -340,7 +340,7 @@ async function services_username_delete(hash_code, user_name) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services_username.remove_user('${hash_code}', '${user_name}') FROM DUAL`)
-        
+
         let response = (await result).rows[0][0];
         return response
     } catch (err) {
