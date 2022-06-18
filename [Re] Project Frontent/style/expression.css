@@ -1,5 +1,6 @@
 .expression {
-    width: 400px;
+    height: 30px;
+    width: 40%;
     align-content: center;
     padding-bottom: 10px;
 }
@@ -13,4 +14,11 @@
     width: 100px;
     border-radius: 10px;
     border: solid black 3px;
+}
+
+.badgeName {
+    height: 30px;
+    width: 20%;
+    align-content: center;
+    padding-bottom: 10px;
 }

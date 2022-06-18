@@ -1,12 +1,11 @@
-let hashcodeImport = require("./login")
-let OK_CHECK = "OK";
+
 function validateService(element, index) {
     let form = element.firstChild;
     let firstInput = form.childNodes[0];
     let secondInput = form.childNodes[2];
     if (firstInput.value.length === 0) return "Service Name with index " + index + " not provided!";
     if (secondInput.value.length === 0) return "MileStone with index " + index + " not provided!";
-    return OK_CHECK;
+    return "OK";
 }
 
 function getOptionsList(children) {
@@ -27,6 +26,8 @@ function isAnOption(word, wordsList) {
 }
 
 function validateExpression(expression, optionsList, index) {
+    expression = expression.firstChild.firstChild
+    console.log(expression)
     let content = expression.firstChild.value;
     let regex = /^((\((\w+(\s&\s\w+)*)\))(\s\|\s(\((\w+(\s&\s\w+)*)\))+)*)$/;
     let letterRegex = /\w/;
@@ -47,32 +48,51 @@ function validateExpression(expression, optionsList, index) {
             isLetter = false;
         }
     }
-    return OK_CHECK;
+    return "OK";
 }
 
 function addNewService(serviceData) {
     let inputForm = serviceData.firstChild.childNodes;
+    let hashcode = "FTWvyYAaAI"
+
     let content = {
-        hash_code: hashcodeImport.hash_code,
-        event_name: inputForm[0].value,
-        event_type: inputForm[1].value,
-        event_value: inputForm[2].value
+        'hash_code': hashcode,
+        'event_name': inputForm[0].value,
+        'event_type': inputForm[1].value,
+        'event_value': inputForm[2].value
     }
+
+    // fetch("http://localhost:5000/services/add/event", {
+    //     method: 'PUT',
+    //     headers: {
+    //         "Content-type": "application/json"
+    //     },
+    //     body: JSON.stringify(content)
+    // })
+    //     .then(function(response) {
+    //         console.log("O ce tiganca frumoasa")
+    //     })
+    //     .catch(function(error) {
+    //         console.log("Filme de groaza")
+    //     })
+
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             console.log("ready")
         }
     };
+    console.log(content)
     xhttp.open("PUT", "http://localhost:5000/services/add/event")
-    xhttp.send(content)
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify(content))
 }
 
 function validateAll() {
     let childrenServices = document.getElementById("list").childNodes;
     for (let childIndex = 0; childIndex < childrenServices.length; childIndex++) {
         let verdict = validateService(childrenServices[childIndex], childIndex + 1);
-        if (verdict !== OK_CHECK) {
+        if (verdict !== "OK") {
             showInfoBox(verdict);
             break;
         }
@@ -82,7 +102,7 @@ function validateAll() {
     let childrenExpressions = document.getElementById("expressions").childNodes;
     for (let childIndex = 0; childIndex < childrenExpressions.length; childIndex++) {
         let verdict = validateExpression(childrenExpressions[childIndex], optionsList, childIndex + 1);
-        if (verdict !== OK_CHECK) {
+        if (verdict !== "OK") {
             showInfoBox(verdict);
             break;
         }
