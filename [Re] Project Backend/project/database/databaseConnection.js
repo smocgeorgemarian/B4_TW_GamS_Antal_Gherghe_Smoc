@@ -74,7 +74,7 @@ async function users_events(username, password) {
         let result = connection.execute(`SELECT COUNT(*) FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
         let hash_code = (await result).rows[0][0];
 
-        if(hash_code < 1){
+        if (hash_code < 1) {
             return '404'
         }
 
@@ -92,7 +92,7 @@ async function users_events(username, password) {
         }
 
 
-        if(response === null){
+        if (response === null) {
             return 'NULL'
         }
 
@@ -119,7 +119,7 @@ async function users_rewards(username, password) {
         let result = connection.execute(`SELECT COUNT(*) FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
         let hash_code = (await result).rows[0][0];
 
-        if(hash_code < 1){
+        if (hash_code < 1) {
             return '404'
         }
 
@@ -137,7 +137,7 @@ async function users_rewards(username, password) {
         }
 
 
-        if(response === null){
+        if (response === null) {
             return 'NULL'
         }
 
@@ -183,6 +183,7 @@ async function services_add_event(hash_code, event_name, event_type, event_value
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
+        console.log("Hash code: " + hash_code + " event name " + event_name + " event type " + event_type + " event value " + event_value)
         let result = connection.execute(`SELECT api_services.add_event('${hash_code}', '${event_name}', '${event_type}', ${event_value}) FROM DUAL`)
 
         let response = (await result).rows[0][0];
@@ -297,7 +298,7 @@ async function services_username_rewards(hash_code, user_name) {
 
         let response = (await result).rows[0][0];
 
-        if(response[0] != '['){
+        if (response[0] != '[') {
             return response
         }
 

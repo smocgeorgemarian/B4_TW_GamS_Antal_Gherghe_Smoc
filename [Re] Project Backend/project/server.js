@@ -5,6 +5,17 @@ const { users_register, users_login, users_logout, users_events, users_rewards, 
 } = require('./database/databaseConnection')
 
 const server = http.createServer((req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Request-Method', '*')
+    res.setHeader('Access-Control-Allow-Methods', '*')
+    res.setHeader('Access-Control-Allow-Headers', '*')
+    res.setHeader('Access-Control-Max-Age', 2592000) // 30 days
+    if (req.method === 'OPTIONS') {
+        res.writeHead(200)
+        res.end()
+        return
+    }
+    console.log("O ce tiganca")
 
     //==============================USERS==============================
 
@@ -23,22 +34,22 @@ const server = http.createServer((req, res) => {
                 }
             })
 
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/users/login' && req.method === 'GET') {
@@ -55,22 +66,22 @@ const server = http.createServer((req, res) => {
                     resolve(users_login(JSON.parse(body).username, JSON.parse(body).password));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/users/logout' && req.method === 'GET') {
@@ -87,22 +98,22 @@ const server = http.createServer((req, res) => {
                     resolve(users_logout(JSON.parse(body).username));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/users/events' && req.method === 'GET') {
@@ -119,22 +130,22 @@ const server = http.createServer((req, res) => {
                     resolve(users_events(JSON.parse(body).username, JSON.parse(body).password));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/users/rewards' && req.method === 'GET') {
@@ -151,22 +162,22 @@ const server = http.createServer((req, res) => {
                     resolve(users_rewards(JSON.parse(body).username, JSON.parse(body).password));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/users/delete' && req.method === 'DELETE') {
@@ -183,22 +194,22 @@ const server = http.createServer((req, res) => {
                     resolve(users_delete(JSON.parse(body).username, JSON.parse(body).password));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
         //==============================SERVICES==============================
@@ -217,22 +228,22 @@ const server = http.createServer((req, res) => {
                     resolve(services_add_event(JSON.parse(body).hash_code, JSON.parse(body).event_name, JSON.parse(body).event_type, JSON.parse(body).event_value));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/services/add/reward' && req.method === 'PUT') {
@@ -249,22 +260,22 @@ const server = http.createServer((req, res) => {
                     resolve(services_add_reward(JSON.parse(body).hash_code, JSON.parse(body).reward_name, JSON.parse(body).condition, JSON.parse(body).reward, JSON.parse(body).is_repeatable));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/services/delete/event' && req.method === 'DELETE') {
@@ -281,22 +292,22 @@ const server = http.createServer((req, res) => {
                     resolve(services_delete_event(JSON.parse(body).event_name, JSON.parse(body).username, JSON.parse(body).password));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/services/delete/reward' && req.method === 'DELETE') {
@@ -313,22 +324,22 @@ const server = http.createServer((req, res) => {
                     resolve(services_delete_reward(JSON.parse(body).reward_name, JSON.parse(body).username, JSON.parse(body).password));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/services/update/reward' && req.method === 'POST') {
@@ -345,22 +356,22 @@ const server = http.createServer((req, res) => {
                     resolve(services_update_reward(JSON.parse(body).reward_name, JSON.parse(body).hash_code, JSON.parse(body).new_reward));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
         //==============================SERVICES_USERNAME==============================
@@ -379,22 +390,22 @@ const server = http.createServer((req, res) => {
                     resolve(services_username_rewards(JSON.parse(body).hash_code, JSON.parse(body).username));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/services/username/update' && req.method === 'POST') {
@@ -417,24 +428,24 @@ const server = http.createServer((req, res) => {
                     resolve(services_username_update(JSON.parse(body).event_name, JSON.parse(body).hash_code, JSON.parse(body).username, update_value));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else if(value === 'error'){
-                    res.statusCode = 500
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else if (value === 'error') {
+                        res.statusCode = 500
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/services/username/add' && req.method === 'PUT') {
@@ -451,22 +462,22 @@ const server = http.createServer((req, res) => {
                     resolve(services_username_add(JSON.parse(body).event_name, JSON.parse(body).hash_code, JSON.parse(body).username));
                 }
             })
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else if (req.url === '/services/username/delete' && req.method === 'DELETE') {
@@ -484,22 +495,22 @@ const server = http.createServer((req, res) => {
                 }
             })
 
-            .then(value => {
-                if(value === '0'){
-                    res.statusCode = 403
-                }else if(value === '404'){
-                    res.statusCode = 404
-                }else{
-                    res.statusCode = 200
-                }
-                res.write(JSON.stringify({ message: value }))
-                res.end()
-            })
-            .catch(err =>{
-                res.statusCode = 400
-                res.write(JSON.stringify({ message: err }))
-                res.end()
-            })
+                .then(value => {
+                    if (value === '0') {
+                        res.statusCode = 403
+                    } else if (value === '404') {
+                        res.statusCode = 404
+                    } else {
+                        res.statusCode = 200
+                    }
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                })
         });
 
     } else {
