@@ -200,6 +200,7 @@ async function services_add_reward(hash_code, reward_name, condition, reward, is
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
+        console.log("hash_code " + hash_code + " reward_name " + reward_name + " condition " + condition + " reward " + reward + " is repeat " + is_repeatable)
         let result = connection.execute(`SELECT api_services.add_reward('${hash_code}', '${reward_name}', '${condition}', '${reward}', ${is_repeatable}) FROM DUAL`)
 
         let response = (await result).rows[0][0];

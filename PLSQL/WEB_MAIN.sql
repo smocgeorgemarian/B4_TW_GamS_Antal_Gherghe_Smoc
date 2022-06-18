@@ -80,9 +80,10 @@ BEGIN
     --dbms_output.put_line(api_users.owner_register('test','pass'));
 END;
 
-set serveroutput on;
-BEGIN
-    dbms_output.put_line(api_services.add_event('BbUsrtcQCD', 'a13', 'Time', 1));
-END;
+DELETE event_FTWvyYAaAI;
+commit;
+select * from event_FTWvyYAaAI;
+
+select * from  rewards_FTWvyYAaAI;
 
 

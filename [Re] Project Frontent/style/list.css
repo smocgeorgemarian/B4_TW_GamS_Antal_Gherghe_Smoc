@@ -25,9 +25,11 @@
 .listExample {
     list-style: none;
     align-items: center;
-    margin: auto;
-    padding-left: 15%;
-    padding-right: 5%;
+    align-content: center;
+
+    padding-left: auto;
+    /*padding-left: 15%;*/
+    /*padding-right: 5%;*/
 }
 
 .listExample > li {
@@ -35,9 +37,48 @@
 }
 
 .listExample > li:not(:first-child) {
-    padding-left: 20px;
+    /*padding-left: 20px;*/
 }
 
 .listExample > li input {
-    width: 100px;
+    /*width: 100px;*/
 }
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.deleteData {
+    text-align: center;
+    list-style: none;
+    padding: 15px;
+}
+
+.deleteInput {
+    margin-right: 15px;
+}
+
+#deleteOption {
+    margin-right: 15px;
+}
+

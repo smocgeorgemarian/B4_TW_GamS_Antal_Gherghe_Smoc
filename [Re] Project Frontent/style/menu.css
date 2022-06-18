@@ -10,3 +10,17 @@
 #pressedDelete {
     color: red;
 }
+
+.redEye {
+    color: red;
+}
+
+.greenBtn {
+    color: green;
+    margin-left: 15px;
+}
+
+.redBtn {
+    color: red;
+    margin-left: 15px;
+}
