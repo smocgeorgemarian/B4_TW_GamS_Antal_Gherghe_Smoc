@@ -87,7 +87,7 @@ CREATE OR REPLACE PACKAGE BODY test_existence AS
         IF test_hash(hash_code) = 0 THEN
             RETURN 0;
         END IF;
-        v_command := 'SELECT COUNT(*) FROM REWARD_' || hash_code || ' WHERE rname = ''' || reward_name || ''''; 
+        v_command := 'SELECT COUNT(*) FROM REWARD_' || hash_code || ' WHERE rname = ''' || reward_name || '''';
         v_cursor_id := DBMS_SQL.OPEN_CURSOR;
         DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
         DBMS_SQL.DEFINE_COLUMN(v_cursor_id, 1, table_checker);

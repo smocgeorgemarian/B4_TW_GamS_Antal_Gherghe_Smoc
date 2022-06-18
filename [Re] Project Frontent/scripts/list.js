@@ -1,9 +1,11 @@
+let hashcode = sessionStorage.getItem("hash_code");
+
 let isToBeDeleted = false;
 let isOpen = {
     "eye": false, "trophy": false
 }
 let credentials = {
-    "username": "Tudor", "password": "pass"
+    "hash_code" : hashcode
 }
 
 function setListArrangable(target) {
@@ -293,12 +295,12 @@ function updateElement() {
     let updateValue = inputs[2].value;
     let content = {
         "reward_name" : inputValue,
-        "hash_code" : "FTWvyYAaAI",
+        "hash_code" : hashcode,
         "new_reward" : updateValue
     }
     console.log(content);
 
-    sendContent(content, "POST", "http://localhost:5000/services/update/reward");
+    sendContent(content, "PUT", "http://localhost:5000/services/update/reward");
 }
 
 function initUpdate() {

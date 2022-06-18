@@ -2,8 +2,8 @@ CREATE OR REPLACE PACKAGE api_services AS
 
     FUNCTION add_event(hash_code VARCHAR2, event_name VARCHAR2, event_type VARCHAR2, event_value FLOAT) RETURN VARCHAR2;
     FUNCTION add_reward(hash_code IN VARCHAR2, reward_name IN VARCHAR2, condition IN VARCHAR2, reward IN VARCHAR2, is_repeatable IN NUMBER) RETURN VARCHAR2;
-    FUNCTION delete_event(event_name VARCHAR2, owner_name VARCHAR2, owner_password VARCHAR2) RETURN VARCHAR2;
-    FUNCTION delete_reward(reward_name VARCHAR2, owner_name VARCHAR2, owner_password VARCHAR2) RETURN VARCHAR2;
+    FUNCTION delete_event(event_name VARCHAR2, hashcode VARCHAR2) RETURN VARCHAR2;
+    FUNCTION delete_reward(reward_name VARCHAR2, hashcode VARCHAR2) RETURN VARCHAR2;
     FUNCTION update_reward(reward_name VARCHAR2, hash_code VARCHAR2, new_reward VARCHAR2) RETURN VARCHAR2;
 
 END api_services;
@@ -71,7 +71,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         RETURN returner;
     END add_reward;
 
-    FUNCTION delete_event(event_name VARCHAR2, owner_name VARCHAR2, owner_password VARCHAR2)
+    FUNCTION delete_event(event_name VARCHAR2, hashcode VARCHAR2)
     RETURN VARCHAR2 AS
         PRAGMA AUTONOMOUS_TRANSACTION;
         v_cursor_id INTEGER;
@@ -80,14 +80,12 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         v_table_name VARCHAR2(200);
     
         returner VARCHAR2(200);
-        hashcode VARCHAR2(200);
         status INTEGER;
     BEGIN
-        SELECT COUNT(*) INTO status FROM OWNERS WHERE oname = owner_name AND opassword = owner_password;
+        SELECT COUNT(*) INTO status FROM OWNERS WHERE hash_code = hashcode;
         IF status = 0 THEN
             returner := '0';
         ELSE
-            SELECT hash_code INTO hashcode FROM OWNERS WHERE oname = owner_name AND opassword = owner_password;
             IF test_existence.test_table(event_name, hashcode) = 0 THEN
                 returner := '404';
             ELSE
@@ -109,7 +107,7 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         RETURN returner;
     END delete_event;
 
-    FUNCTION delete_reward(reward_name VARCHAR2, owner_name VARCHAR2, owner_password VARCHAR2)
+    FUNCTION delete_reward(reward_name VARCHAR2, hashcode VARCHAR2)
     RETURN VARCHAR2 AS
         PRAGMA AUTONOMOUS_TRANSACTION;
         v_cursor_id INTEGER;
@@ -118,14 +116,12 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         v_table_name VARCHAR2(200);
     
         returner VARCHAR2(200);
-        hashcode VARCHAR2(200);
         status INTEGER;
     BEGIN
-        SELECT COUNT(*) INTO status FROM OWNERS WHERE oname = owner_name AND opassword = owner_password;
+        SELECT COUNT(*) INTO status FROM OWNERS WHERE hash_code = hashcode;
         IF status = 0 THEN
             returner := '0';
         ELSE
-            SELECT hash_code INTO hashcode FROM OWNERS WHERE oname = owner_name AND opassword = owner_password;
             IF test_existence.test_table_reward(reward_name, hashcode) = 0 THEN
                 returner := '404';
             ELSE

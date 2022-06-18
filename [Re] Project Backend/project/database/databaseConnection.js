@@ -218,12 +218,12 @@ async function services_add_reward(hash_code, reward_name, condition, reward, is
     }
 }
 
-async function services_delete_event(event_name, user_name, password) {
+async function services_delete_event(event_name, hash_code) {
     let connection
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
-        let result = connection.execute(`SELECT api_services.delete_event('${event_name}', '${user_name}', '${password}') FROM DUAL`)
+        let result = connection.execute(`SELECT api_services.delete_event('${event_name}', '${hash_code}') FROM DUAL`)
 
         let response = (await result).rows[0][0];
         return response
@@ -240,12 +240,12 @@ async function services_delete_event(event_name, user_name, password) {
     }
 }
 
-async function services_delete_reward(reward_name, user_name, password) {
+async function services_delete_reward(reward_name, hash_code) {
     let connection
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
-        let result = connection.execute(`SELECT api_services.delete_reward('${reward_name}', '${user_name}', '${password}') FROM DUAL`)
+        let result = connection.execute(`SELECT api_services.delete_reward('${reward_name}', '${hash_code}') FROM DUAL`)
 
         let response = (await result).rows[0][0];
         return response

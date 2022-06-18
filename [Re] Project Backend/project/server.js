@@ -286,10 +286,10 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const promise = new Promise((resolve, reject) => {
-                if (!JSON.parse(body).event_name || !JSON.parse(body).username || !JSON.parse(body).password) {
+                if (!JSON.parse(body).event_name || !JSON.parse(body).hash_code) {
                     reject('Wrong parameters!')
                 } else {
-                    resolve(services_delete_event(JSON.parse(body).event_name, JSON.parse(body).username, JSON.parse(body).password));
+                    resolve(services_delete_event(JSON.parse(body).event_name, JSON.parse(body).hash_code));
                 }
             })
                 .then(value => {
@@ -318,10 +318,10 @@ const server = http.createServer((req, res) => {
 
         req.on('end', () => {
             const promise = new Promise((resolve, reject) => {
-                if (!JSON.parse(body).reward_name || !JSON.parse(body).username || !JSON.parse(body).password) {
+                if (!JSON.parse(body).reward_name || !JSON.parse(body).hash_code) {
                     reject('Wrong parameters!')
                 } else {
-                    resolve(services_delete_reward(JSON.parse(body).reward_name, JSON.parse(body).username, JSON.parse(body).password));
+                    resolve(services_delete_reward(JSON.parse(body).reward_name, JSON.parse(body).hash_code));
                 }
             })
                 .then(value => {
@@ -342,7 +342,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/services/update/reward' && req.method === 'POST') {
+    } else if (req.url === '/services/update/reward' && req.method === 'PUT') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
@@ -440,7 +440,7 @@ const server = http.createServer((req, res) => {
                 })
         });
 
-    } else if (req.url === '/services/username/update' && req.method === 'POST') {
+    } else if (req.url === '/services/username/update' && req.method === 'PUT') {
         let body = ''
         req.on('data', chunk => {
             body += chunk;
