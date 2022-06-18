@@ -1,8 +1,18 @@
-body {
-    background-image: url("https://www.bcm-institute.org/wp-content/uploads/2021/09/pngtree-white-background-cartoon-hora-blue-watercolor-background-image_653820.jpg");
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#particles-js {
+    margin-top: -25%;
+    width: 100%;
+    height: 100%;
+    background-image:
+            linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+            url("./../resources/cool-background.png");
     background-size: cover;
     background-repeat: no-repeat;
-    margin: auto;
 }
 #MainContainer{
     width: 75%;
@@ -13,7 +23,7 @@ body {
 }
 #OptionList li{
     width: 100%;
-    margin-top: 15%;
+    padding-top: 35%;
     margin-bottom: 10%;
     display: flex;
     flex-direction: row;
@@ -34,7 +44,7 @@ body {
     font-size: 14px;
     font-size-adjust: inherit;
     font-weight: bolder;
-    font-family: "Cooper Black", Serif;
+    font-family: "Cooper Black", Serif, serif;
     width: 75%;
     margin: auto;
     text-align: center;
