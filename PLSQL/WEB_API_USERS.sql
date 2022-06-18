@@ -22,7 +22,7 @@ CREATE OR REPLACE PACKAGE BODY api_users AS
                 returner := '404';
             END IF;
         ELSE
-            returner := '1';
+            SELECT hash_code INTO returner FROM OWNERS WHERE oname = owner_name AND opassword = owner_password;
             UPDATE OWNERS SET is_logged = 1 WHERE oname = owner_name;
         END IF;  
         commit;
