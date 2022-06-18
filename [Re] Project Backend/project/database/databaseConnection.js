@@ -71,8 +71,16 @@ async function users_events(username, password) {
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
-        let result = connection.execute(`SELECT hash_code FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
+        let result = connection.execute(`SELECT COUNT(*) FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
         let hash_code = (await result).rows[0][0];
+
+        if(hash_code < 1){
+            return '404'
+        }
+
+        result = connection.execute(`SELECT hash_code FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
+        hash_code = (await result).rows[0][0];
+
         result = connection.execute(`SELECT * FROM EVENT_${hash_code}`)
         let response = null;
         for (i = 0; i < (await result).rows.length; i++) {
@@ -82,12 +90,14 @@ async function users_events(username, password) {
                 response = response + ', { "event_name" : "' + (await result).rows[i][0] + '", "event_type" : "' + (await result).rows[i][1] + '", "event_value" : "' + (await result).rows[i][2] + '"}';
             }
         }
-        if (response === null) {
-            response = 'NULL'
-        } else {
-            respons = response + ']'
+
+
+        if(response === null){
+            return 'NULL'
         }
-        return response
+
+        response = response + ']'
+        return JSON.parse(response)
     } catch (err) {
         console.error(err);
     } finally {
@@ -106,8 +116,16 @@ async function users_rewards(username, password) {
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
-        let result = connection.execute(`SELECT hash_code FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
+        let result = connection.execute(`SELECT COUNT(*) FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
         let hash_code = (await result).rows[0][0];
+
+        if(hash_code < 1){
+            return '404'
+        }
+
+        result = connection.execute(`SELECT hash_code FROM OWNERS WHERE oname = '${username}' AND opassword = '${password}'`)
+        hash_code = (await result).rows[0][0];
+
         result = connection.execute(`SELECT * FROM REWARD_${hash_code}`)
         let response = null;
         for (i = 0; i < (await result).rows.length; i++) {
@@ -117,12 +135,14 @@ async function users_rewards(username, password) {
                 response = response + ', { "reward_name" : "' + (await result).rows[i][0] + '", "condition" : "' + (await result).rows[i][1] + '", "reward" : "' + (await result).rows[i][2] + '", "is_repeatable" : ' + (await result).rows[i][3] + '}';
             }
         }
-        if (response === null) {
-            response = 'NULL'
-        } else {
-            respons = response + ']'
+
+
+        if(response === null){
+            return 'NULL'
         }
-        return response
+
+        response = response + ']'
+        return JSON.parse(response)
     } catch (err) {
         console.error(err);
     } finally {
@@ -276,7 +296,12 @@ async function services_username_rewards(hash_code, user_name) {
         let result = connection.execute(`SELECT api_services_username.get_rewards('${hash_code}', '${user_name}') FROM DUAL`)
 
         let response = (await result).rows[0][0];
-        return response
+
+        if(response[0] != '['){
+            return response
+        }
+
+        return JSON.parse(response)
     } catch (err) {
         console.error(err);
     } finally {
