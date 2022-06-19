@@ -101,7 +101,7 @@ function addNewService(serviceData, index) {
     let inputForm = serviceData.firstChild.childNodes;
 
     let content = {
-        'hash_code': hashcode,
+        ...credentials,
         'event_name': inputForm[0].value,
         'event_type': inputForm[1].value,
         'event_value': inputForm[2].value
@@ -113,7 +113,7 @@ function addNewBadge(expressionList, index) {
     let father = expressionList.firstChild;
     expressionList = expressionList.firstChild.childNodes
     let content = {
-        'hash_code': hashcode,
+        ...credentials,
         'reward_name': expressionList[1].firstChild.value,
         'condition': expressionList[0].firstChild.value,
         'reward': expressionList[2].firstChild.value,
