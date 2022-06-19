@@ -1,15 +1,15 @@
-let hashcode = sessionStorage.getItem("hash_code");
-
-if(hashcode === null){
-    window.location.href = './../sources/uShallNotPass.html';
-}
-
 let isToBeDeleted = false;
 let isOpen = {
     "eye": false, "trophy": false
 }
-let credentials = {
-    "hash_code" : hashcode
+let credentials = {};
+
+function setPageUp() {
+    if (document.cookie)
+        credentials["hash_code"] = document.cookie.split(";")[0]
+            .split('=')[1];
+    else
+        window.location.href = './../sources/uShallNotPass.html';
 }
 
 function setListArrangable(target) {
@@ -250,11 +250,11 @@ function deleteElement() {
     let content, url;
     if (deleteOption === "Service") {
         content = {"event_name": inputValue, ...credentials};
-        url = "http://localhost:5000/services/delete/event";
+        url = "http://localhost:5001/services/delete/event";
     }
     else {
         content = {"reward_name": inputValue, ...credentials};
-        url = "http://localhost:5000/services/delete/reward";
+        url = "http://localhost:5001/services/delete/reward";
     }
     sendContent(content, "DELETE", url);
 }
@@ -299,12 +299,12 @@ function updateElement() {
     let updateValue = inputs[2].value;
     let content = {
         "reward_name" : inputValue,
-        "hash_code" : hashcode,
+        ...credentials,
         "new_reward" : updateValue
     }
     console.log(content);
 
-    sendContent(content, "PUT", "http://localhost:5000/services/update/reward");
+    sendContent(content, "PUT", "http://localhost:5001/services/update/reward");
 }
 
 function initUpdate() {
@@ -337,7 +337,7 @@ function initUpdate() {
 function getBackToIndex() {
     window.location.href = './../sources/index.html';
 }
-
+setPageUp();
 initList();
 initMenu();
 initDelete();

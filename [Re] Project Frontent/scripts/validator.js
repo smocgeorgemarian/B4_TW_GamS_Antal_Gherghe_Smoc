@@ -106,7 +106,7 @@ function addNewService(serviceData, index) {
         'event_type': inputForm[1].value,
         'event_value': inputForm[2].value
     }
-    sendContent(content, "PUT","http://localhost:5000/services/add/event", setIsValidatedPrintable, index);
+    sendContent(content, "PUT","http://localhost:5001/services/add/event", setIsValidatedPrintable, index);
 }
 
 function addNewBadge(expressionList, index) {
@@ -128,7 +128,7 @@ function addNewBadge(expressionList, index) {
     father.appendChild(loadingDiv);
     sleep(4500).then(() => {
         loadingDiv.remove();
-        sendContent(content, "PUT", "http://localhost:5000/services/add/reward", setIsValidatedExprPrintable, index)
+        sendContent(content, "PUT", "http://localhost:5001/services/add/reward", setIsValidatedExprPrintable, index)
     });
 }
 

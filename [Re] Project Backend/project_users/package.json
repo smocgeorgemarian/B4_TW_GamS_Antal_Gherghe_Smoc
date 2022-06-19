@@ -1,0 +1,17 @@
+{
+  "name": "project_users",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server_users",
+  "scripts": {
+    "start": "node server_users.js",
+    "dev": "nodemon server_users.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "oracledb": "^5.4.0"
+  }
+}

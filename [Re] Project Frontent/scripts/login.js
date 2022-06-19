@@ -16,10 +16,12 @@ function login() {
         if (this.readyState === 4 && this.status === 200) {
             let obj = JSON.parse(xhttp.response);
             hashcode = obj.message;
-            console.log(hashcode);
-            sessionStorage.setItem("hash_code", hashcode);
+
+            document.cookie = "hashcode=" + hashcode + ";SameSite=none; Secure";
+            console.log(document.cookie);
             window.location.href = './../sources/index.html';
         }else if(this.readyState === 4){
+
             alert("Someting went wrong!");
             window.location.href = './../sources/login.html';
         }
@@ -29,3 +31,6 @@ function login() {
     xhttp.send(JSON.stringify(content))
 
 }
+
+if (document.cookie)
+    window.location.href = './../sources/index.html';
