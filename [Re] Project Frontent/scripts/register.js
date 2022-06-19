@@ -40,7 +40,7 @@ function register() {
             window.location.href = './../sources/index.html';
         }else if(this.readyState === 4){
             alert("Someting went wrong!");
-            window.location.href = './../sources/register.html';
+            // window.location.href = './../sources/register.html';
         }
     };
     xhttp.open("POST", "http://localhost:5000/users/register")

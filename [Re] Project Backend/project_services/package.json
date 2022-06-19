@@ -1,0 +1,17 @@
+{
+  "name": "proiect_services",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server_services.js",
+  "scripts": {
+    "start": "node server_services.js",
+    "dev": "nodemon server_services.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "oracledb": "^5.4.0"
+  }
+}

@@ -50,7 +50,9 @@ function displayText(){
         paragraph.style.display = 'none';
 }
 
-let hashcode = sessionStorage.getItem("hash_code")
+let hashcode = document.cookie.split(";")[0]
+    .split('=')[1];
+console.log(hashcode);
 
 function logout(){
 
@@ -58,12 +60,11 @@ function logout(){
         "hash_code" : hashcode,
     }
 
-    console.log(hashcode);
-
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            sessionStorage.removeItem("hash_code");
+            let expires = ";expires=Thu, 01 Jan 1970 00:00:00 UTC";
+            document.cookie += expires;
             window.location.href = './../sources/login.html';
         }
     };
@@ -74,4 +75,5 @@ function logout(){
 }
 
 //true-user logat
+console.log(document.cookie);
 initList(hashcode !== null);
