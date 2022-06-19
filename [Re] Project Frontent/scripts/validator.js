@@ -110,6 +110,7 @@ function addNewService(serviceData, index) {
 }
 
 function addNewBadge(expressionList, index) {
+    let father = expressionList.firstChild;
     expressionList = expressionList.firstChild.childNodes
     let content = {
         'hash_code': hashcode,
@@ -118,7 +119,15 @@ function addNewBadge(expressionList, index) {
         'reward': expressionList[2].firstChild.value,
         'is_repeatable': 1
     }
+    let loadingDiv = document.createElement("div");
+    loadingDiv.classList.add("lds-roller");
+    for (let divIndex = 0; divIndex < 8; divIndex++) {
+        let tmpDiv = document.createElement("div");
+        loadingDiv.appendChild(tmpDiv);
+    }
+    father.appendChild(loadingDiv);
     sleep(4500).then(() => {
+        loadingDiv.remove();
         sendContent(content, "PUT", "http://localhost:5000/services/add/reward", setIsValidatedExprPrintable, index)
     });
 }

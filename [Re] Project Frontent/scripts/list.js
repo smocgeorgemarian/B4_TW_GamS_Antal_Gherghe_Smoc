@@ -118,14 +118,14 @@ function initList() {
     window.addEventListener("DOMContentLoaded", () => {
         setListArrangable(target);
     });
-    for (let index = 0; index < 3; index++) setListExample(target, index);
+    for (let index = 0; index < 0; index++) setListExample(target, index);
     // setListExample(target);
     // setListExample(target);
 }
 
-let menuOptions = ["fa fa-plus", "fa fa-minus", "fa fa-link", "fa fa-plus", "fa fa-eye", "fa fa-trophy"];
-let functionsList = ["addList()", "deleteList(this)", "linkLi()", "createExpr()", "loadDatabase()", "loadRewards()"];
-let infoList = ["Add Event", "Remove Any Element", "Generate Reward List", "Add Reward", "View Events", "View Rewards"]
+let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-link", "fa fa-plus", "fa fa-eye", "fa fa-trophy"];
+let functionsList = ["getBackToIndex()", "addList()", "deleteList(this)", "linkLi()", "createExpr()", "loadDatabase()", "loadRewards()"];
+let infoList = ["Get Back To Index", "Add Event", "Remove Any Element", "Generate Reward List", "Add Reward", "View Events", "View Rewards"]
 
 function addList() {
     showInfoBox("Badge created successfully!");
@@ -328,6 +328,10 @@ function initUpdate() {
     i.appendChild(span);
 
     doc.appendChild(i);
+}
+
+function getBackToIndex() {
+    window.location.href = './../sources/index.html';
 }
 
 initList();
