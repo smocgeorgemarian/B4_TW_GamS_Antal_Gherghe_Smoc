@@ -6,6 +6,7 @@ main {
 body {
     background-image: url("https://images.opencollective.com/discordhooks/1f8f486/background.png");
     background-size: 100%;
+    background-repeat: repeat-x;
 }
 #MainContainer {
     width: 75%;
@@ -31,6 +32,7 @@ body {
     color: white;
     margin-top: 3%;
 }
+
 #Register-form {
     width: 55%;
     color: white;
@@ -39,4 +41,27 @@ body {
 #Register-form  input{
     width: 55%;
     color: black;
+}
+#Register-form input[type=submit] {
+    width: 30%;
+    margin-left: 12%;
+    margin-top: 5%;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px){
+    #MainContainer {
+        margin-top: 25%;
+    }
+    #Register-form {
+        width: 100%;
+        margin-left: 15%;
+    }
+    #Register-form input {
+        width: 85%;
+        align-content: center;
+    }
+    #Register-form input[type=submit] {
+        width: 55%;
+        margin-left: 16%;
+    }
 }

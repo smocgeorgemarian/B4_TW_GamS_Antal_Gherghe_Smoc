@@ -13,6 +13,7 @@ function createExpr() {
     // ulExpressions.classList.add("expressions");
 
     let liExpression = document.createElement("li");
+    liExpression.classList.add("exprList")
 
     let ulInsideLi = document.createElement("ul");
     ulInsideLi.classList.add("menu");

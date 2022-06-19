@@ -127,9 +127,9 @@ function initList() {
     // setListExample(target);
 }
 
-let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-link", "fa fa-plus", "fa fa-eye", "fa fa-trophy"];
-let functionsList = ["getBackToIndex()", "addList()", "deleteList(this)", "linkLi()", "createExpr()", "loadDatabase()", "loadRewards()"];
-let infoList = ["Get Back To Index", "Add Event", "Remove Any Element", "Generate Reward List", "Add Reward", "View Events", "View Rewards"]
+let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-eye", "fa fa-link", "fa fa-plus", "fa fa-trophy"];
+let functionsList = ["getBackToIndex()", "addList()", "deleteList(this)", "loadDatabase()", "linkLi()", "createExpr()", "loadRewards()"];
+let infoList = ["Get Back To Index", "Add Event", "Remove Any Element", "View Events", "Generate Reward List", "Add Reward", "View Rewards"]
 
 function addList() {
     showInfoBox("Badge created successfully!");
