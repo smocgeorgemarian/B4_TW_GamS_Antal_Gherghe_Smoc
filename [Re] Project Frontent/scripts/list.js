@@ -9,7 +9,7 @@ function setPageUp() {
         credentials["hash_code"] = document.cookie.split(";")[0]
             .split('=')[1];
     else
-        console.log("MUIE");
+        window.location.href = './../sources/uShallNotPass.html';
 }
 
 function setListArrangable(target) {
