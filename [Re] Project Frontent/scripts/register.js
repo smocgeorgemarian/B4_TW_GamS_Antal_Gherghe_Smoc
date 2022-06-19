@@ -1,3 +1,6 @@
+if (document.cookie)
+    window.location.href = './../sources/index.html';
+
 let hashcode;
 
 function getInputValue(){
@@ -17,6 +20,7 @@ function getInputValue(){
     }
     register();
 }
+
 function register() {
     let link = document.getElementById("link").value;
     let email = document.getElementById("email").value;
@@ -30,17 +34,21 @@ function register() {
         "site" : link
     }
 
+    console.log(content);
+
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let obj = JSON.parse(xhttp.response);
             hashcode = obj.message;
-            console.log(hashcode);
-            sessionStorage.setItem("hash_code", hashcode);
+            if(!document.cookie){
+                document.cookie = "hashcode=" + hashcode + ";expires=Thu, 01 Jan 2222 00:00:00 UTC;SameSite=none; Secure";
+            }
+            console.log(document.cookie)
             window.location.href = './../sources/index.html';
         }else if(this.readyState === 4){
             alert("Someting went wrong!");
-            // window.location.href = './../sources/register.html';
+            window.location.href = './../sources/register.html';
         }
     };
     xhttp.open("POST", "http://localhost:5000/users/register")
