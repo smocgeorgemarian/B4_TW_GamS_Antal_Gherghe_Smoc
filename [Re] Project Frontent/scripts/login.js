@@ -17,7 +17,7 @@ function login() {
             let obj = JSON.parse(xhttp.response);
             hashcode = obj.message;
 
-            document.cookie = "hashcode=" + hashcode + ";SameSite=none; Secure";
+            document.cookie = "hashcode=" + hashcode + ";expires=Thu, 01 Jan 2222 00:00:00 UTC;SameSite=none; Secure";
             console.log(document.cookie);
             window.location.href = './../sources/index.html';
         }else if(this.readyState === 4){

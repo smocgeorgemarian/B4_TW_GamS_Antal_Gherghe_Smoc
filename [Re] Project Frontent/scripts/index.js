@@ -51,6 +51,7 @@ function displayText() {
 }
 
 let isLogged;
+console.log(document.cookie);
 if (document.cookie) {
     hashcode = document.cookie.split(";")[0]
         .split('=')[1];
@@ -70,8 +71,7 @@ function logout() {
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            let expires = ";expires=Thu, 01 Jan 1970 00:00:00 UTC";
-            document.cookie += expires;
+            document.cookie = "hashcode=" + hashcode + ";expires=Thu, 01 Jan 1970 00:00:00 UTC;SameSite=none; Secure";
             window.location.href = './../sources/login.html';
         }
     };
