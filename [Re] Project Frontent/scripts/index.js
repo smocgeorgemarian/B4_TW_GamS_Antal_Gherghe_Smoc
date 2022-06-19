@@ -1,3 +1,6 @@
+
+let hashcode = sessionStorage.getItem("hash_code")
+
 function initList(isLogged){
     let ulElement=document.getElementById("OptionList");
     let liElement = document.createElement("li");
@@ -12,10 +15,10 @@ function initList(isLogged){
         elementDiv2.setAttribute("class","element");
         let loginBtn = document.createElement("button");
         loginBtn.innerText="Login";
-        loginBtn.setAttribute("onclick","window.location.href = 'login.html';")
+        loginBtn.setAttribute("onclick","myRedirect = true; window.location.href = 'login.html';")
         let registerBtn = document.createElement("button");
         registerBtn.innerText="Register";
-        registerBtn.setAttribute("onclick","window.location.href = 'register.html';")
+        registerBtn.setAttribute("onclick","myRedirect = true; window.location.href = 'register.html';")
         elementDiv.appendChild(loginBtn);
         elementDiv2.appendChild(registerBtn)
         liElement.appendChild(elementDiv);
@@ -31,7 +34,7 @@ function initList(isLogged){
         logoutBtn.setAttribute("onclick","logout()");
         let controlPanelBtn = document.createElement("button");
         controlPanelBtn.innerText="Control Panel";
-        controlPanelBtn.setAttribute("onclick","window.location.href = 'controlPanel.html';");
+        controlPanelBtn.setAttribute("onclick","myRedirect = true; window.location.href = 'controlPanel.html';");
         elementDiv.appendChild(logoutBtn);
         elementDiv2.appendChild(controlPanelBtn);
         liElement.appendChild(elementDiv);
@@ -50,8 +53,6 @@ function displayText(){
         paragraph.style.display = 'none';
 }
 
-let hashcode = sessionStorage.getItem("hash_code")
-
 function logout(){
 
     let content = {
@@ -67,6 +68,7 @@ function logout(){
             window.location.href = './../sources/login.html';
         }
     };
+    myRedirect = true;
     xhttp.open("POST", "http://localhost:5000/users/logout")
     xhttp.setRequestHeader("Content-Type", "application/json")
     xhttp.send(JSON.stringify(content))
