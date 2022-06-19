@@ -213,15 +213,18 @@ function setHeaderPrintableForTable(table, content) {
 function setDataPrintable(content, button) {
     let btn = document.getElementsByClassName("fa fa-" + button)[0];
     btn.classList.toggle("redEye");
-    if (isOpen[button]) {
-        isOpen[button] = false;
-        let table = document.getElementById(button);
+    let buttonTmp = button;
+    if (isOpen[buttonTmp]) {
+        isOpen[buttonTmp] = false;
+        let table = document.getElementById(buttonTmp);
         table.remove();
+        let buttonToBeRemoved = document.getElementById("button" + buttonTmp);
+        buttonToBeRemoved.remove();
         return;
     }
-    isOpen[button] = true;
+    isOpen[buttonTmp] = true;
     let table = document.createElement("table")
-    table.id = button;
+    table.id = buttonTmp;
     setHeaderPrintableForTable(table, content);
     for (let i = 0; i < content.message.length; i++) {
         let tr = document.createElement("tr");
@@ -234,7 +237,42 @@ function setDataPrintable(content, button) {
         table.appendChild(tr);
     }
     document.body.appendChild(table);
+
+    let exportButton = document.createElement("button");
+    exportButton.textContent = "Export";
+    exportButton.id = "button" + buttonTmp;
+    exportButton.onclick = (e) => {
+        let table = document.getElementById(buttonTmp);
+        let children = table.childNodes;
+        console.log(children.length);
+        let content = '';
+        for (let trIndex = 0; trIndex < children.length; trIndex++) {
+            console.log("pula");
+            console.log(children[trIndex].length);
+            for (let tdIndex = 0; tdIndex < children[trIndex].childNodes.length; tdIndex++) {
+                console.log(children[trIndex].childNodes[tdIndex]);
+                content += children[trIndex].childNodes[tdIndex].textContent;
+                if (tdIndex !== children[trIndex].childNodes.length - 1)
+                    content += ', ';
+            }
+            content += '\n';
+        }
+        console.log(content);
+
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+        element.setAttribute('download', 'bd.csv');
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+    };
+    document.body.appendChild(exportButton);
 }
+
 
 
 function loadRewards() {
