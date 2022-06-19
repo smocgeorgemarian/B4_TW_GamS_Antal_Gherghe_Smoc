@@ -1,5 +1,9 @@
 let hashcode = sessionStorage.getItem("hash_code");
 
+if(hashcode === null){
+    window.location.href = './../sources/uShallNotPass.html';
+}
+
 let isToBeDeleted = false;
 let isOpen = {
     "eye": false, "trophy": false
