@@ -8,11 +8,11 @@
     width: 100%;
     height: 100%;
     background-image:
-            linear-gradient(rgba(0, 0, 0, 0.7),
-            rgba(0, 0, 0, 0.7)),
+            linear-gradient(rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)),
             url("./../resources/cool-background.png");
     background-size: cover;
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
 }
 #MainContainer{
     width: 75%;
@@ -47,7 +47,7 @@
     font-family: "Cooper Black", Serif, serif;
     width: 75%;
     margin: auto;
-    text-align: center;
+    text-align: justify;
 }
 .element {
     width: 150px;
@@ -57,4 +57,32 @@
     background-size: cover;
     border-radius: 30%;
     opacity: 85%;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    #HiddenParagraph {
+        font-size: 12px;
+        margin-top: -20%;
+        padding-left: 5%;
+        padding-right: 5%;
+        text-align: justify;
+    }
+
+    #OptionList li {
+        flex-direction: column;
+        padding-top: 36%;
+        height: 280px;
+        margin: 0;
+    }
+
+    #OptionList {
+        padding-bottom: 30%;
+    }
+
+    .element button {
+        height: 48px;
+    }
+
+    #HiddenParagraph {
+        width: 100%;
+    }
 }

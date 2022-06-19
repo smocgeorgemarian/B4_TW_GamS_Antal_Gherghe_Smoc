@@ -1,15 +1,17 @@
 .list {
+    width: 90%;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .list > li {
-    margin: 10px;
-    padding: 15px;
-    border: 1px solid green;
-    background: white;
+    width: 100%;
+    margin-bottom: 2%;
+    padding: 3%;
+    border: 2px solid green;
     z-index: 100;
+    background: transparent;
 }
 
 .list > li.hint {
@@ -23,31 +25,25 @@
 }
 
 .listExample {
+    width: 70%;
+    margin-right: 15%;
+    margin-left: 15%;
     list-style: none;
-    align-items: center;
-    align-content: center;
 
-    padding-left: auto;
-    /*padding-left: 15%;*/
-    /*padding-right: 5%;*/
 }
 
-.listExample > li {
-    display: inline;
+.listExample input {
+    margin: 2% 2% 2% 6%;
+    width: 160px;
 }
 
-.listExample > li:not(:first-child) {
-    /*padding-left: 20px;*/
-}
-
-.listExample > li input {
-    /*width: 100px;*/
+.listExample select {
+    margin: 2% 2% 2% 6%;
 }
 
 .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted black;
 }
 
 .tooltip .tooltiptext {
@@ -80,4 +76,18 @@
 
 #deleteOption {
     margin-right: 15px;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+    .deleteData select {
+        margin-top: 2%;
+        margin-left: 2%;
+    }
+    .deleteData input {
+        margin: 2% 0;
+    }
+
+    .fa-refresh {
+        margin-left: 35%;
+    }
 }
