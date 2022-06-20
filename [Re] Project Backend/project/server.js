@@ -1,6 +1,6 @@
 const http = require('http')
 const {
-    users_register, users_login, users_logout, users_events, users_rewards, users_delete
+    users_register, users_login, users_logout, users_events, users_rewards, users_levels, users_top, users_delete
 } = require('./database/databaseConnection')
 
 function getStatusCodeForMessage(value) {
@@ -147,6 +147,58 @@ const server = http.createServer((req, res) => {
                     reject('Wrong parameters!')
                 } else {
                     resolve(users_rewards(JSON.parse(body).hash_code));
+                }
+            })
+                .then(value => {
+                    res.statusCode = getStatusCodeForMessage(value)
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                });
+        });
+
+    } else if (req.url === '/users/levels' && req.method === 'POST') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            new Promise((resolve, reject) => {
+                if (!JSON.parse(body).hash_code) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(users_levels(JSON.parse(body).hash_code));
+                }
+            })
+                .then(value => {
+                    res.statusCode = getStatusCodeForMessage(value)
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                });
+        });
+
+    } else if (req.url === '/users/top' && req.method === 'POST') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            new Promise((resolve, reject) => {
+                if (!JSON.parse(body).hash_code) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(users_top(JSON.parse(body).hash_code));
                 }
             })
                 .then(value => {

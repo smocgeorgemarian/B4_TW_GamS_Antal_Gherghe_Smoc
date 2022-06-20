@@ -1,6 +1,6 @@
 const http = require('http')
 const {
-    services_username_rewards, services_username_all_rewards, services_username_update, services_username_add, services_username_delete, getStatusCodeForMessage, setCORSPolicy
+    services_username_rewards, services_username_all_rewards, services_username_level, services_username_xp, services_username_update, services_username_add, services_username_add_level, services_username_delete, getStatusCodeForMessage, setCORSPolicy
 } = require('./database/databaseConnection')
 
 const serverServices = http.createServer((req, res) => {
@@ -64,6 +64,58 @@ const serverServices = http.createServer((req, res) => {
                 });
         });
 
+    } else if (req.url === '/services/username/level' && req.method === 'POST') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            new Promise((resolve, reject) => {
+                if (!JSON.parse(body).hash_code || !JSON.parse(body).username) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(services_username_level(JSON.parse(body).hash_code, JSON.parse(body).username));
+                }
+            })
+                .then(value => {
+                    res.statusCode = getStatusCodeForMessage(value)
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                });
+        });
+
+    } else if (req.url === '/services/username/xp' && req.method === 'POST') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            new Promise((resolve, reject) => {
+                if (!JSON.parse(body).hash_code || !JSON.parse(body).username) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(services_username_xp(JSON.parse(body).hash_code, JSON.parse(body).username));
+                }
+            })
+                .then(value => {
+                    res.statusCode = getStatusCodeForMessage(value)
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                });
+        });
+
     } else if (req.url === '/services/username/update' && req.method === 'PUT') {
         let body = ''
         req.on('data', chunk => {
@@ -108,6 +160,32 @@ const serverServices = http.createServer((req, res) => {
                     reject('Wrong parameters!')
                 } else {
                     resolve(services_username_add(JSON.parse(body).event_name, JSON.parse(body).hash_code, JSON.parse(body).username));
+                }
+            })
+                .then(value => {
+                    res.statusCode = getStatusCodeForMessage(value)
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                });
+        });
+
+    } else if (req.url === '/services/username/addlevel' && req.method === 'PUT') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            new Promise((resolve, reject) => {
+                if (!JSON.parse(body).hash_code || !JSON.parse(body).username) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(services_username_add_level(JSON.parse(body).hash_code, JSON.parse(body).username));
                 }
             })
                 .then(value => {

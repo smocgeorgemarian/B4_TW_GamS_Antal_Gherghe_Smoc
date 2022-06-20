@@ -18,10 +18,19 @@ function createExpr() {
     let ulInsideLi = document.createElement("ul");
     ulInsideLi.classList.add("menu");
 
+    let inputExample2 = document.createElement("select");
+    let options2 = ["Reward", "Level"];
+    for (let index = 0; index < options2.length; index++) {
+        let option = document.createElement("option");
+        option.textContent = options2[index];
+        inputExample2.appendChild(option);
+    }
+    ulInsideLi.appendChild(inputExample2);
+
     let tmpLi = document.createElement("li")
     let input = document.createElement("input");
     input.classList.add("expression");
-    input.placeholder = "Expression"
+    input.placeholder = "Expression/Level Value"
     tmpLi.appendChild(input);
     ulInsideLi.appendChild(tmpLi);
 
@@ -30,14 +39,14 @@ function createExpr() {
     input = document.createElement("input");
     tmpLi.appendChild(input);
     input.classList.add("badgeName");
-    input.placeholder = "Badge Name";
+    input.placeholder = "Badge Name/Level Name";
     ulInsideLi.appendChild(tmpLi);
 
     tmpLi = document.createElement("li")
     input = document.createElement("input");
     tmpLi.appendChild(input);
     input.classList.add("badgeName");
-    input.placeholder = "Reward";
+    input.placeholder = "Reward/Description";
     ulInsideLi.appendChild(tmpLi);
 
 

@@ -53,7 +53,7 @@ CREATE OR REPLACE PACKAGE BODY api_users AS
         IF test_existence.test_owner(owner_name) = 1 THEN
             returner := '0';
         ELSE
-            INSERT INTO OWNERS(oname, opassword, site_link, is_logged) VALUES(owner_name, owner_password, owner_site_link, 1);
+            INSERT INTO OWNERS(oname, opassword, site_link, is_logged) VALUES(owner_name, owner_password, owner_site_link, 0);
             SELECT hash_code INTO hash_owner FROM OWNERS WHERE oname = owner_name;
             returner :=  hash_owner;
         END IF;

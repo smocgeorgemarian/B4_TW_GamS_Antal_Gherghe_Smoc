@@ -188,13 +188,13 @@ async function users_delete(username, password) {
     }
 }
 
-async function services_add_event(hash_code, event_name, event_type, event_value) {
+async function services_add_event(hash_code, event_name, event_type, event_value, event_xp) {
     let connection
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         console.log("Hash code: " + hash_code + " event name " + event_name + " event type " + event_type + " event value " + event_value)
-        let result = connection.execute(`SELECT api_services.add_event('${hash_code}', '${event_name}', '${event_type}', ${event_value}) FROM DUAL`)
+        let result = connection.execute(`SELECT api_services.add_event('${hash_code}', '${event_name}', '${event_type}', ${event_value}, ${event_xp}) FROM DUAL`)
 
         let response = (await result).rows[0][0];
         return response
@@ -211,13 +211,34 @@ async function services_add_event(hash_code, event_name, event_type, event_value
     }
 }
 
-async function services_add_reward(hash_code, reward_name, condition, reward, is_repeatable) {
+async function services_add_reward(hash_code, reward_name, condition, reward) {
     let connection
     try {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
-        console.log("hash_code " + hash_code + " reward_name " + reward_name + " condition " + condition + " reward " + reward + " is repeat " + is_repeatable)
-        let result = connection.execute(`SELECT api_services.add_reward('${hash_code}', '${reward_name}', '${condition}', '${reward}', ${is_repeatable}) FROM DUAL`)
+        let result = connection.execute(`SELECT api_services.add_reward('${hash_code}', '${reward_name}', '${condition}', '${reward}') FROM DUAL`)
+
+        let response = (await result).rows[0][0];
+        return response
+    } catch (err) {
+        console.error(err);
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    }
+}
+
+async function services_add_level(hash_code, level_name, level_value, description) {
+    let connection
+    try {
+        connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
+        console.log("Successfully connected to Oracle Database");
+        let result = connection.execute(`SELECT api_services.add_level('${hash_code}', '${level_name}', ${level_value}, '${description}') FROM DUAL`)
 
         let response = (await result).rows[0][0];
         return response
@@ -262,6 +283,28 @@ async function services_delete_reward(reward_name, hash_code) {
         connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
         console.log("Successfully connected to Oracle Database");
         let result = connection.execute(`SELECT api_services.delete_reward('${reward_name}', '${hash_code}') FROM DUAL`)
+
+        let response = (await result).rows[0][0];
+        return response
+    } catch (err) {
+        console.error(err);
+    } finally {
+        if (connection) {
+            try {
+                await connection.close();
+            } catch (err) {
+                console.error(err);
+            }
+        }
+    }
+}
+
+async function services_delete_level(level_name, hash_code) {
+    let connection
+    try {
+        connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
+        console.log("Successfully connected to Oracle Database");
+        let result = connection.execute(`SELECT api_services.delete_level('${level_name}', '${hash_code}') FROM DUAL`)
 
         let response = (await result).rows[0][0];
         return response
@@ -423,7 +466,7 @@ async function services_username_delete(hash_code, user_name) {
 
 module.exports = {
     users_register, users_login, users_logout, users_events, users_rewards, users_delete,
-    services_add_event, services_add_reward, services_delete_event, services_delete_reward, services_update_reward,
+    services_add_event, services_add_reward, services_add_level, services_delete_event, services_delete_reward, services_delete_level, services_update_reward,
     services_username_rewards, services_username_all_rewards, services_username_update, services_username_add, services_username_delete,
     getStatusCodeForMessage, setCORSPolicy
 }
