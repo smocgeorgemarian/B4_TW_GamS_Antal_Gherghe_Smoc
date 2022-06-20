@@ -19,6 +19,7 @@ BEGIN
     :NEW.hash_code := code;
     table_creator.create_event(code);
     table_creator.create_reward(code);
+    table_creator.create_level(code);
 END;
 
 SELECT * FROM OWNERS;
@@ -80,9 +81,50 @@ BEGIN
     --dbms_output.put_line(api_users.owner_register('test','pass'));
 END;
 
+SELECT * FROM OWNERS;
+
+SELECT * FROM EVENT_LoXKHnaGee;
+SELECT * FROM REWARD_LoXKHnaGee;
+SELECT * FROM LEVEL_LoXKHnaGee;
+SELECT * FROM PLAYER_LoXKHnaGee;
+
 set serveroutput on;
+DECLARE
+    hash_code VARCHAR2(200) := 'LzcQasNkua';
 BEGIN
-    dbms_output.put_line(api_services.add_event('BbUsrtcQCD', 'a13', 'Time', 1));
+--    dbms_output.put_line(api_users.owner_register('tudor', 'tudor', 'tudor.com'));
+--    dbms_output.put_line(api_users.owner_delete('tudor', 'tudor'));
+    
+--    dbms_output.put_line(api_services.add_event(hash_code, 'e1', 'sum', 50, 100));
+--    dbms_output.put_line(api_services.add_event(hash_code, 'e2', 'time', 50, 1000));
+--    dbms_output.put_line(api_services.add_event(hash_code, 'e3', 'count', 5, 150));
+--    dbms_output.put_line(api_services.add_event(hash_code, 'test', 'count', 5, 150));
+--    dbms_output.put_line(api_services.delete_event('test', hash_code));
+    
+--    dbms_output.put_line(api_services.add_reward(hash_code, 'r1', '(e1 $ e2) | (e3)', 'reward1'));
+--    dbms_output.put_line(api_services.add_reward(hash_code, 'test', '(e3)', 'testreward1'));
+--    dbms_output.put_line(api_services.delete_reward('test', hash_code));
+
+--    dbms_output.put_line(api_services.add_level(hash_code, 'rookie', 0, 'l1'));
+--    dbms_output.put_line(api_services.add_level(hash_code, 'iron', 200, 'l2'));
+--    dbms_output.put_line(api_services.add_level(hash_code, 'silver', 999, 'l3'));
+--    dbms_output.put_line(api_services.add_level(hash_code, 'test', 0, 'test'));
+--    dbms_output.put_line(api_services.delete_level('test', hash_code));
+
+--    dbms_output.put_line(api_services_username.update_event('e1', hash_code, 'user1', 200));
+--    dbms_output.put_line(api_services_username.update_event('e3', hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.get_rewards(hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.get_all_rewards(hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.remove_user(hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.add_user_to_level(hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.get_level(hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.get_xp(hash_code, 'user1'));
 END;
+
+
+
+
+
+
 
 
