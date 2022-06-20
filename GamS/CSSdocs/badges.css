@@ -1,11 +1,13 @@
 .badges {
     margin-left: 10%;
     z-index: 20;
-    position: absolute;
+    position: fixed;
+    top: 66.4px;
+    left: 100px;
     display: flex;
     width: 450px;
     /*height: 100px;*/
-    transform: translate(0px, 65.4px);
+    /*transform: translate(0px, 65.4px);*/
     background-color: white;
     border: 2px solid black;
     border-radius: 1px;

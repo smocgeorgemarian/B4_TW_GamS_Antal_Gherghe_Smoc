@@ -77,12 +77,14 @@
 #deleteOption {
     margin-right: 15px;
 }
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 
     .deleteData select {
         margin-top: 2%;
         margin-left: 2%;
     }
+
     .deleteData input {
         margin: 2% 0;
     }
@@ -90,4 +92,20 @@
     .fa-refresh {
         margin-left: 35%;
     }
+}
+
+#buttoneye {
+    height: 5%;
+    width: 5%;
+    margin-left: 47.5%;
+    margin-top: -5%;
+    font-size: small;
+}
+
+#buttontrophy {
+    height: 5%;
+    width: 5%;
+    margin-left: 47.5%;
+    margin-top: -5%;
+    font-size: small;
 }
