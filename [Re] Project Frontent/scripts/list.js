@@ -310,9 +310,14 @@ function deleteElement() {
         content = {"level_name": inputValue, ...credentials};
         url = "http://localhost:5001/services/delete/level";
     }
-    else {
+    else if (deleteOption === 'Reward') {
         content = {"reward_name": inputValue, ...credentials};
         url = "http://localhost:5001/services/delete/reward";
+    }
+    else{
+        content = {...credentials, "username": inputValue};
+        console.log(content);
+        url = "http://localhost:5002/services/username/delete";
     }
     sendContent(content, "DELETE", url);
 }
@@ -327,7 +332,7 @@ function initDelete() {
 
     let selectDeleteOption = document.createElement("select");
     selectDeleteOption.id = "deleteOption";
-    let deleteOptions = ["Service", "Reward", "Level"];
+    let deleteOptions = ["Service", "Reward", "Level", "User"];
     for (let index = 0; index < deleteOptions.length; index++) {
         let option = document.createElement("option");
         option.textContent = deleteOptions[index];

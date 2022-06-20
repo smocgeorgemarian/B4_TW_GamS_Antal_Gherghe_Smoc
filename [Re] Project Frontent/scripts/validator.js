@@ -54,6 +54,9 @@ function sendContent(content, method, url, doSomething = null, doSomethingParame
             }
         }
     };
+    console.log(content)
+    console.log(JSON.stringify(content))
+
     xhttp.open(method, url)
     xhttp.setRequestHeader("Content-Type", "application/json");
     xhttp.send(JSON.stringify(content))
