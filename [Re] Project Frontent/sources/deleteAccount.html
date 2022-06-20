@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="description"
+          content="Gamification Service website">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="../style/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+    <script src="../scripts/delete.js"></script>
+    <title>Delete Account Page</title>
+</head>
+<body>
+<div id="MainContainer">
+    <div id="Side-text">
+        <h1 id="Heading1">It's sad to see you go</h1>
+        <h2 id="Heading2">Disclaimer: all info will be permanently deleted</h2>
+    </div>
+    <form id="LoginForm" onsubmit="deleteAcount();return false">
+        <label for="email">Email:</label>
+        <input id="email" type="email" placeholder="example@gmail.com" required>
+        <label for="password">Password:</label>
+        <input id="password" type="password" required>
+        <input id="Login-btn" type="submit" value="Delete Account">
+        <label id="Register-text">changed your mind?  <a href="index.html">Go back!</a></label>
+    </form>
+</div>
+</body>
+</html>
