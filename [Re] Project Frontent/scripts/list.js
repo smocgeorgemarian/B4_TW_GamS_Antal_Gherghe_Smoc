@@ -135,9 +135,9 @@ function initList() {
     // setListExample(target);
 }
 
-let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-eye", "fa fa-link", "fa fa-plus", "fa fa-trophy"];
-let functionsList = ["getBackToIndex()", "addList()", "deleteList(this)", "loadDatabase()", "linkLi()", "createExpr()", "loadRewards()"];
-let infoList = ["Get Back To Index", "Add Event", "Remove Any Element", "View Events", "Generate Reward List", "Add Reward", "View Rewards"]
+let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-eye", "fa fa-link", "fa fa-plus", "fa fa-gift", "fa fa-gamepad", "fa fa-trophy"];
+let functionsList = ["getBackToIndex()", "addList()", "deleteList(this)", "loadDatabase()", "linkLi()", "createExpr()", "loadRewards()", "loadLevels()", "loadTop()"];
+let infoList = ["Get Back To Index", "Add Event", "Remove Any Element", "View Events", "Generate Reward List", "Add Reward", "View Rewards", "View Levels", "Top Users"]
 
 function addList() {
     showInfoBox("Badge created successfully!");
@@ -246,7 +246,15 @@ function setDataPrintable(content, button) {
 
 
 function loadRewards() {
-    sendContent(credentials, "POST", "http://localhost:5000/users/rewards", setDataPrintable, {"table": "trophy"});
+    sendContent(credentials, "POST", "http://localhost:5000/users/rewards", setDataPrintable, {"table": "gift"});
+}
+
+function loadLevels() {
+    sendContent(credentials, "POST", "http://localhost:5000/users/levels", setDataPrintable, {"table": "gamepad"});
+}
+
+function loadTop() {
+    sendContent(credentials, "POST", "http://localhost:5000/users/top", setDataPrintable, {"table": "trophy"});
 }
 
 function deleteElement() {

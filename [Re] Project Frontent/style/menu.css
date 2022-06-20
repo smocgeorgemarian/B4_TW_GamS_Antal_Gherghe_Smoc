@@ -6,8 +6,7 @@ body {
     margin: 0;
     background-image: url("./../resources/trianglify.png");
     background-size: cover;
-    background-repeat: no-repeat;
-    height: 100vh;
+    background-repeat: repeat;
 }
 #menu {
     width: 100%;
@@ -38,7 +37,6 @@ body {
     color: red;
 }
 
-
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     .menu {
         display: inline-block;
@@ -53,5 +51,9 @@ body {
      }
     .fa-link {
         padding-left: 8%;
+    }
+    .menu select {
+        margin-bottom: 2%;
+        margin-left: 36%;
     }
 }

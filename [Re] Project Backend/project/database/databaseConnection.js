@@ -16,6 +16,44 @@ function setCORSPolicy(res) {
 
 }
 
+async function send_email(user_name, hashcode){
+    const SENDGRID_API_KEY = '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'
+    const EMAIL_ADRESS = 'gtatutu2001@gmail.com'
+
+    const fs = require("fs");
+    const path = require("path");
+
+    pathToAttachment = `./test.xml`;
+    attachment = fs.readFileSync(path.resolve(__dirname, pathToAttachment)).toString("base64");
+
+    let client = require('@sendgrid/mail')
+    client.setApiKey(SENDGRID_API_KEY)
+
+    client.send({
+        to:{
+            email: user_name,
+            name:'customer'
+        },
+        from:{
+            email: EMAIL_ADRESS,
+            name: 'GameS_Services'
+        },
+        attachments: [{
+            content: attachment,
+            filename: "text.xml",
+            type: "application/xml",
+            disposition: "attachment"
+        }],
+        templateId: 'd-867b76d7922e4838bfc71aa20f9f11c7',
+        dynamicTemplateData: {
+            name: user_name.split('@')[0],
+            hash_code: hashcode
+        }
+    }).then(() => {
+        console.log('Email was sent!');
+    })
+}
+
 async function users_register(username, password, site) {
     let connection
     try {
@@ -24,6 +62,13 @@ async function users_register(username, password, site) {
         let result = connection.execute(`SELECT api_users.owner_register('${username}', '${password}', '${site}') FROM DUAL`)
 
         let response = (await result).rows[0][0];
+
+        console.log(response);
+
+        if(response !== '0' && response !== '404'){
+            send_email(username, response);
+        }
+
         return response
     } catch (err) {
         console.error(err);
@@ -179,7 +224,7 @@ async function users_levels(hash_code) {
             return '404'
         }
 
-        result = connection.execute(`SELECT * FROM LEVEL_${hash_code}`)
+        result = connection.execute(`SELECT * FROM LEVEL_${hash_code} ORDER BY lvalue`)
         let response = null;
         for (i = 0; i < (await result).rows.length; i++) {
             if (response === null) {
@@ -510,5 +555,5 @@ module.exports = {
     users_register, users_login, users_logout, users_events, users_rewards, users_levels, users_top, users_delete,
     services_add_event, services_add_reward, services_delete_event, services_delete_reward, services_update_reward,
     services_username_rewards, services_username_all_rewards, services_username_update, services_username_add, services_username_delete,
-    getStatusCodeForMessage, setCORSPolicy
+    getStatusCodeForMessage, setCORSPolicy, send_email
 }
