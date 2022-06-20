@@ -1,6 +1,6 @@
 const http = require('http')
 const {
-    users_register, users_login, users_logout, users_events, users_rewards, users_levels, users_top, users_delete
+    users_register, users_login, users_logout, users_events, users_rewards, users_levels, users_top, users_delete, send_email
 } = require('./database/databaseConnection')
 
 function getStatusCodeForMessage(value) {
