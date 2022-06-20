@@ -25,16 +25,23 @@ function initList(isLogged) {
         elementDiv.setAttribute("class", "element");
         let elementDiv2 = document.createElement("div");
         elementDiv2.setAttribute("class", "element");
+        let elementDiv3 = document.createElement("div");
+        elementDiv3.setAttribute("class", "element");
         let logoutBtn = document.createElement("button");
         logoutBtn.innerText = "Logout";
         logoutBtn.setAttribute("onclick", "logout()");
         let controlPanelBtn = document.createElement("button");
         controlPanelBtn.innerText = "Control Panel";
         controlPanelBtn.setAttribute("onclick", "myRedirect = true; window.location.href = 'controlPanel.html';");
+        let deleteBtn = document.createElement("button");
+        deleteBtn.innerText = "Delete Account";
+        deleteBtn.setAttribute("onclick", "myRedirect = true; window.location.href = 'deleteAccount.html';");
         elementDiv.appendChild(logoutBtn);
         elementDiv2.appendChild(controlPanelBtn);
+        elementDiv3.appendChild(deleteBtn);
         liElement.appendChild(elementDiv);
         liElement.appendChild(elementDiv2);
+        liElement.appendChild(elementDiv3);
     }
     let elementDiv = document.createElement("div");
     elementDiv.setAttribute("class", "element");
