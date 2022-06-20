@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Documentation</title>
+</head>
+<body style="font-family: 'Times New Roman', serif; text-align: justify;">
+<h1>GamS</h1>
+<section typeof="sa:AuthorsList">
+    <h2>Authors</h2>
+    <ul>
+        <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person" resource="https://www.facebook.com/antal.cristianiulian">
+                <meta property="schema:givenName" content="Iulian">
+                <meta property="schema:familyName" content="Antal">
+                <span property="schema:name">Iulian Antal</span>
+            </span>
+            <ul>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="mailto:iulianantal@gmail.com"
+                       property="schema:email">antal1445@gmail.com</a>
+                </li>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="fax:+40762608685" property="schema:faxNumber">+40762608685</a>
+                </li>
+            </ul>
+        </li>
+
+        <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person" resource="https://www.facebook.com/tudor.alexandru.374">
+                <meta property="schema:givenName" content="Tudor">
+                <meta property="schema:familyName" content="Gherghe">
+                <span property="schema:name">Tudor Gherghe</span>
+            </span>
+            <ul>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="mailto:tudor.gherghe@yahoo.com"
+                       property="schema:email">tudor.gherghe@yahoo.com</a>
+                </li>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="fax:+40799779025" property="schema:faxNumber">+40799779025</a>
+                </li>
+            </ul>
+        </li>
+
+        <li typeof="sa:ContributorRole" property="schema:author">
+            <span typeof="schema:Person" resource="https://www.facebook.com/smoc.george">
+                <meta property="schema:givenName" content="George">
+                <meta property="schema:familyName" content="Smoc">
+                <span property="schema:name">George Smoc</span>
+            </span>
+            <ul>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="mailto:george.smoc13@gmail.com"
+                       property="schema:email">george.smoc13@gmail.com</a>
+                </li>
+                <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                    <a href="fax:+40770426913" property="schema:faxNumber">+40770426913</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>1. Introduction</h2>
+    <section>
+        <h3 role="doc-subtitle">1.1 Purpose</h3>
+        <p>The following SRS describes an HTML/CSS/JavaScript architecture used for creating the FrontEnd side of the
+            project "GamS (Gamification as a Service)", as well as Node.JS architecture used for BackEnd and APIs. The
+            current iteration has release number 1.3.1.</p>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">1.2 Document Conventions</h3>
+        <p>The report is written using the font "Times New Roman". The statements and requirements that will be
+            described have their own priority given by the "&#60;h[number]>" node given by the "Scholarly HTML"
+            format.</p>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">1.3 Intended Audience and Reading Suggestions</h3>
+        <p>The document is intended for developers, owners of the websites that uses this services and project managers.
+            The rest of the SRS report contains details about the given project and is organized in the "Scholarly HTML"
+            format. The suggested sequence for reading the document is beginning with the "1. Introduction" section and
+            proceeding through the sections that are most pertinent for each reader.</p>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">1.4 Product Scope</h3>
+        <p>The software specified is a gamification service used by web developers and site owners to add rewards
+            granted to users for doing specified tasks or actions and add a leveling system. The benefits of this
+            service are on a marketing level to motivate and engage users. The main objective is to provide means for
+            enhancing systems, services, and activities to create similar experiences to those experienced when playing
+            games. Our goals are to create a reliable and easy way to achieve the objective described above.
+            The FrontEnd side of the software is a control panel to add, modify, delete or create services, also you can
+            see all the rewards that your customers have achieved over time, to se a top, export the rewards as .CSV
+            file . This combined with the gamification service will let users 'choose' their own way of using our
+            product.
+            The BackEnd side of the software is the REST API creating to transfer data from server to website and from
+            server to customer's website.
+        </p>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">1.5 References</h3>
+        <ol>
+            <li typeof="schema:WebPage" role="doc-biblioentry"
+                resource="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-projects.html"
+                property="schema:citation" id="ref-1">
+                <cite property="schema:name"><a
+                        href="https://profs.info.uaic.ro/~busaco/teach/courses/web/web-projects.html">Project
+                    requirements</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://w3c.github.io/scholarly-html/#abstract"
+                property="schema:citation" id="ref-2">
+                <cite property="schema:name"><a href="https://w3c.github.io/scholarly-html/#abstract">Scholarly HTML
+                    format</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry"
+                resource="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+                property="schema:citation" id="ref-3">
+                <cite property="schema:name"><a
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">Style
+                    Library</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.w3schools.com/"
+                property="schema:citation" id="ref-4">
+                <cite property="schema:name"><a href="https://www.w3schools.com/">W3Schools</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://codepen.io/" property="schema:citation"
+                id="ref-5">
+                <cite property="schema:name"><a href="https://codepen.io/">CodePen</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://www.flaticon.com"
+                property="schema:citation" id="ref-6">
+                <cite property="schema:name"><a href="https://www.flaticon.com">Vector Icons & Stickers</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://frontend.ro/resurse"
+                property="schema:citation" id="ref-7">
+                <cite property="schema:name"><a href="https://frontend.ro/resurse">FrontEnd Resources</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://nodejs.org/en/docs/"
+                property="schema:citation" id="ref-8">
+                <cite property="schema:name"><a href="https://nodejs.org/en/docs/">Node.JS</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry"
+                resource="https://docs.oracle.com/database/121/LNPLS/toc.html" property="schema:citation" id="ref-9">
+                <cite property="schema:name"><a href="https://docs.oracle.com/database/121/LNPLS/toc.html">Oracle
+                    PL/SQL</a></cite>
+            </li>
+            <li typeof="schema:WebPage" role="doc-biblioentry" resource="https://restfulapi.net/"
+                property="schema:citation" id="ref-10">
+                <cite property="schema:name"><a href="https://restfulapi.net/">REST API</a></cite>
+            </li>
+        </ol>
+    </section>
+</section>
+<section>
+    <h2>2. Overall Description</h2>
+    <section>
+        <h3 role="doc-subtitle">2.1 Product Perspective</h3>
+        <p>The product is design to be implemented by our customers on their websites and to control the services on our
+            control panel.
+            They can create custom services, edit them, delete them, seeing all rewards and top customers.</p>
+    </section>
+
+    <section>
+        <h3 role="doc-subtitle">2.2 Product Functions</h3>
+        <ol>
+            <li>Gamification System
+                <ol>
+                    <li>Leveling System</li>
+                    <li>Rewards System</li>
+                </ol>
+            </li>
+
+            <li>User Interface:
+                <ol>
+                    <li>Login</li>
+                    <li>Register</li>
+                    <li>Support System</li>
+                    <li>Creating Services</li>
+                    <li>Deleting Services</li>
+                    <li>Update Services</li>
+                    <li>Creating bonding on services</li>
+                    <li>Download rewards from table</li>
+                </ol>
+            </li>
+        </ol>
+    </section>
+
+    <section>
+        <h3 role="doc-subtitle">2.3 User Classes and Characteristics</h3>
+        <p>The main user classes that are anticipated to use this service are website owners that are interested
+            to add a gamification system for their customers. Being a service that someone can implement
+            for himself, we predict a low use frequency. For all customers are offered the same security and privilege
+            levels because in our eyes all users are equal.</p>
+    </section>
+
+    <section>
+        <h3 role="doc-subtitle">2.4 Operating Environment</h3>
+        <p>The operating environment in which the software will operate is any given web browser
+            app that supports HTML 5. The hardware platform, operating system, and other requirements
+            are given by the specific browser used. Our services can be invoked from any kind of website.</p>
+    </section>
+
+    <section>
+        <h3 role="doc-subtitle">2.5 Design and Implementation Constraints</h3>
+        <p>The main limitations are given by the early stages of the project because of the lack of user data we are
+            able to collect. This impedes the correctness and speed of our AI.</p>
+    </section>
+
+    <section>
+        <h3 role="doc-subtitle">2.6 User Documentation</h3>
+        <p>The public API route will be described on a WSDL.xml file that the customers will receive upon registration
+            via email.
+            WSDL.xml file will contain explicit data about our public API routes, how to use them properly.</p>
+    </section>
+
+    <section>
+        <h3 role="doc-subtitle">2.7 Assumptions and Dependencies</h3>
+        <p>The main third-party services used by us come with some risk factors that we assume. One of
+            them is relying on a server hosting service and any problems with it are out of our control.
+            Another one is the storage space of the database which right now is not a problem, but risks
+            rise with the number of users. We use microservices for login/register, for management services
+            and for user progress, that for in case one services is down or has a problem, the other ones
+            can still run perfectly.</p>
+    </section>
+</section>
+
+<section>
+    <h2>3. External Interface Requirements</h2>
+    <section>
+        <h3 role="doc-subtitle">3.1 User Interfaces</h3>
+        <p>
+            The login interface welcomes the user and lets him log in. Register interface will also send an
+            email with the WSDL.xml file needed for public API documentation. After that, the main page loads
+            and from the index page you can go to control panel page. From this page you can add new service, modify
+            a service, delete a service, create bonding for services, delete bonds, see and get rewards, see a top
+            for customers. Login and register systems interact with the user's database and have specific interfaces.
+            So do the control panel and all it's featured, having separated controllers for database.
+        </p>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">3.2 Hardware Interfaces</h3>
+        <p>The supported device types consist of all devices that support a browser, including those that view the
+            website in mobile mode. The used communication protocol is HTTP and the data is transferred via JSON
+            format.</p>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">3.3 Software Interfaces</h3>
+        <p>The website will have an integrated commercial component so that the activity of the users
+            will be monetised. Oracle with PL/SQL language will be used as an SQL database engine and the interactions
+            with the
+            database will be possible via a REST API. API will receive specific requests in JSON format,
+            including register, login, create/delete/update services, rewards etc.</p>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">3.4 Communications Interfaces</h3>
+        <p>HTTP will be used as a communication standard.
+            As mentioned above, messages between server and client are manipulated in JSON format.
+            Transfer rate depends on the hosting server and internet speed of the user. Download the rewards table
+            also depends on the internet speed of the user.
+        </p>
+    </section>
+</section>
+
+<section>
+    <h2>4. System Features</h2>
+    <section>
+        <h3 role="doc-subtitle">4.1 Personalised Services</h3>
+        <section>
+            <h4 role="doc-subtitle">4.1.1 Description and Priority</h4>
+            <p>Every user will be able to create their own services based on our options. They can implement
+                gamification
+                for almost every aspect of their website.
+            </p>
+        </section>
+
+        <section>
+            <h4 role="doc-subtitle">4.1.2 Stimulus/Response Sequences</h4>
+            <p>For every user, we have a list of the services he created. Using it, we request
+                information from the database to show on the control panel page. Every new service will have
+            its own table in the database with the customers that did something to get a reward/experience.</p>
+        </section>
+
+        <section>
+            <h4 role="doc-subtitle">4.1.3 Functional Requirements</h4>
+            <p>
+                Every service needs a name, a category, a milestone and the type of reward.
+                Every customer can create bonded services. To create a bond service he needs to create a logical
+                expression based on the existing services, using only AND/OR logical operator. We validate the
+                expression and create a new service.
+            </p>
+        </section>
+    </section>
+
+    <section>
+        <h3 role="doc-subtitle">4.2 Accessibility Features</h3>
+        <section>
+            <h4 role="doc-subtitle">4.2.1 Description and Priority</h4>
+            <p>This encapsulates all the small adjustments that help users in need, having a high
+                priority because we want to create a website that can be used by anyone. Some of them are:</p>
+            <ol>
+                <li>Exiting pop-ups or menus by clicking the button or elsewhere on the page.</li>
+                <li>High contrast level</li>
+                <li>Big and clear buttons and fonts</li>
+            </ol>
+        </section>
+        <section>
+            <h4 role="doc-subtitle">4.2.2 Stimulus/Response Sequences</h4>
+            <p>There are no specific sequences because this feature comprises adjustments to the
+                already existing code.</p>
+        </section>
+
+        <section>
+            <h4 role="doc-subtitle">4.2.3 Functional Requirements</h4>
+            <p>Same as 4.1.3.</p>
+        </section>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">4.3 Gamelike Experience</h3>
+        <section>
+            <h4 role="doc-subtitle">4.3.1 Description and Priority</h4>
+            <p>This experience is composed of the leveling system and the reward system. They have
+                a high priority,
+                being the main selling point of our service. Both work with the intent to engage
+                the user and give him a
+                fun and unique experience.</p>
+        </section>
+
+        <section>
+            <h4 role="doc-subtitle">4.3.2 Stimulus/Response Sequences</h4>
+            <p>Interactions made by the customer's users are sent to the API, which will store the needed information. When certain
+                requirements are achieved the API will send a message to the owner of the website
+                who can handle our response as he wants. The leveling system will show how active is one person on the website.
+            </p>
+        </section>
+
+        <section>
+            <h4 role="doc-subtitle">4.3.3 Functional Requirements</h4>
+            <p>Same as 4.1.3</p>
+        </section>
+    </section>
+    <section>
+        <h3 role="doc-subtitle">4.4 Login/Register</h3>
+
+        <section>
+            <h4 role="doc-subtitle">4.4.1 Description and Priority</h4>
+            <p>They are basic requirements for any web service.</p>
+        </section>
+
+        <section>
+            <h4 role="doc-subtitle">4.4.2 Stimulus/Response Sequences</h4>
+            <p>
+                Login is made by taking the info written in by the user and verifying it in the database to know if a
+                connection should be made.
+                The register consists in taking the info and verifying if the username and email are available sending a
+                confirmation email and if they are then it inserts the info in the database.
+            </p>
+        </section>
+
+        <section>
+            <h4 role="doc-subtitle">4.4.3 Functional Requirements</h4>
+            <p>Same as 4.1.3.</p>
+        </section>
+    </section>
+    <section>
+        <h2>5. Other Nonfunctional Requirements</h2>
+        <section>
+            <h3 role="doc-subtitle">5.1 Performance Requirements</h3>
+            <p>
+                There are no performance requirements for our website, it is designed to work properly on every browser
+                and all platforms.
+            </p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">5.2 Safety Requirements</h3>
+            <p>
+                Our website can not be dangerous to anybody.
+            </p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">5.3 Security Requirements</h3>
+            <p>We secure our website by creating a unique hashcode for every customer who works like a JWT.
+                Also, our data is secured because the customer needs to be logged in to access control panel page.
+                Exporting the .CSV file is made on the personal computer. The email send at register with the WSDL.xml file
+                and the hashcode is secured as well.</p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">5.4 Software Quality Attributes</h3>
+            <p>
+                GamS is a multipage website, every page having its HTML, CSS and JavaScript files that makes the cod
+                easy to understand, open for improvement and expansion, and it's very easy to navigate on it and use
+                the control panel page as a customer.
+                The BackEnd server is made in Node.Js and organised on controllers and microservices. We created a REST API
+                made in vanilla Node.js. We also used Nodemailer to send emails for quality of life improvement.
+                Database is created in PL/SQL language making our server cleaner and easier to understand. It helped us and
+                our website's complexity because of its technologies.
+                We focus more on ease of learning but tried to focus on ease of use as well because both are important:
+                learning new technologies for creating a website but also learning how to create an attractive and fully
+                user interface and a great user experience on our website.
+            </p>
+        </section>
+        <section>
+            <h3 role="doc-subtitle">5.5 Business Rules</h3>
+            <p>We identified 2 roles on our website:</p>
+            <ol>
+                <li>The visitor: a user that can see main page and can register/login.
+                </li>
+                <li>The registered user: same as 1) but he can go on the control panel page and administrate the services for his website.</li>
+            </ol>
+        </section>
+    </section>
+</section>
+</body>
+</html>
