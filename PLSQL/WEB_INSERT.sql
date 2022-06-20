@@ -116,6 +116,7 @@ CREATE OR REPLACE PACKAGE BODY table_insertor AS
             rewards.update_level(hash_code, user_name, rewards.get_level(hash_code, v_xp));
         END IF;
         DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+        
     END insert_xp;
     
 END table_insertor;

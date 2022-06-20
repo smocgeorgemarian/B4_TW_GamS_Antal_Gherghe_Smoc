@@ -34,8 +34,8 @@ set serveroutput on;
 BEGIN
     --dbms_output.put_line(api_users.owner_register('Tudor','pass','www.sainthub.com'));
     --dbms_output.put_line(api_users.owner_login('Tudor','pass'));
-    --dbms_output.put_line(api_users.owner_logout('Tudor'));
-    --dbms_output.put_line(api_users.owner_delete('Tudor','pass'));
+    --dbms_output.put_line(api_users.owner_logout('SolOzKfatm'));
+    --dbms_output.put_line(api_users.owner_delete('tudor.gherghe@yahoo.com','ceva'));
 END;
 SELECT COUNT(*) FROM REWARD_uTBgRMduBB WHERE rname = 'r1'
 --DEMO API_SERVICES
@@ -83,14 +83,14 @@ END;
 
 SELECT * FROM OWNERS;
 
-SELECT * FROM EVENT_LoXKHnaGee;
-SELECT * FROM REWARD_LoXKHnaGee;
+SELECT * FROM EVENT_nRinsynEaZ;
+SELECT * FROM REWARD_nRinsynEaZ;
 SELECT * FROM LEVEL_LoXKHnaGee;
-SELECT * FROM PLAYER_aViRBBjacJ;
+SELECT * FROM PLAYER_JYkOQzeKZE;
 
 set serveroutput on;
 DECLARE
-    hash_code VARCHAR2(200) := 'LzcQasNkua';
+    hash_code VARCHAR2(200) := 'nRinsynEaZ';
 BEGIN
 --    dbms_output.put_line(api_users.owner_register('tudor', 'tudor', 'tudor.com'));
 --    dbms_output.put_line(api_users.owner_delete('tudor', 'tudor'));
@@ -118,20 +118,17 @@ BEGIN
 --    dbms_output.put_line(api_services_username.remove_user(hash_code, 'user1'));
 --    dbms_output.put_line(api_services_username.add_user_to_level(hash_code, 'user1'));
 --    dbms_output.put_line(api_services_username.get_level(hash_code, 'user1'));
---    dbms_output.put_line(api_services_username.get_xp(hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.add_user_to_level(hash_code, 'user1'));
+--    dbms_output.put_line(api_services_username.add_user_to_level(hash_code, 'user2'));
+--    dbms_output.put_line(api_services_username.add_user_to_level(hash_code, 'user3'));
+    --dbms_output.put_line(api_services_username.get_all_rewards(hash_code, 'user_de_test'));
+--    dbms_output.put_line(api_services_username.update_event('Comment', hash_code, 'user_de_test'));
 END;
 
 
 
 
-SELECT * FROM OWNERS;
-SELECT * FROM TimeRegister_aViRBBjacJ;
 
-SELECT * FROM EVENT_aViRBBjacJ;
 
-update event_aViRBBjacJ set evalue = -1 where ename = 'TimeRegister';
 
-set serveroutput on;
-begin
-    dbms_output.put_line(api_services_username.get_all_rewards('aViRBBjacJ', 'demoUser1'));
-end;
+

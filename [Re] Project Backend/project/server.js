@@ -1,14 +1,5 @@
 const http = require('http')
-const {
-    users_register, users_login, users_logout, users_events, users_rewards, users_levels, users_top, users_delete, send_email
-} = require('./database/databaseConnection')
-
-function getStatusCodeForMessage(value) {
-    if (value === '0') return 403
-    if (value === '404') return 404
-    if (value === 'error') return 500
-    return 200
-}
+const Controller = require('./controllers/controller')
 
 function setCORSPolicy(res) {
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -26,228 +17,33 @@ const server = http.createServer((req, res) => {
         res.end()
         return
     }
-    //==============================USERS==============================
-    res.setHeader("Content-Type", "application/json")
-    if (req.url === '/users/register' && req.method === 'POST') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
 
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                if (!JSON.parse(body).username || !JSON.parse(body).password || !JSON.parse(body).site) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_register(JSON.parse(body).username, JSON.parse(body).password, JSON.parse(body).site));
-                }
-            })
-
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-
-    } else if (req.url === '/users/login' && req.method === 'POST') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                console.log(body)
-                if (!JSON.parse(body).username || !JSON.parse(body).password) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_login(JSON.parse(body).username, JSON.parse(body).password));
-                }
-            })
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-
-    } else if (req.url === '/users/logout' && req.method === 'POST') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                if (!JSON.parse(body).hash_code) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_logout(JSON.parse(body).hash_code));
-                }
-            })
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-
-    } else if (req.url === '/users/events' && req.method === 'POST') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                if (!JSON.parse(body).hash_code) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_events(JSON.parse(body).hash_code));
-                }
-            })
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-
-    } else if (req.url === '/users/rewards' && req.method === 'POST') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                if (!JSON.parse(body).hash_code) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_rewards(JSON.parse(body).hash_code));
-                }
-            })
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-
-    } else if (req.url === '/users/levels' && req.method === 'POST') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                if (!JSON.parse(body).hash_code) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_levels(JSON.parse(body).hash_code));
-                }
-            })
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-
-    } else if (req.url === '/users/top' && req.method === 'POST') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                if (!JSON.parse(body).hash_code) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_top(JSON.parse(body).hash_code));
-                }
-            })
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-
-    } else if (req.url === '/users/delete' && req.method === 'DELETE') {
-        let body = ''
-        req.on('data', chunk => {
-            body += chunk;
-        });
-
-        req.on('end', () => {
-            new Promise((resolve, reject) => {
-                if (!JSON.parse(body).username || !JSON.parse(body).password) {
-                    reject('Wrong parameters!')
-                } else {
-                    resolve(users_delete(JSON.parse(body).username, JSON.parse(body).password));
-                }
-            })
-                .then(value => {
-                    res.statusCode = getStatusCodeForMessage(value)
-                    res.write(JSON.stringify({ message: value }))
-                    res.end()
-                })
-                .catch(err => {
-                    res.statusCode = 400
-                    res.write(JSON.stringify({ message: err }))
-                    res.end()
-                });
-        });
-    } else {
+    if (req.url === '/users/register' && req.method === 'POST'){
+        Controller.userRegister(req, res);
+    }else if(req.url === '/users/login' && req.method === 'POST'){
+        Controller.userLogin(req, res);
+    }else if(req.url === '/users/logout' && req.method === 'POST'){
+        Controller.userLogout(req, res);
+    }else if(req.url === '/users/events' && req.method === 'POST'){
+        Controller.userGetEvents(req, res);
+    }else if(req.url === '/users/rewards' && req.method === 'POST'){
+        Controller.userGetRewards(req, res);
+    }else if(req.url === '/users/levels' && req.method === 'POST'){
+        Controller.userGetLevels(req, res);
+    }else if(req.url === '/users/top' && req.method === 'POST'){
+        Controller.userGetTop(req, res);
+    }else if(req.url === '/users/delete' && req.method === 'DELETE'){
+        Controller.userDelete(req, res);
+    }else{
         res.writeHead(404, { 'Content-Type': 'application/json' })
         res.end(JSON.stringify({ message: 'Route not found' }))
     }
-})
+
+});
 
 const PORT = process.env.PORT || 5000
 server.listen(PORT, () => console.log(`Server on port ${PORT}`))
 
 module.exports = {
-    getStatusCodeForMessage,
     setCORSPolicy
 }

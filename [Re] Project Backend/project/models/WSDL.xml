@@ -1,0 +1,246 @@
+<!--
+(c) GamS
+2022-06-21
+lets you create custom services, enroll people on this services, get rewards for them, giving them a level and experience, having them entertained
+
+  -->
+<definitions xmlns:tns="localhost:5002/services/username.wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd1="localhost:5002/services/username.xsd"
+             xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" name="let you create services, post people, get rewards for them"
+             targetNamespace="localhost:5002/services/username.wsdl">
+    <!--  definition of datatypes  -->
+    <types>
+        <schema xmlns="http://www.w3.org/2000/10/XMLSchema" targetNamespace="localhost:5002/services/username.xsd">
+            <element name="hash_code">
+                <complexType>
+                    <all>
+                        <element name="value" type="string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="username">
+                <complexType>
+                    <all>
+                        <element name="value" type="string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="event_name">
+                <complexType>
+                    <all>
+                        <element name="value" type="string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="response">
+                <complexType>
+                    <all>
+                        <element name="value" type="string"/>
+                    </all>
+                </complexType>
+            </element>
+            <element name="value_update">
+                <complexType>
+                    <all>
+                        <element name="value" type="int"/>
+                    </all>
+                </complexType>
+            </element>
+        </schema>
+    </types>
+    <!--  response messages  -->
+    <message name="returns_response">
+        <part name="response" type="xsd:response"/>
+    </message>
+    <!--  request messages  -->
+    <message name="getRewards">
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+    </message>
+    <message name="getAllRewards">
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+    </message>
+    <message name="getLevel">
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+    </message>
+    <message name="getExp">
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+    </message>
+    <message name="updateLevel">
+        <part name="event_name" type="xsd:event_name"/>
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+        <part name="value_update" type="xsd:value_update"/>
+    </message>
+    <message name="addUserToEvent">
+        <part name="event_name" type="xsd:event_name"/>
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+    </message>
+    <message name="addUserToLevel">
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+    </message>
+    <message name="deleteUser">
+        <part name="hash_code" type="xsd:hash_code"/>
+        <part name="username" type="xsd:username"/>
+    </message>
+    <!--  server's services  -->
+    <portType name="Gamification service">
+        <operation name="getRewards">
+            <input message="tns:getRewards"/>
+            <output message="tns:returns_response"/>
+        </operation>
+        <operation name="getAllRewards">
+            <input message="tns:getAllRewards"/>
+            <output message="tns:returns_response"/>
+        </operation>
+        <operation name="getLevel">
+            <input message="tns:getLevel"/>
+            <output message="tns:returns_response"/>
+        </operation>
+        <operation name="getExp">
+            <input message="tns:getExp"/>
+            <output message="tns:returns_response"/>
+        </operation>
+        <operation name="updateLevel">
+            <input message="tns:updateLevel"/>
+            <output message="tns:returns_response"/>
+        </operation>
+        <operation name="addUserToEvent">
+            <input message="tns:addUserToEvent"/>
+            <output message="tns:returns_response"/>
+        </operation>
+        <operation name="addUserToLevel">
+            <input message="tns:addUserToLevel"/>
+            <output message="tns:returns_response"/>
+        </operation>
+        <operation name="deleteUser">
+            <input message="tns:deleteUser"/>
+            <output message="tns:returns_response"/>
+        </operation>
+    </portType>
+    <!--  server encoding  -->
+    <binding name="Gamification service_webservices" type="tns:Gamification service">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getRewards">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#getRewards"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="getAllRewards">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#getAllRewards"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="getLevel">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#getLevel"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="getExp">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#getExp"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="updateLevel">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#updateLevel"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="addUserToEvent">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#addUserToEvent"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="addUserToLevel">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#addUserToLevel"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+        <operation name="deleteUser">
+            <soap:operation soapAction="urn:xmethods-delayed-quotes#deleteUser"/>
+            <input>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </input>
+            <output>
+                <soap:body use="encoded" namespace="urn:xmethods-delayed-quotes"
+                           encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+            </output>
+        </operation>
+    </binding>
+    <!--  access to service provider  -->
+    <service name="controlPanel">
+        <port name="controlPanel_0" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/rewards"/>
+        </port>
+        <port name="controlPanel_1" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/rewards/all"/>
+        </port>
+        <port name="controlPanel_2" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/level"/>
+        </port>
+        <port name="controlPanel_3" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/xp"/>
+        </port>
+        <port name="controlPanel_4" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/update"/>
+        </port>
+        <port name="controlPanel_5" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/add"/>
+        </port>
+        <port name="controlPanel_6" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/addlevel"/>
+        </port>
+        <port name="controlPanel_7" binding="Gamification service_webservices">
+            <soap:address location="http://localhost:5002/services/username/delete"/>
+        </port>
+    </service>
+</definitions>
