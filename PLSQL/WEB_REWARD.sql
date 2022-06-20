@@ -63,6 +63,7 @@ CREATE OR REPLACE PACKAGE BODY rewards AS
             DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
             
             IF event_type = VTIME THEN
+                dbms_output.put_line(estart_date + event_value);
                 IF estart_date + event_value <= SYSDATE THEN
                     RETURN 1;
                 END IF;

@@ -27,17 +27,18 @@
 
 
 </head>
-<body>
+<body onload="addUserToLevel();getUserLevel()">
 <!--    Navigation bar itself-->
     <div id="settings"></div>
     <div id="badges"></div>
     <div id="NavBar">
-    <ul>
+    <ul id="firstUl">
         <li class="Normal-link"><button class="btn"><em id="spinnableHomeButton" class="fa fa-home"
                                                         onmouseover="setSpinnable(this)"></em></button></li>
         <li class="Normal-link"><button id="settings-button" class="btn co" onclick="setAddSettingsPrintable()"><em class="fa fa-cog"></em></button></li>
         <li class="Normal-link"><button id="badges-button" class="btn co" onclick="setBadgesPrintable()"><em class="fa fa-id-badge"></em></button></li>
         <li class="Normal-link"><a href="./HTMLdocs/article.html">News</a></li>
+        <li class="Normal-link"><a href="#"></a></li>
         <li class="Dropdown">
             <a  href="#" class="dropbtn">Categories</a>
             <div class="Dropdown-content">
@@ -68,7 +69,7 @@
                     <div class="ReactionsBar">
                         <button class="btn like" onclick="liked(this)"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/like-2-icon.png" alt="like"/><ins class="no-line">50</ins></button>
                         <button class="btn comm" onclick="setAddCommentPrintable(this)"> <img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/chat-icon.png" alt="comment"/>2</button>
-                        <button class="btn share"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/share-2-icon.png" alt="share"/>333</button>
+                        <button class="btn share" onclick="sendUpdateEventRequest('Share')"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/share-2-icon.png" alt="share"/>333</button>
                     </div>
                 </div>
                 <div class="comment-thread">
@@ -101,7 +102,7 @@
                                                     <li><label class="ReportRadioButton"><input type="checkbox">Religious propaganda</label></li>
                                                 </ul>
                                                 <div class="report-buttons">
-                                                    <button type="submit" class="btn">Send Report</button>
+                                                    <button type="button" class="btn" onclick="sendUpdateEventRequest('Report')">Send Report</button>
                                                     <button type="button" class="btn cancel"
                                                             onclick="hidePopup(this.parentElement.parentElement)">Close</button>
                                                 </div>
@@ -151,7 +152,7 @@
                     <div class="ReactionsBar">
                         <button class="btn like" onclick="liked(this)"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/like-2-icon.png" alt="like"/><ins class="no-line">50</ins></button>
                         <button class="btn comm" onclick="setAddCommentPrintable(this)"> <img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/chat-icon.png" alt="comment"/>2</button>
-                        <button class="btn share"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/share-2-icon.png" alt="share"/>333</button>
+                        <button class="btn share" onclick="sendUpdateEventRequest('Share')"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/share-2-icon.png" alt="share"/>333</button>
                     </div>
                 </div>
                 <div class="comment-thread">
@@ -184,7 +185,7 @@
                                                     <li><label class="ReportRadioButton"><input type="checkbox">Religious propaganda</label></li>
                                                 </ul>
                                                 <div class="report-buttons">
-                                                    <button type="submit" class="btn">Send Report</button>
+                                                    <button type="button" class="btn" onclick="sendUpdateEventRequest('Report')">Send Report</button>
                                                     <button type="button" class="btn cancel"
                                                             onclick="hidePopup(this.parentElement.parentElement)">Close</button>
                                                 </div>
@@ -237,7 +238,7 @@
                     <div class="ReactionsBar">
                         <button class="btn like" onclick="liked(this)"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/like-2-icon.png" alt="like"/><ins class="no-line">50</ins></button>
                         <button class="btn comm" onclick="setAddCommentPrintable(this)"> <img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/chat-icon.png" alt="comment"/>2</button>
-                        <button class="btn share"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/share-2-icon.png" alt="share"/>333</button>
+                        <button class="btn share" onclick="sendUpdateEventRequest('Share')"><img src="https://icons.iconarchive.com/icons/praveen/minimal-outline/48/share-2-icon.png" alt="share"/>333</button>
                     </div>
                 </div>
                 <div class="comment-thread">
@@ -270,7 +271,7 @@
                                                     <li><label class="ReportRadioButton"><input type="checkbox">Religious propaganda</label></li>
                                                 </ul>
                                                 <div class="report-buttons">
-                                                    <button type="submit" class="btn">Send Report</button>
+                                                    <button type="button" class="btn" onclick="sendUpdateEventRequest('Report')">Send Report</button>
                                                     <button type="button" class="btn cancel"
                                                             onclick="hidePopup(this.parentElement.parentElement)">Close</button>
                                                 </div>
@@ -316,4 +317,5 @@
     </div>
 
 </body>
+
 </html>

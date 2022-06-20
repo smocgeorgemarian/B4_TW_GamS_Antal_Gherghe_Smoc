@@ -125,7 +125,7 @@ function addNewBadge(expressionList, index) {
         loadingDiv.appendChild(tmpDiv);
     }
     if (expressionList[expressionList.length - 1].firstChild.nodeName === 'I')
-        expressionList[expressionList.length - 1].firstChild.remove();
+        expressionList[expressionList.length - 1].remove();
     father.appendChild(loadingDiv);
     sleep(4500).then(() => {
         loadingDiv.remove();
@@ -148,6 +148,8 @@ function addNewLevel(expressionList, index) {
         let tmpDiv = document.createElement("div");
         loadingDiv.appendChild(tmpDiv);
     }
+    if (expressionList[expressionList.length - 1].firstChild.nodeName === 'I')
+        expressionList[expressionList.length - 1].remove();
     father.appendChild(loadingDiv);
     sleep(4500).then(() => {
         loadingDiv.remove();

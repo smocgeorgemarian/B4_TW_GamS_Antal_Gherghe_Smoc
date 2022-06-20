@@ -86,7 +86,7 @@ SELECT * FROM OWNERS;
 SELECT * FROM EVENT_LoXKHnaGee;
 SELECT * FROM REWARD_LoXKHnaGee;
 SELECT * FROM LEVEL_LoXKHnaGee;
-SELECT * FROM PLAYER_LoXKHnaGee;
+SELECT * FROM PLAYER_aViRBBjacJ;
 
 set serveroutput on;
 DECLARE
@@ -124,7 +124,14 @@ END;
 
 
 
+SELECT * FROM OWNERS;
+SELECT * FROM TimeRegister_aViRBBjacJ;
 
+SELECT * FROM EVENT_aViRBBjacJ;
 
+update event_aViRBBjacJ set evalue = -1 where ename = 'TimeRegister';
 
-
+set serveroutput on;
+begin
+    dbms_output.put_line(api_services_username.get_all_rewards('aViRBBjacJ', 'demoUser1'));
+end;

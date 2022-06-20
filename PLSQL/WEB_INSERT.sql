@@ -96,6 +96,7 @@ CREATE OR REPLACE PACKAGE BODY table_insertor AS
         v_table_name VARCHAR2(200);
         v_cursor_id INTEGER;
         v_ok INTEGER;
+        v_xp FLOAT;
     BEGIN
         insert_level_user(hash_code, user_name);
         v_table_name := 'PLAYER_' || hash_code;
@@ -103,6 +104,17 @@ CREATE OR REPLACE PACKAGE BODY table_insertor AS
         v_cursor_id := DBMS_SQL.OPEN_CURSOR;
         DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
         v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+        DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+        
+        v_command := 'SELECT xp FROM ' || v_table_name || ' WHERE user_name = ''' || user_name || '''';
+        v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+        DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+        DBMS_SQL.DEFINE_COLUMN(v_cursor_id, 1, v_xp);
+        v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+        IF DBMS_SQL.FETCH_ROWS(v_cursor_id)>0 THEN 
+            DBMS_SQL.COLUMN_VALUE(v_cursor_id, 1, v_xp); 
+            rewards.update_level(hash_code, user_name, rewards.get_level(hash_code, v_xp));
+        END IF;
         DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
     END insert_xp;
     
