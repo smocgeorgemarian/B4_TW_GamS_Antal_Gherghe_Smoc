@@ -1,4 +1,3 @@
-
 STATUS_MSG = {
     200: "Action performed successfully",
     403: "Access forbidden, maybe duplicated action",
@@ -30,7 +29,7 @@ function isAnOption(word, wordsList) {
 }
 
 function validateExpression(expression, optionsList, index) {
-    expression = expression.firstChild.firstChild
+    expression = expression.firstChild.childNodes[1]
     let content = expression.firstChild.value;
     let regex = /^((\(([A-Za-z]\w*(\s\$\s[A-Za-z]\w*)*)\))(\s\|\s(\(([A-Za-z]\w*(\s\$\s[A-Za-z]\w*)*)\))+)*)$/;
     let letterRegex = /\w/;
@@ -104,7 +103,8 @@ function addNewService(serviceData, index) {
         ...credentials,
         'event_name': inputForm[0].value,
         'event_type': inputForm[1].value,
-        'event_value': inputForm[2].value
+        'event_value': inputForm[2].value,
+        'event_xp': inputForm[3].value
     }
     sendContent(content, "PUT","http://localhost:5001/services/add/event", setIsValidatedPrintable, index);
 }
@@ -114,10 +114,9 @@ function addNewBadge(expressionList, index) {
     expressionList = expressionList.firstChild.childNodes
     let content = {
         ...credentials,
-        'reward_name': expressionList[1].firstChild.value,
-        'condition': expressionList[0].firstChild.value,
-        'reward': expressionList[2].firstChild.value,
-        'is_repeatable': 1
+        'reward_name': expressionList[2].firstChild.value,
+        'condition': expressionList[1].firstChild.value,
+        'reward': expressionList[3].firstChild.value
     }
     let loadingDiv = document.createElement("div");
     loadingDiv.classList.add("lds-roller");
@@ -134,6 +133,28 @@ function addNewBadge(expressionList, index) {
     });
 }
 
+function addNewLevel(expressionList, index) {
+    let father = expressionList.firstChild;
+    expressionList = expressionList.firstChild.childNodes
+    let content = {
+        ...credentials,
+        'level_name': expressionList[2].firstChild.value,
+        'level_value': parseInt(expressionList[1].firstChild.value),
+        'description': expressionList[3].firstChild.value
+    }
+    let loadingDiv = document.createElement("div");
+    loadingDiv.classList.add("lds-roller");
+    for (let divIndex = 0; divIndex < 8; divIndex++) {
+        let tmpDiv = document.createElement("div");
+        loadingDiv.appendChild(tmpDiv);
+    }
+    father.appendChild(loadingDiv);
+    sleep(4500).then(() => {
+        loadingDiv.remove();
+        sendContent(content, "PUT", "http://localhost:5001/services/add/level", setIsValidatedExprPrintable, index)
+    });
+}
+
 function validateAll() {
     let childrenServices = document.getElementById("list").childNodes;
     for (let childIndex = 0; childIndex < childrenServices.length; childIndex++) {
@@ -147,10 +168,12 @@ function validateAll() {
     optionsList = getOptionsList(childrenServices);
     let childrenExpressions = document.getElementById("expressions").childNodes;
     for (let childIndex = 0; childIndex < childrenExpressions.length; childIndex++) {
-        let verdict = validateExpression(childrenExpressions[childIndex], optionsList, childIndex + 1);
-        if (verdict !== "OK") {
-            showInfoBox(verdict);
-            return;
+        if(childrenExpressions[childIndex].childNodes[0].firstChild.value === "Reward"){
+            let verdict = validateExpression(childrenExpressions[childIndex], optionsList, childIndex + 1);
+            if (verdict !== "OK") {
+                showInfoBox(verdict);
+                return;
+            }
         }
     }
 
@@ -159,6 +182,10 @@ function validateAll() {
     }
 
     for (let childIndex = 0; childIndex < childrenExpressions.length; childIndex++) {
-        addNewBadge(childrenExpressions[childIndex], {"index": childIndex});
+        if(childrenExpressions[childIndex].childNodes[0].firstChild.value === "Reward"){
+            addNewBadge(childrenExpressions[childIndex], {"index": childIndex});
+        }else{
+            addNewLevel(childrenExpressions[childIndex], {"index": childIndex});
+        }
     }
 }

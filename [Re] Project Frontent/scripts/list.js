@@ -10,6 +10,7 @@ function setPageUp() {
             .split('=')[1];
     else
         window.location.href = './../sources/uShallNotPass.html';
+    console.log(document.cookie)
 }
 
 function setListArrangable(target) {
@@ -98,14 +99,21 @@ function setListExample(target) {
     input2.setAttribute("max", "999999999")
     listExample.appendChild(input2);
 
-    let inputExample2 = document.createElement("select");
-    let options2 = ["Badge", "Title"];
-    for (let index = 0; index < options2.length; index++) {
-        let option = document.createElement("option");
-        option.textContent = options2[index];
-        inputExample2.appendChild(option);
-    }
-    listExample.appendChild(inputExample2);
+    let input3 = document.createElement("input");
+    input3.setAttribute("type", "number");
+    input3.setAttribute("placeholder", "Add new xp value");
+    input3.setAttribute("min", "0");
+    input3.setAttribute("max", "999999999")
+    listExample.appendChild(input3);
+
+    // let inputExample2 = document.createElement("select");
+    // let options2 = ["Badge", "Title"];
+    // for (let index = 0; index < options2.length; index++) {
+    //     let option = document.createElement("option");
+    //     option.textContent = options2[index];
+    //     inputExample2.appendChild(option);
+    // }
+    // listExample.appendChild(inputExample2);
 
     // let saveButton = document.createElement("input");
     // saveButton.setAttribute("type", "submit");
@@ -127,9 +135,9 @@ function initList() {
     // setListExample(target);
 }
 
-let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-eye", "fa fa-link", "fa fa-plus", "fa fa-trophy"];
-let functionsList = ["getBackToIndex()", "addList()", "deleteList(this)", "loadDatabase()", "linkLi()", "createExpr()", "loadRewards()"];
-let infoList = ["Get Back To Index", "Add Event", "Remove Any Element", "View Events", "Generate Reward List", "Add Reward", "View Rewards"]
+let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-eye", "fa fa-link", "fa fa-plus", "fa fa-gift", "fa fa-gamepad", "fa fa-trophy"];
+let functionsList = ["getBackToIndex()", "addList()", "deleteList(this)", "loadDatabase()", "linkLi()", "createExpr()", "loadRewards()", "loadLevels()", "loadTop()"];
+let infoList = ["Get Back To Index", "Add Event", "Remove Any Element", "View Events", "Generate Reward List", "Add Reward", "View Rewards", "View Levels", "Top Users"]
 
 function addList() {
     showInfoBox("Badge created successfully!");
@@ -276,7 +284,15 @@ function setDataPrintable(content, button) {
 
 
 function loadRewards() {
-    sendContent(credentials, "POST", "http://localhost:5000/users/rewards", setDataPrintable, {"table": "trophy"});
+    sendContent(credentials, "POST", "http://localhost:5000/users/rewards", setDataPrintable, {"table": "gift"});
+}
+
+function loadLevels() {
+    sendContent(credentials, "POST", "http://localhost:5000/users/levels", setDataPrintable, {"table": "gamepad"});
+}
+
+function loadTop() {
+    sendContent(credentials, "POST", "http://localhost:5000/users/top", setDataPrintable, {"table": "trophy"});
 }
 
 function deleteElement() {
@@ -289,6 +305,10 @@ function deleteElement() {
     if (deleteOption === "Service") {
         content = {"event_name": inputValue, ...credentials};
         url = "http://localhost:5001/services/delete/event";
+    }
+    else if (deleteOption === "Level"){
+        content = {"level_name": inputValue, ...credentials};
+        url = "http://localhost:5001/services/delete/level";
     }
     else {
         content = {"reward_name": inputValue, ...credentials};
@@ -307,7 +327,7 @@ function initDelete() {
 
     let selectDeleteOption = document.createElement("select");
     selectDeleteOption.id = "deleteOption";
-    let deleteOptions = ["Service", "Reward"];
+    let deleteOptions = ["Service", "Reward", "Level"];
     for (let index = 0; index < deleteOptions.length; index++) {
         let option = document.createElement("option");
         option.textContent = deleteOptions[index];

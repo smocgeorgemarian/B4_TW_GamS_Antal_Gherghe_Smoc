@@ -91,6 +91,8 @@ CREATE OR REPLACE PACKAGE BODY table_deletion AS
         DELETE OWNERS WHERE hash_code = hashcode;
         delete_event_info(hashcode);
         delete_reward_info(hashcode);
+        drop_table('LEVEL_' || hashcode);
+        drop_table('PLAYER_' || hashcode);
         
     END delete_owner_info;
     
@@ -149,10 +151,22 @@ CREATE OR REPLACE PACKAGE BODY table_deletion AS
     END delete_reward_user;
     
     PROCEDURE delete_user(hash_code VARCHAR2, user_name VARCHAR2) AS
+        v_cursor_id INTEGER;
+        v_ok INTEGER;
+        v_command VARCHAR2(500);
+        v_table_name VARCHAR2(200);
     BEGIN
         
         delete_event_user(hash_code, user_name);
         delete_reward_user(hash_code, user_name);
+        IF test_existence.test_level_user(hash_code, user_name) = 1 THEN
+            v_table_name := 'PLAYER_' || hash_code;
+            v_command := 'DELETE ' || v_table_name || ' WHERE user_name = ''' || user_name || '''';
+            v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+            DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+            v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+            DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+        END IF;
         
     END delete_user;
 

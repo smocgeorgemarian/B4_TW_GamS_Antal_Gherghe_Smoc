@@ -1,7 +1,7 @@
 const http = require('http')
 
 const {
-    services_add_event, services_add_reward, services_delete_event, services_delete_reward, services_update_reward, getStatusCodeForMessage, setCORSPolicy
+    services_add_event, services_add_reward, services_add_level, services_delete_event, services_delete_reward, services_delete_level, services_update_reward, getStatusCodeForMessage, setCORSPolicy
 } = require('./database/databaseConnection')
 
 const serverServices = http.createServer((req, res) => {
@@ -22,10 +22,10 @@ const serverServices = http.createServer((req, res) => {
 
         req.on('end', () => {
             new Promise((resolve, reject) => {
-                if (!JSON.parse(body).hash_code || !JSON.parse(body).event_name || !JSON.parse(body).event_type || !JSON.parse(body).event_value) {
+                if (!JSON.parse(body).hash_code || !JSON.parse(body).event_name || !JSON.parse(body).event_type || (!JSON.parse(body).event_value && JSON.parse(body).event_value != 0) || (!JSON.parse(body).event_xp && JSON.parse(body).event_xp != 0)) {
                     reject('Wrong parameters!')
                 } else {
-                    resolve(services_add_event(JSON.parse(body).hash_code, JSON.parse(body).event_name, JSON.parse(body).event_type, JSON.parse(body).event_value));
+                    resolve(services_add_event(JSON.parse(body).hash_code, JSON.parse(body).event_name, JSON.parse(body).event_type, JSON.parse(body).event_value, JSON.parse(body).event_xp));
                 }
             })
                 .then(value => {
@@ -48,10 +48,37 @@ const serverServices = http.createServer((req, res) => {
 
         req.on('end', () => {
             new Promise((resolve, reject) => {
-                if (!JSON.parse(body).hash_code || !JSON.parse(body).reward_name || !JSON.parse(body).condition || !JSON.parse(body).reward || !JSON.parse(body).is_repeatable) {
+                if (!JSON.parse(body).hash_code || !JSON.parse(body).reward_name || !JSON.parse(body).condition || !JSON.parse(body).reward) {
                     reject('Wrong parameters!')
                 } else {
-                    resolve(services_add_reward(JSON.parse(body).hash_code, JSON.parse(body).reward_name, JSON.parse(body).condition, JSON.parse(body).reward, JSON.parse(body).is_repeatable));
+                    resolve(services_add_reward(JSON.parse(body).hash_code, JSON.parse(body).reward_name, JSON.parse(body).condition, JSON.parse(body).reward));
+                }
+            })
+                .then(value => {
+                    res.statusCode = getStatusCodeForMessage(value)
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                });
+        });
+
+    } else if (req.url === '/services/add/level' && req.method === 'PUT') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            new Promise((resolve, reject) => {
+                console.log(body);
+                if (!JSON.parse(body).hash_code || !JSON.parse(body).level_name || (!JSON.parse(body).level_value && JSON.parse(body).level_value != 0) || !JSON.parse(body).description) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(services_add_level(JSON.parse(body).hash_code, JSON.parse(body).level_name, JSON.parse(body).level_value, JSON.parse(body).description));
                 }
             })
                 .then(value => {
@@ -104,6 +131,32 @@ const serverServices = http.createServer((req, res) => {
                     reject('Wrong parameters!')
                 } else {
                     resolve(services_delete_reward(JSON.parse(body).reward_name, JSON.parse(body).hash_code));
+                }
+            })
+                .then(value => {
+                    res.statusCode = getStatusCodeForMessage(value)
+                    res.write(JSON.stringify({ message: value }))
+                    res.end()
+                })
+                .catch(err => {
+                    res.statusCode = 400
+                    res.write(JSON.stringify({ message: err }))
+                    res.end()
+                });
+        });
+
+    } else if (req.url === '/services/delete/level' && req.method === 'DELETE') {
+        let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', () => {
+            new Promise((resolve, reject) => {
+                if (!JSON.parse(body).level_name || !JSON.parse(body).hash_code) {
+                    reject('Wrong parameters!')
+                } else {
+                    resolve(services_delete_level(JSON.parse(body).level_name, JSON.parse(body).hash_code));
                 }
             })
                 .then(value => {

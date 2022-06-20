@@ -41,11 +41,7 @@ function register() {
         if (this.readyState === 4 && this.status === 200) {
             let obj = JSON.parse(xhttp.response);
             hashcode = obj.message;
-            if(!document.cookie){
-                document.cookie = "hashcode=" + hashcode + ";expires=Thu, 01 Jan 2222 00:00:00 UTC;SameSite=none; Secure";
-            }
-            console.log(document.cookie)
-            window.location.href = './../sources/index.html';
+            window.location.href = './../sources/login.html';
         }else if(this.readyState === 4){
             alert("Someting went wrong!");
             window.location.href = './../sources/register.html';

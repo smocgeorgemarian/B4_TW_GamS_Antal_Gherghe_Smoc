@@ -6,22 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="78cfae73-449a-41d5-a160-8418d87b2a17" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSSdocs/badges.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/badges.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSSdocs/feed.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/feed.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSSdocs/selectCategories.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/selectCategories.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSSdocs/settings.css" beforeDir="false" afterPath="$PROJECT_DIR$/CSSdocs/settings.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HTMLdocs/article.html" beforeDir="false" afterPath="$PROJECT_DIR$/HTMLdocs/article.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaScript/badges.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/badges.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaScript/selectCategories.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/selectCategories.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/JavaScript/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/settings.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project TW/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../project TW/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project TW/HTMLdocs/badgeInventoryTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/../project TW/HTMLdocs/badgeInventoryTest.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project TW/Resources/alien3.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/alien3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../project TW/Resources/spaceship.png" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/spaceship.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/list.js" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/list.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/expression.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/expression.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/list.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/menu.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -63,7 +51,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/JavaScript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -91,6 +79,8 @@
       <updated>1650020066121</updated>
       <workItem from="1650020070243" duration="3476000" />
       <workItem from="1650200316240" duration="5889000" />
+      <workItem from="1655654925949" duration="2525000" />
+      <workItem from="1655727423045" duration="1200000" />
     </task>
     <servers />
   </component>

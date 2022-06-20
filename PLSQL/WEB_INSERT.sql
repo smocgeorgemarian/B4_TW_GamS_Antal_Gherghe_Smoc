@@ -1,30 +1,40 @@
 CREATE OR REPLACE PACKAGE table_insertor AS
-    PROCEDURE insert_event(hash_code IN VARCHAR2, ename IN VARCHAR2, etype IN VARCHAR2, evalue IN FLOAT);
-    PROCEDURE insert_reward(hash_code IN VARCHAR2, rname IN VARCHAR2, condition IN VARCHAR2, reward IN VARCHAR2, is_repeatable IN NUMBER);
+    PROCEDURE insert_event(hash_code IN VARCHAR2, ename IN VARCHAR2, etype IN VARCHAR2, evalue IN FLOAT, xp IN FLOAT);
+    PROCEDURE insert_reward(hash_code IN VARCHAR2, rname IN VARCHAR2, condition IN VARCHAR2, reward IN VARCHAR2);
+    PROCEDURE insert_level(hash_code IN VARCHAR2, lname IN VARCHAR2, lvalue IN FLOAT, ldescription IN VARCHAR2);
     PROCEDURE insert_event_user(ename IN VARCHAR2, hash_code IN VARCHAR2, euser IN VARCHAR2);
     PROCEDURE insert_reward_user(ename IN VARCHAR2, hash_code IN VARCHAR2, euser IN VARCHAR2);
+    PROCEDURE insert_level_user(hash_code IN VARCHAR2, luser IN VARCHAR2);
     PROCEDURE insert_update(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2, value_update IN FLOAT DEFAULT 1);
+    PROCEDURE insert_xp(hash_code IN VARCHAR2, user_name IN VARCHAR2, xp_update IN FLOAT);
 END table_insertor;
 
 /
 
 CREATE OR REPLACE PACKAGE BODY table_insertor AS
     
-    PROCEDURE insert_event(hash_code IN VARCHAR2, ename IN VARCHAR2, etype IN VARCHAR2, evalue IN FLOAT) AS
+    PROCEDURE insert_event(hash_code IN VARCHAR2, ename IN VARCHAR2, etype IN VARCHAR2, evalue IN FLOAT, xp IN FLOAT) AS
         v_command VARCHAR2(500);
     BEGIN
-        v_command := 'INSERT INTO EVENT_' || hash_code || ' VALUES (:1, :2, :3)';
-        EXECUTE IMMEDIATE v_command USING ename, etype, evalue;
+        v_command := 'INSERT INTO EVENT_' || hash_code || ' VALUES (:1, :2, :3, :4)';
+        EXECUTE IMMEDIATE v_command USING ename, etype, evalue, xp;
         table_creator.create_event_users(ename, hash_code);
     END insert_event;
     
-    PROCEDURE insert_reward(hash_code IN VARCHAR2, rname IN VARCHAR2, condition IN VARCHAR2, reward IN VARCHAR2, is_repeatable IN NUMBER) AS
+    PROCEDURE insert_reward(hash_code IN VARCHAR2, rname IN VARCHAR2, condition IN VARCHAR2, reward IN VARCHAR2) AS
         v_command VARCHAR2(500);
     BEGIN
-        v_command := 'INSERT INTO REWARD_' || hash_code || ' VALUES (:1, :2, :3, :4)';
-        EXECUTE IMMEDIATE v_command USING rname, condition, reward, is_repeatable;
+        v_command := 'INSERT INTO REWARD_' || hash_code || ' VALUES (:1, :2, :3)';
+        EXECUTE IMMEDIATE v_command USING rname, condition, reward;
         table_creator.create_reward_users(rname, hash_code);
     END insert_reward;
+    
+    PROCEDURE insert_level(hash_code IN VARCHAR2, lname IN VARCHAR2, lvalue IN FLOAT, ldescription IN VARCHAR2) AS
+        v_command VARCHAR2(500);
+    BEGIN
+        v_command := 'INSERT INTO LEVEL_' || hash_code || ' VALUES (:1, :2, :3)';
+        EXECUTE IMMEDIATE v_command USING lname, lvalue, ldescription;
+    END insert_level;
     
     PROCEDURE insert_event_user(ename IN VARCHAR2, hash_code IN VARCHAR2, euser IN VARCHAR2) AS
         v_command VARCHAR2(500);
@@ -54,6 +64,15 @@ CREATE OR REPLACE PACKAGE BODY table_insertor AS
         END IF;
     END insert_reward_user;
     
+    PROCEDURE insert_level_user(hash_code IN VARCHAR2, luser IN VARCHAR2) AS
+        v_command VARCHAR2(500);
+    BEGIN
+        IF test_existence.test_level_user(hash_code, luser) = 0 THEN
+            v_command := 'INSERT INTO PLAYER_' || hash_code || ' VALUES(:1, :2, :3)';
+            EXECUTE IMMEDIATE v_command USING luser, 0, rewards.get_level(hash_code, 0);
+        END IF;
+    END insert_level_user;
+    
     PROCEDURE insert_update(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2, value_update IN FLOAT DEFAULT 1) AS
         v_command VARCHAR2(500);
         v_table_name VARCHAR2(200);
@@ -71,5 +90,20 @@ CREATE OR REPLACE PACKAGE BODY table_insertor AS
         v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
         DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
     END insert_update;
+    
+    PROCEDURE insert_xp(hash_code IN VARCHAR2, user_name IN VARCHAR2, xp_update IN FLOAT) AS
+        v_command VARCHAR2(500);
+        v_table_name VARCHAR2(200);
+        v_cursor_id INTEGER;
+        v_ok INTEGER;
+    BEGIN
+        insert_level_user(hash_code, user_name);
+        v_table_name := 'PLAYER_' || hash_code;
+        v_command := 'UPDATE ' || v_table_name || ' SET xp = xp + ' || xp_update || ' WHERE user_name = ''' || user_name || '''';
+        v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+        DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+        v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+        DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+    END insert_xp;
     
 END table_insertor;
