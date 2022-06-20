@@ -17,8 +17,8 @@ function setCORSPolicy(res) {
 }
 
 async function send_email(user_name, hashcode){
-    const SENDGRID_API_KEY = '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'
-    const EMAIL_ADRESS = 'gtatutu2001@gmail.com'
+    const SENDGRID_API_KEY = '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'
+    const EMAIL_ADRESS = 'gamificationproject2001@gmail.com'
 
     const fs = require("fs");
     const path = require("path");
@@ -44,7 +44,7 @@ async function send_email(user_name, hashcode){
             type: "application/xml",
             disposition: "attachment"
         }],
-        templateId: 'd-867b76d7922e4838bfc71aa20f9f11c7',
+        templateId: 'd-bdc4821efa32408f863f516ef244e2f2',
         dynamicTemplateData: {
             name: user_name.split('@')[0],
             hash_code: hashcode
