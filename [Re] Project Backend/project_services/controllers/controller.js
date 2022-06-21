@@ -107,6 +107,52 @@ async function servicesUpdateReward(req, res) {
     }
 }
 
+async function servicesUpdateLevel(req, res) {
+    try {
+
+         let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', async () => {
+            let new_name
+            let new_value
+            let new_description
+            if(!JSON.parse(body).new_name){
+                new_name = 'NULL'
+            }else{
+                new_name = JSON.parse(body).new_name
+            }
+
+            if(!JSON.parse(body).new_value && JSON.parse(body).new_value != 0){
+                new_value = -1
+            }else{
+                new_value = JSON.parse(body).new_value
+            }
+
+            if(!JSON.parse(body).new_description){
+                new_description = 'NULL'
+            }else{
+                new_description = JSON.parse(body).new_description
+            }
+
+            if(!JSON.parse(body).level_name || !JSON.parse(body).hash_code){
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: 'Wrong parameters!' }))
+                res.end()
+            }else{
+                const response = await Database.services_update_level(JSON.parse(body).level_name, JSON.parse(body).hash_code, new_name, new_value, new_description);
+                res.statusCode = getStatusCodeForMessage(response)
+                res.write(JSON.stringify({ message: response }))
+                res.end()
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function servicesDeleteEvent(req, res) {
     try {
 
@@ -184,6 +230,6 @@ async function servicesDeleteLevel(req, res) {
 
 
 module.exports = {
-    servicesAddEvent, servicesAddReward, servicesAddLevel, servicesUpdateReward, servicesDeleteEvent, servicesDeleteReward, servicesDeleteLevel,
+    servicesAddEvent, servicesAddReward, servicesAddLevel, servicesUpdateReward, servicesUpdateLevel, servicesDeleteEvent, servicesDeleteReward, servicesDeleteLevel,
     getStatusCodeForMessage
 }

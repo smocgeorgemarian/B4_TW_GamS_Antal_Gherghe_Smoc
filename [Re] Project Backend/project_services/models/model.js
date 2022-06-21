@@ -100,6 +100,31 @@ function services_update_reward(reward_name, hash_code, new_reward) {
     })
 }
 
+function services_update_level(level_name, hash_code, new_name, new_value, new_description) {
+    return new Promise(async (resolve, reject) => {
+        let connection
+        try {
+            connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
+            console.log("Successfully connected to Oracle Database");
+            let result = connection.execute(`SELECT api_services.update_level('${level_name}', '${hash_code}', '${new_name}', ${new_value}, '${new_description}') FROM DUAL`)
+
+            let response = (await result).rows[0][0];
+            resolve(response)
+        } catch (err) {
+            console.error(err);
+            resolve('error');
+        } finally {
+            if (connection) {
+                try {
+                    await connection.close();
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        }
+    })
+}
+
 function services_delete_event(event_name, hash_code) {
     return new Promise(async (resolve, reject) => {
         let connection
@@ -176,5 +201,5 @@ function services_delete_level(level_name, hash_code) {
 }
 
 module.exports = {
-    services_add_event, services_add_reward, services_add_level, services_update_reward, services_delete_event, services_delete_reward, services_delete_level
+    services_add_event, services_add_reward, services_add_level, services_update_reward, services_update_level, services_delete_event, services_delete_reward, services_delete_level
 }

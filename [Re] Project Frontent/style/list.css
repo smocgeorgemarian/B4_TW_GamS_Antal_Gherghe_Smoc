@@ -70,7 +70,17 @@
     padding: 15px;
 }
 
+.deleteLevelData {
+    text-align: center;
+    list-style: none;
+    padding: 15px;
+}
+
 .deleteInput {
+    margin-right: 15px;
+}
+
+.deleteLevelInput {
     margin-right: 15px;
 }
 

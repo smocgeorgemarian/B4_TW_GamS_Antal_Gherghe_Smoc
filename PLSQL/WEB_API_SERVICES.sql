@@ -7,6 +7,7 @@ CREATE OR REPLACE PACKAGE api_services AS
     FUNCTION delete_reward(reward_name VARCHAR2, hashcode VARCHAR2) RETURN VARCHAR2;
     FUNCTION delete_level(lname VARCHAR2, hashcode VARCHAR2) RETURN VARCHAR2;
     FUNCTION update_reward(reward_name VARCHAR2, hash_code VARCHAR2, new_reward VARCHAR2) RETURN VARCHAR2;
+    FUNCTION update_level(lvl_name VARCHAR2, hash_code VARCHAR2, new_lvl_name VARCHAR2, new_lvl_value FLOAT, new_lvl_desc VARCHAR2) RETURN VARCHAR2;
 
 END api_services;
 
@@ -268,6 +269,78 @@ CREATE OR REPLACE PACKAGE BODY api_services AS
         END IF;
         commit;
         RETURN returner;
-    END;
+    END update_reward;
+    
+    FUNCTION update_level(lvl_name VARCHAR2, hash_code VARCHAR2, new_lvl_name VARCHAR2, new_lvl_value FLOAT, new_lvl_desc VARCHAR2)
+    RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
+        v_cursor_id INTEGER;
+        v_ok INTEGER;
+        v_command VARCHAR2(500);
+        v_table_name VARCHAR2(200);
+        returner VARCHAR2(200);
+        
+        username VARCHAR2(200);
+        user_xp FLOAT;
+        
+    BEGIN
+    
+        IF test_existence.test_table_level(lvl_name, hash_code) = 0 THEN
+            returner := '404';
+        ELSE
+            returner := '1';
+            v_table_name := 'LEVEL_' || hash_code;
+            IF new_lvl_value >= 0 THEN
+                v_command := 'UPDATE ' || v_table_name || ' SET lvalue = :xnew WHERE lname = :xname';
+                v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+                DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+                DBMS_SQL.BIND_VARIABLE(v_cursor_id, ':xnew', new_lvl_value);
+                DBMS_SQL.BIND_VARIABLE(v_cursor_id, ':xname', lvl_name);
+                v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+                DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+            END IF;
+            IF new_lvl_desc != 'NULL' THEN
+                v_command := 'UPDATE ' || v_table_name || ' SET ldescription = :xnew WHERE lname = :xname';
+                v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+                DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+                DBMS_SQL.BIND_VARIABLE(v_cursor_id, ':xnew', new_lvl_desc);
+                DBMS_SQL.BIND_VARIABLE(v_cursor_id, ':xname', lvl_name);
+                v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+                DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+            END IF;
+            IF new_lvl_name != 'NULL' THEN
+                v_command := 'UPDATE ' || v_table_name || ' SET lname = :xnew WHERE lname = :xname';
+                v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+                DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+                DBMS_SQL.BIND_VARIABLE(v_cursor_id, ':xnew', new_lvl_name);
+                DBMS_SQL.BIND_VARIABLE(v_cursor_id, ':xname', lvl_name);
+                v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+                DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+            END IF;
+            
+            v_table_name := 'PLAYER_' || hash_code;
+            v_command := 'SELECT user_name, xp FROM ' || v_table_name;
+            v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+            DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+            DBMS_SQL.DEFINE_COLUMN(v_cursor_id, 1, username, 200); 
+            DBMS_SQL.DEFINE_COLUMN(v_cursor_id, 2, user_xp); 
+            v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+            LOOP 
+                IF DBMS_SQL.FETCH_ROWS(v_cursor_id)>0 THEN 
+                    DBMS_SQL.COLUMN_VALUE(v_cursor_id, 1, username); 
+                    DBMS_SQL.COLUMN_VALUE(v_cursor_id, 2, user_xp); 
+                    
+                    rewards.update_level(hash_code, username, rewards.get_level(hash_code, user_xp));
+                    
+                ELSE 
+                    EXIT; 
+                END IF; 
+            END LOOP;   
+            DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+            
+        END IF;
+        commit;
+        RETURN returner;
+    END update_level;
 
 END api_services;

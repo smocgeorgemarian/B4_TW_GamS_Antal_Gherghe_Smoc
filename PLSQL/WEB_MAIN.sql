@@ -41,17 +41,14 @@ SELECT COUNT(*) FROM REWARD_uTBgRMduBB WHERE rname = 'r1'
 --DEMO API_SERVICES
 set serveroutput on;
 DECLARE
-    hash_code VARCHAR2(200) := 'PjoTmfkpHw';
+    hash_code VARCHAR2(200) := 'nRinsynEaZ';
 BEGIN
-    --dbms_output.put_line(api_services.add_event(hash_code, 'first_event', 'count', 5));
-    --dbms_output.put_line(api_services.add_event(hash_code, 'secound_event', 'time', 50));
-    --dbms_output.put_line(api_services.add_event(hash_code, 'third_event', 'sum', 10));
-    --dbms_output.put_line(api_services.add_reward(hash_code, 'first_reward', '(first_event)', 'reward1', 0));
-    --dbms_output.put_line(api_services.add_reward(hash_code, 'all_reward', '(first_event $ secound_event) | (third_event $ secound_event)', 'reward22', 1));
-    --dbms_output.put_line(api_services.delete_event('e3', 'uTBgRMduBB'));
-    --dbms_output.put_line(api_services.delete_reward('r1', 'uTBgRMduBB'));
-    --dbms_output.put_line(api_services.update_reward('first_reward', hash_code, 'new_reward'));
+    dbms_output.put_line(api_services.update_level('iron', hash_code, 'NULL', 10, 'ce'));
 END;
+
+SELECT * FROM OWNERS;
+SELECT * FROM LEVEL_nRinsynEaZ;
+SELECT * FROM PLAYER_nRinsynEaZ;
 
 --DEMO API_SERVICES_USERNAME
 set serveroutput on;

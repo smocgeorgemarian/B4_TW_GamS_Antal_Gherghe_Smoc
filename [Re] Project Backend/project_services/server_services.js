@@ -26,6 +26,8 @@ const serverServices = http.createServer((req, res) => {
         Controller.servicesAddLevel(req, res);
     }else if(req.url === '/services/update/reward' && req.method === 'PUT'){
         Controller.servicesUpdateReward(req, res);
+    }else if(req.url === '/services/update/level' && req.method === 'PUT'){
+        Controller.servicesUpdateLevel(req, res);
     }else if(req.url === '/services/delete/event' && req.method === 'DELETE'){
         Controller.servicesDeleteEvent(req, res);
     }else if(req.url === '/services/delete/reward' && req.method === 'DELETE'){

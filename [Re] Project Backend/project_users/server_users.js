@@ -26,6 +26,8 @@ const serverServices = http.createServer((req, res) => {
         Controller.servicesUsernameGetLevel(req, res);
     }else if(req.url === '/services/username/xp' && req.method === 'POST'){
         Controller.servicesUsernameGetXp(req, res);
+    }else if(req.url === '/services/username/description' && req.method === 'POST'){
+        Controller.servicesUsernameGetDescription(req, res);
     }else if(req.url === '/services/username/update' && req.method === 'PUT'){
         Controller.servicesUsernameUpdateProgress(req, res);
     }else if(req.url === '/services/username/add' && req.method === 'PUT'){

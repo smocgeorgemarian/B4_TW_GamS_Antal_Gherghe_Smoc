@@ -110,6 +110,31 @@ function services_username_xp(hash_code, user_name) {
     })
 }
 
+function services_username_description(hash_code, user_name) {
+    return new Promise(async (resolve, reject) => {
+        let connection
+        try {
+            connection = await oracledb.getConnection({ user: "tudor", password: "tudor", connectionString: "localhost/xe" });
+            console.log("Successfully connected to Oracle Database");
+            let result = connection.execute(`SELECT api_services_username.get_description('${hash_code}', '${user_name}') FROM DUAL`)
+
+            let response = (await result).rows[0][0];
+            resolve(response);
+        } catch (err) {
+            console.error(err);
+            resolve('error');
+        } finally {
+            if (connection) {
+                try {
+                    await connection.close();
+                } catch (err) {
+                    console.error(err);
+                }
+            }
+        }
+    })
+}
+
 function services_username_update(event_name, hash_code, user_name, value_update) {
     return new Promise(async (resolve, reject) => {
         let connection
@@ -211,5 +236,5 @@ function services_username_delete(hash_code, user_name) {
 }
 
 module.exports = {
-    services_username_rewards, services_username_all_rewards, services_username_level, services_username_xp, services_username_update, services_username_add, services_username_add_level, services_username_delete
+    services_username_rewards, services_username_all_rewards, services_username_level, services_username_xp, services_username_description, services_username_update, services_username_add, services_username_add_level, services_username_delete
 }
