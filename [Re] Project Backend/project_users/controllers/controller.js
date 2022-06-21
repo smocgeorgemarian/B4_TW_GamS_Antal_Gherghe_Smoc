@@ -107,6 +107,31 @@ async function servicesUsernameGetXp(req, res) {
     }
 }
 
+async function servicesUsernameGetDescription(req, res) {
+    try {
+
+         let body = ''
+        req.on('data', chunk => {
+            body += chunk;
+        });
+
+        req.on('end', async () => {
+            if(!JSON.parse(body).hash_code || !JSON.parse(body).username){
+                res.statusCode = 400
+                res.write(JSON.stringify({ message: 'Wrong parameters!' }))
+                res.end()
+            }else{
+                const response = await Database.services_username_description(JSON.parse(body).hash_code, JSON.parse(body).username);
+                res.statusCode = getStatusCodeForMessage(response)
+                res.write(JSON.stringify({ message: response }))
+                res.end()
+            }
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 async function servicesUsernameUpdateProgress(req, res) {
     try {
 
@@ -232,6 +257,6 @@ async function servicesUsernameDelete(req, res) {
 }
 
 module.exports = {
-    servicesUsernameGetRewards, servicesUsernameGetAllRewards, servicesUsernameGetLevel, servicesUsernameGetXp, servicesUsernameUpdateProgress, servicesUsernameAddToEvent, servicesUsernameAddToLevel, servicesUsernameDelete,
+    servicesUsernameGetRewards, servicesUsernameGetAllRewards, servicesUsernameGetLevel, servicesUsernameGetXp, servicesUsernameGetDescription, servicesUsernameUpdateProgress, servicesUsernameAddToEvent, servicesUsernameAddToLevel, servicesUsernameDelete,
     getStatusCodeForMessage
 }

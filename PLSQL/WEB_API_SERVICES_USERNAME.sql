@@ -4,6 +4,7 @@ CREATE OR REPLACE PACKAGE api_services_username AS
     FUNCTION get_all_rewards(hash_code VARCHAR2, user_name VARCHAR2) RETURN VARCHAR2;
     FUNCTION get_level(hash_code VARCHAR2, user_name VARCHAR2) RETURN VARCHAR2;
     FUNCTION get_xp(hash_code VARCHAR2, user_name VARCHAR2) RETURN VARCHAR2;
+    FUNCTION get_description(hash_code VARCHAR2, user_name VARCHAR2) RETURN VARCHAR2;
     FUNCTION update_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2, value_update IN FLOAT DEFAULT 1) RETURN VARCHAR2;
     FUNCTION add_user_to_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2) RETURN VARCHAR2;
     FUNCTION add_user_to_level(hash_code IN VARCHAR2, user_name IN VARCHAR2) RETURN VARCHAR2;
@@ -53,7 +54,7 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
         v_table_name VARCHAR2(200);
         v_level VARCHAR2(200);
     BEGIN
-        IF test_existence.test_level_user(hash_code, user_name) = 0 THEN
+        IF test_existence.test_level_user(hash_code, user_name) = 0 OR test_existence.test_hash(hash_code) = 0 THEN
             returner := '404';
         ELSE
             returner := 'error';
@@ -87,7 +88,7 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
         v_table_name VARCHAR2(200);
         v_xp FLOAT;
     BEGIN
-        IF test_existence.test_level_user(hash_code, user_name) = 0 THEN
+        IF test_existence.test_level_user(hash_code, user_name) = 0 OR test_existence.test_hash(hash_code) = 0 THEN
             returner := '404';
         ELSE
             returner := 'error';
@@ -110,6 +111,48 @@ CREATE OR REPLACE PACKAGE BODY api_services_username AS
         commit;
         RETURN returner;
     END get_xp;
+    
+    FUNCTION get_description(hash_code VARCHAR2, user_name VARCHAR2)
+    RETURN VARCHAR2 AS
+        PRAGMA AUTONOMOUS_TRANSACTION;
+        returner VARCHAR2(2000);
+        v_cursor_id INTEGER;
+        v_ok INTEGER;
+        v_command VARCHAR2(500);
+        v_table_name VARCHAR2(200);
+        v_lvl VARCHAR2(200);
+        v_desc VARCHAR2(2000);
+    BEGIN
+        IF test_existence.test_level_user(hash_code, user_name) = 0 OR test_existence.test_hash(hash_code) = 0 THEN
+            returner := '404';
+        ELSE
+            returner := 'error';
+            v_table_name := 'PLAYER_' || hash_code;
+            v_command := 'SELECT xplevel FROM ' || v_table_name || ' WHERE user_name = ''' || user_name || '''';
+            v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+            DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+            DBMS_SQL.DEFINE_COLUMN(v_cursor_id, 1, v_lvl, 200); 
+            v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+            IF DBMS_SQL.FETCH_ROWS(v_cursor_id)>0 THEN 
+                DBMS_SQL.COLUMN_VALUE(v_cursor_id, 1, v_lvl);
+                DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+                
+                v_table_name := 'LEVEL_' || hash_code;
+                v_command := 'SELECT ldescription FROM ' || v_table_name || ' WHERE lname = ''' || v_lvl || '''';
+                v_cursor_id := DBMS_SQL.OPEN_CURSOR;
+                DBMS_SQL.PARSE(v_cursor_id, v_command, DBMS_SQL.NATIVE);
+                DBMS_SQL.DEFINE_COLUMN(v_cursor_id, 1, v_desc, 2000); 
+                v_ok := DBMS_SQL.EXECUTE(v_cursor_id);
+                IF DBMS_SQL.FETCH_ROWS(v_cursor_id)>0 THEN 
+                    DBMS_SQL.COLUMN_VALUE(v_cursor_id, 1, v_desc);
+                    DBMS_SQL.CLOSE_CURSOR(v_cursor_id);
+                    returner := v_desc;
+                END IF;
+            END IF; 
+        END IF;
+        commit;
+        RETURN returner;
+    END get_description;
     
     FUNCTION update_event(event_name IN VARCHAR2, hash_code IN VARCHAR2, user_name IN VARCHAR2, value_update IN FLOAT DEFAULT 1)
     RETURN VARCHAR2 AS

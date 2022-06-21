@@ -370,6 +370,28 @@ function updateElement() {
     sendContent(content, "PUT", "http://localhost:5001/services/update/reward");
 }
 
+function updateLevelElement() {
+    let inputs = document.getElementsByClassName("deleteLevelInput");
+    let inputValue = inputs[0].value;
+
+    let updateName = inputs[1].value ? inputs[1].value : 'NULL';
+    let updateValue = inputs[2].value ? inputs[2].value : -1;
+    let updateDesc = inputs[3].value ? inputs[3].value : 'NULL';
+    let content = {
+        "level_name" : inputValue,
+        ...credentials,
+        "new_name" : updateName,
+        "new_value" : updateValue,
+        "new_description" : updateDesc
+    }
+
+    console.log(content)
+
+    console.log(content);
+
+    sendContent(content, "PUT", "http://localhost:5001/services/update/level");
+}
+
 function initUpdate() {
     let doc = document.getElementById("updateData");
     doc.classList.add("deleteData");
@@ -397,6 +419,44 @@ function initUpdate() {
     doc.appendChild(i);
 }
 
+function initLevelUpdate() {
+    let doc = document.getElementById("updateDataLevel");
+    doc.classList.add("deleteLevelData");
+
+    let input = document.createElement("input");
+    input.placeholder = "Level name...";
+    input.classList.add("deleteLevelInput");
+    doc.appendChild(input);
+
+    input = document.createElement("input");
+    input.placeholder = "New name...";
+    input.classList.add("deleteLevelInput");
+    doc.appendChild(input);
+
+    input = document.createElement("input");
+    input.setAttribute("type", "number");
+    input.placeholder = "New value...";
+    input.classList.add("deleteLevelInput");
+    doc.appendChild(input);
+
+    input = document.createElement("input");
+    input.placeholder = "New description...";
+    input.classList.add("deleteLevelInput");
+    doc.appendChild(input);
+
+    let i = document.createElement("i");
+    i.setAttribute("class", "fa fa-refresh");
+    i.setAttribute("onclick", "updateLevelElement()");
+    i.ariaHidden = true;
+    i.classList.add("tooltip");
+    let span = document.createElement("span");
+    span.classList.add("tooltiptext");
+    span.textContent = "Update Element";
+    i.appendChild(span);
+
+    doc.appendChild(i);
+}
+
 function getBackToIndex() {
     window.location.href = './../sources/index.html';
 }
@@ -405,3 +465,4 @@ initList();
 initMenu();
 initDelete();
 initUpdate();
+initLevelUpdate();

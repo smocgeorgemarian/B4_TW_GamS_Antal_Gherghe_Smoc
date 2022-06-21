@@ -206,7 +206,9 @@ CREATE OR REPLACE PACKAGE BODY test_existence AS
         v_ok INTEGER;
         v_table_name VARCHAR2(200);
     BEGIN
-        
+        IF test_hash(hash_code) = 0 THEN
+            RETURN 0;
+        END IF;
         v_table_name :='PLAYER_' || hash_code;
         v_command := 'SELECT COUNT(*) FROM ' || v_table_name || ' WHERE user_name = ''' || user_name || ''''; 
         v_cursor_id := DBMS_SQL.OPEN_CURSOR;
