@@ -58,17 +58,15 @@ function displayText() {
 }
 
 let isLogged;
-console.log(document.cookie);
 if (document.cookie) {
     hashcode = document.cookie.split(";")[0]
         .split('=')[1];
     isLogged = true;
-    console.log(hashcode);
 } else {
     isLogged = false;
 }
 
-
+//CALL TO API LOGOUT
 function logout() {
 
     let content = {
