@@ -3,6 +3,8 @@ STATUS_MSG = {
     403: "Access forbidden, maybe duplicated action",
     404: "Resource could not be found"
 }
+
+//VERIFY IF INPUT PROVIDED
 function validateService(element, index) {
     let form = element.firstChild;
     let firstInput = form.childNodes[0];
@@ -39,6 +41,7 @@ function validateExpression(expression, optionsList, index) {
     return "OK";
 }
 
+//CALL API CONTROLLER
 function sendContent(content, method, url, doSomething = null, doSomethingParameter = null) {
     let xhttp = new XMLHttpRequest();
     let mustBeGreen = false;
@@ -54,8 +57,6 @@ function sendContent(content, method, url, doSomething = null, doSomethingParame
             }
         }
     };
-    console.log(content)
-    console.log(JSON.stringify(content))
 
     xhttp.open(method, url)
     xhttp.setRequestHeader("Content-Type", "application/json");
@@ -112,6 +113,7 @@ function addNewService(serviceData, index) {
     sendContent(content, "PUT","http://localhost:5001/services/add/event", setIsValidatedPrintable, index);
 }
 
+//CALL TO API ADD REWARD
 function addNewBadge(expressionList, index) {
     let father = expressionList.firstChild;
     expressionList = expressionList.firstChild.childNodes
@@ -136,6 +138,7 @@ function addNewBadge(expressionList, index) {
     });
 }
 
+//CALL TO API ADD LEVEL
 function addNewLevel(expressionList, index) {
     let father = expressionList.firstChild;
     expressionList = expressionList.firstChild.childNodes
@@ -160,6 +163,7 @@ function addNewLevel(expressionList, index) {
     });
 }
 
+//VALIDATE FACADE
 function validateAll() {
     let childrenServices = document.getElementById("list").childNodes;
     for (let childIndex = 0; childIndex < childrenServices.length; childIndex++) {

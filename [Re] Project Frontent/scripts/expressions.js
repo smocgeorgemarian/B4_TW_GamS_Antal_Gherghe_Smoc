@@ -8,6 +8,7 @@ function getOperandsList() {
 
 operandsOptions = ["and", "or", "not"];
 
+//REWARD/LEVEL PRINT
 function createExpr() {
     let ulExpressions = document.getElementById("expressions");
     // ulExpressions.classList.add("expressions");
@@ -48,13 +49,6 @@ function createExpr() {
     input.classList.add("badgeName");
     input.placeholder = "Reward/Description";
     ulInsideLi.appendChild(tmpLi);
-
-
-    // let tmpLi = document.createElement("li")
-    // let input = document.createElement("input");
-    // input.classList.add("expression");
-    // tmpLi.appendChild(input);
-    // ulInsideLi.appendChild(tmpLi);
 
     liExpression.appendChild(ulInsideLi);
     liExpression.setAttribute("onclick", "deleteItselfIfNeeded(this)");

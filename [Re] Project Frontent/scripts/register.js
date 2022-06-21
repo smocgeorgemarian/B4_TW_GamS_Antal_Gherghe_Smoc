@@ -21,6 +21,7 @@ function getInputValue(){
     register();
 }
 
+//CALL TO API FOR REGISTER
 function register() {
     let link = document.getElementById("link").value;
     let email = document.getElementById("email").value;
@@ -33,8 +34,6 @@ function register() {
         "password" : pass,
         "site" : link
     }
-
-    console.log(content);
 
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {

@@ -1,6 +1,7 @@
 
 let hashcode
 
+//CALL TO API FOR LOGIN
 function login() {
 
     let email = document.getElementById("email").value;
@@ -18,7 +19,6 @@ function login() {
             hashcode = obj.message;
 
             document.cookie = "hashcode=" + hashcode + ";expires=Thu, 01 Jan 2222 00:00:00 UTC;SameSite=none; Secure";
-            console.log(document.cookie);
             window.location.href = './../sources/index.html';
         }else if(this.readyState === 4){
 

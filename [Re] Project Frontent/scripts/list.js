@@ -10,9 +10,9 @@ function setPageUp() {
             .split('=')[1];
     else
         window.location.href = './../sources/uShallNotPass.html';
-    console.log(document.cookie)
 }
 
+//LIST ARRANGEMENT
 function setListArrangable(target) {
     target.classList.add("list");
     let items = target.querySelectorAll(":scope > *"), current = null;
@@ -71,6 +71,7 @@ function setListArrangable(target) {
     }
 }
 
+//ADD EVENT FORM
 function setListExample(target) {
     let liExample = document.createElement("li");
     let listExample = document.createElement("form");
@@ -106,20 +107,6 @@ function setListExample(target) {
     input3.setAttribute("max", "999999999")
     listExample.appendChild(input3);
 
-    // let inputExample2 = document.createElement("select");
-    // let options2 = ["Badge", "Title"];
-    // for (let index = 0; index < options2.length; index++) {
-    //     let option = document.createElement("option");
-    //     option.textContent = options2[index];
-    //     inputExample2.appendChild(option);
-    // }
-    // listExample.appendChild(inputExample2);
-
-    // let saveButton = document.createElement("input");
-    // saveButton.setAttribute("type", "submit");
-    // saveButton.setAttribute("value", "Save");
-    // listExample.appendChild(saveButton);
-
     liExample.setAttribute("onclick", "deleteItselfIfNeeded(this)");
     liExample.appendChild(listExample);
     target.appendChild(liExample);
@@ -131,8 +118,6 @@ function initList() {
         setListArrangable(target);
     });
     for (let index = 0; index < 0; index++) setListExample(target, index);
-    // setListExample(target);
-    // setListExample(target);
 }
 
 let menuOptions = ["fa fa-arrow-left", "fa fa-plus", "fa fa-minus", "fa fa-eye", "fa fa-link", "fa fa-plus", "fa fa-gift", "fa fa-gamepad", "fa fa-trophy"];
@@ -163,7 +148,7 @@ function deleteList(target) {
 
 let optionsList = ["and", "or", "not"];
 
-
+//INIT MENU
 function initMenu() {
     let menu = document.getElementById("menu");
     menu.classList.add("menu");
@@ -184,6 +169,7 @@ function initMenu() {
     }
 }
 
+//BUTTON HOVER OVER
 function showInfoBox(message) {
     let previousBoxes = document.getElementsByClassName("box");
     if (previousBoxes.length !== 0) {
@@ -205,6 +191,7 @@ function loadDatabase() {
     sendContent(credentials, "POST", "http://localhost:5000/users/events", setDataPrintable, {"table": "eye"});
 }
 
+//PRINT HEADER
 function setHeaderPrintableForTable(table, content) {
     let tr = document.createElement("tr");
     if (content.message.length === 0) return;
@@ -217,7 +204,7 @@ function setHeaderPrintableForTable(table, content) {
     table.appendChild(tr);
 }
 
-
+//PRINT TABLE
 function setDataPrintable(content, button) {
     let btn = document.getElementsByClassName("fa fa-" + button)[0];
     btn.classList.toggle("redEye");
@@ -252,20 +239,15 @@ function setDataPrintable(content, button) {
     exportButton.onclick = (e) => {
         let table = document.getElementById(buttonTmp);
         let children = table.childNodes;
-        console.log(children.length);
         let content = '';
         for (let trIndex = 0; trIndex < children.length; trIndex++) {
-            console.log("pula");
-            console.log(children[trIndex].length);
             for (let tdIndex = 0; tdIndex < children[trIndex].childNodes.length; tdIndex++) {
-                console.log(children[trIndex].childNodes[tdIndex]);
                 content += children[trIndex].childNodes[tdIndex].textContent;
                 if (tdIndex !== children[trIndex].childNodes.length - 1)
                     content += ', ';
             }
             content += '\n';
         }
-        console.log(content);
 
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
@@ -282,19 +264,22 @@ function setDataPrintable(content, button) {
 }
 
 
-
+//CALL TO API GET REWARDS
 function loadRewards() {
     sendContent(credentials, "POST", "http://localhost:5000/users/rewards", setDataPrintable, {"table": "gift"});
 }
 
+//CALL TO API GET LEVELS
 function loadLevels() {
     sendContent(credentials, "POST", "http://localhost:5000/users/levels", setDataPrintable, {"table": "gamepad"});
 }
 
+//CALL TO API GET TOP
 function loadTop() {
     sendContent(credentials, "POST", "http://localhost:5000/users/top", setDataPrintable, {"table": "trophy"});
 }
 
+//CALL TO API FOR DELETE
 function deleteElement() {
     let inputs = document.getElementsByClassName("deleteInput");
     let inputValue = inputs[0].value;
@@ -316,7 +301,6 @@ function deleteElement() {
     }
     else{
         content = {...credentials, "username": inputValue};
-        console.log(content);
         url = "http://localhost:5002/services/username/delete";
     }
     sendContent(content, "DELETE", url);
@@ -354,9 +338,9 @@ function initDelete() {
     doc.appendChild(i);
 }
 
+//CALL TO API FOR UPDATE REWARD
 function updateElement() {
     let inputs = document.getElementsByClassName("deleteInput");
-    console.log(inputs);
     let inputValue = inputs[1].value;
 
     let updateValue = inputs[2].value;
@@ -365,11 +349,11 @@ function updateElement() {
         ...credentials,
         "new_reward" : updateValue
     }
-    console.log(content);
 
     sendContent(content, "PUT", "http://localhost:5001/services/update/reward");
 }
 
+//CALL TO API FOR UPDATE LEVEL
 function updateLevelElement() {
     let inputs = document.getElementsByClassName("deleteLevelInput");
     let inputValue = inputs[0].value;
@@ -384,10 +368,6 @@ function updateLevelElement() {
         "new_value" : updateValue,
         "new_description" : updateDesc
     }
-
-    console.log(content)
-
-    console.log(content);
 
     sendContent(content, "PUT", "http://localhost:5001/services/update/level");
 }

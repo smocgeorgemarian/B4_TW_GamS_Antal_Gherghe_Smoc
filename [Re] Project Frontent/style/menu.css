@@ -43,15 +43,12 @@ body {
     }
     .menu li {
         display: inline;
-        margin-left: 16%;
+        margin-left: 10%;
         align-items: center;
     }
     .menu li i {
         margin-bottom: 5%;
      }
-    .fa-link {
-        padding-left: 8%;
-    }
     .menu select {
         margin-bottom: 2%;
         margin-left: 36%;
