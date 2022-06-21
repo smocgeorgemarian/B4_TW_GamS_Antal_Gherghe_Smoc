@@ -20,8 +20,7 @@ function login() {
 
             document.cookie = "hashcode=" + hashcode + ";expires=Thu, 01 Jan 2222 00:00:00 UTC;SameSite=none; Secure";
             window.location.href = './../sources/index.html';
-        }else if(this.readyState === 4){
-
+        }else if(this.readyState === 4 && this.status !== 200){
             alert("Someting went wrong!");
             window.location.href = './../sources/login.html';
         }

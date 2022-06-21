@@ -4,7 +4,7 @@ html {
 }
 body {
     margin: 0;
-    background-image: url("./../resources/trianglify.png");
+    background-image: url("./../resources/trianglify.webp");
     background-size: cover;
     background-repeat: repeat;
 }

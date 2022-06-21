@@ -2,7 +2,7 @@ body {
     background-image:
             linear-gradient(rgba(0, 0, 0, 0.45),
             rgba(0, 0, 0, 0.45)),
-            url("./../resources/cool-background.png");
+            url("./../resources/cool-background.webp");
     background-size: cover;
     background-repeat: repeat;
 }
@@ -54,7 +54,7 @@ body {
 .element {
     width: 150px;
     max-width: 100%;
-    background-image: url("./../resources/background-button.jpg");
+    background-image: url("./../resources/background-button.webp");
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 30%;
