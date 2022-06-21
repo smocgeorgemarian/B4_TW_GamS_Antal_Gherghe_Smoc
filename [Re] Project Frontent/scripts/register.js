@@ -22,7 +22,7 @@ function getInputValue(){
 }
 
 //CALL TO API FOR REGISTER
-function register() {
+async function register() {
     let link = document.getElementById("link").value;
     let email = document.getElementById("email").value;
     let cemail = document.getElementById("cemail").value;
@@ -36,14 +36,14 @@ function register() {
     }
 
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = await async function() {
         if (this.readyState === 4 && this.status === 200) {
             let obj = JSON.parse(xhttp.response);
             hashcode = obj.message;
             window.location.href = './../sources/login.html';
-        }else if(this.readyState === 4){
+        }else if(this.readyState === 4 && this.status !== 200){
             alert("Someting went wrong!");
-            // window.location.href = './../sources/register.html';
+            window.location.href = './../sources/register.html';
         }
     };
     xhttp.open("POST", "http://localhost:5000/users/register")

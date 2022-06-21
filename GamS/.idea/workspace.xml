@@ -4,7 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="78cfae73-449a-41d5-a160-8418d87b2a17" name="Changes" comment="" />
+    <list default="true" id="78cfae73-449a-41d5-a160-8418d87b2a17" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaScript/postInteractions.js" beforeDir="false" afterPath="$PROJECT_DIR$/JavaScript/postInteractions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/resources/background-button.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/resources/cool-background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/resources/trianglify.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/delete.js" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/delete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/scripts/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/sources/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/sources/register.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/sources/uShallNotPass.html" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/sources/uShallNotPass.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/list.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/menu.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/menu.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../[Re] Project Frontent/style/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/../[Re] Project Frontent/style/register.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,6 +94,7 @@
       <workItem from="1655727423045" duration="1200000" />
       <workItem from="1655740568643" duration="9680000" />
       <workItem from="1655807880985" duration="270000" />
+      <workItem from="1655816173629" duration="354000" />
     </task>
     <servers />
   </component>

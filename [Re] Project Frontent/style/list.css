@@ -88,6 +88,38 @@
     margin-right: 15px;
 }
 
+#buttoneye {
+    height: 5%;
+    width: 5%;
+    margin-left: 47.5%;
+    margin-top: -5%;
+    font-size: small;
+}
+
+#buttongift {
+    height: 5%;
+    width: 5%;
+    margin-left: 47.5%;
+    margin-top: -5%;
+    font-size: small;
+}
+
+#buttongamepad {
+    height: 5%;
+    width: 5%;
+    margin-left: 47.5%;
+    margin-top: -5%;
+    font-size: small;
+}
+
+#buttontrophy {
+    height: 5%;
+    width: 5%;
+    margin-left: 47.5%;
+    margin-top: -5%;
+    font-size: small;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
 
     .deleteData select {
@@ -102,20 +134,25 @@
     .fa-refresh {
         margin-left: 35%;
     }
-}
 
-#buttoneye {
-    height: 5%;
-    width: 5%;
-    margin-left: 47.5%;
-    margin-top: -5%;
-    font-size: small;
-}
+    #buttoneye{
+        width: 15%;
+        margin-left: 45%;
+    }
 
-#buttontrophy {
-    height: 5%;
-    width: 5%;
-    margin-left: 47.5%;
-    margin-top: -5%;
-    font-size: small;
+    #buttongift{
+        width: 15%;
+        margin-left: 45%;
+    }
+
+    #buttongamepad{
+        width: 15%;
+        margin-left: 45%;
+    }
+
+    #buttontrophy{
+        width: 15%;
+        margin-left: 45%;
+    }
+
 }

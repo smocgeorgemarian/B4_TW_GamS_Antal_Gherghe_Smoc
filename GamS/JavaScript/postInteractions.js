@@ -3,8 +3,8 @@
 let clicks = 50;
 let liked_post = false;
 let credentials = {
-    "hash_code" : "aViRBBjacJ",
-    "username" : "demoUser4"
+    "hash_code" : "aUgtfJQjtH",
+    "username" : "demoUser1"
 }
 let likeThis = new Map();
 
