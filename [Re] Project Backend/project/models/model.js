@@ -24,7 +24,7 @@ async function send_email(user_name, hashcode){
         },
         attachments: [{
             content: attachment,
-            filename: "text.xml",
+            filename: "WSDL.xml",
             type: "application/xml",
             disposition: "attachment"
         }],
